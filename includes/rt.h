@@ -20,14 +20,13 @@
 # include <fcntl.h>
 # include <pthread.h>
 # include "mlx.h"
-# include "libft.h"
+# include "../libft/includes/libft.h"
+# include "key_codes_macos.h"
+# include "events.h"
 
 # define WIN_X e->width
 # define WIN_Y e->height
-# define RED 0xFF000000
-# define GREEN 0x00FF0000
-# define BLUE 0x0000FF00
-# define THREADS 128
+# define THREADS 16
 # define VIEWP e->camera->viewp
 # define POW2(x) (x * x)
 # define FOCALE 300
@@ -174,6 +173,7 @@ typedef struct		s_thread
 	int				y;
 }					t_thread;
 
+int				key_hook(int keycode, t_env *e);
 double			fresnel(t_thread *thr);
 unsigned int	refracted(t_thread *thr, unsigned int color, double kr);
 t_vect			vectcpy(t_vect v);

@@ -70,4 +70,4 @@ cone:
 	diffuse: 1.0
 	specular: 1.0
 	reflection: 0.0
-	refraction: 0.0
+	refraction: 2.7283

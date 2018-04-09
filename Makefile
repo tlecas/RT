@@ -11,10 +11,12 @@
 # **************************************************************************** #
 
 NAME = RT
-SRC_PATH = ./src/
+SRC_PATH = ./srcs/
 SRC_NAME = 	ft_debug.c \
 			ft_reflection.c \
 			main.c \
+			rt.c \
+			keys.c \
 			ft_light.c \
 			ft_shadow.c \
 			ft_prep_shadow.c \
@@ -22,7 +24,6 @@ SRC_NAME = 	ft_debug.c \
 			ft_plan.c \
 			ft_sphere.c \
 			ft_init.c \
-			ft_rt.c \
 			ft_img.c \
 			ft_tools.c \
 			ft_cylinder.c \
@@ -41,7 +42,7 @@ OBJ_PATH = ./obj/
 OBJ_NAME = $(SRC_NAME:.c=.o)
 OBJ = $(addprefix $(OBJ_PATH),$(OBJ_NAME))
 CC = gcc
-CFLAGS = -Wall -Wextra -Werror
+CFLAGS = -Wall -Wextra -Werror -Ofast -march=native
 CPPFLAGS = -Iincludes -Ilibft/includes -Iminilibx_macos
 OPTI_MODE = -g
 LIBFT = ./libft/libft.a
