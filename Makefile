@@ -12,11 +12,10 @@
 
 NAME = RT
 SRC_PATH = ./srcs/
-SRC_NAME = 	ft_debug.c \
-			ft_reflection.c \
-			main.c \
+SRC_NAME = 	main.c \
 			rt.c \
 			keys.c \
+			ft_reflection.c \
 			ft_light.c \
 			ft_shadow.c \
 			ft_prep_shadow.c \

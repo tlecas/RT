@@ -20,12 +20,6 @@ static double		ft_cos_a(t_thread *thr, t_light *light)
 	double	cos_a;
 	double	intensity;
 
-//	if (g_x == 500 && g_y == 373)
-//	{
-//		debug("light->vect", light->vect);
-//		debug("light->pos", light->pos);
-//		debug("thr->interpos", thr->interpos);
-//	}
 	light->prod_scal = dot(light->vect, thr->internorm);
 	light->norm_l = norm(light->vect);
 	light->norm_obj = norm(thr->internorm);
@@ -35,22 +29,27 @@ static double		ft_cos_a(t_thread *thr, t_light *light)
 		cos_a = (light->prod_scal / (light->norm_l * light->norm_obj)) * intensity * thr->mat.diffuse;
 	return (cos_a);
 }
-
+/* pop art raytracer
 void				rgb_mult(unsigned int *color, double f)
+{
+	*color *= f;
+}
+*/
+/*void				rgb_mult(unsigned int *color, double f)
 {
 	unsigned int	r;
 	unsigned int	g;
 	unsigned int	b;
 	unsigned int	inv;
 
-	inv = (*color / 0x1000000);
-	*color = *color % 0x1000000;
-	r = (*color / 0x10000) * f;
-	*color = *color % 0x10000;
-	g = (*color / 0x100) * f;
-	*color = *color % 0x100;
+	inv = (*color >> 24);
+	*color <<= 8;
+	r = (*color >> 16) * f;
+	*color <<= 8;
+	g = (*color >> 8) * f;
+	*color <<= 8;
 	b = *color * f;
-	*color = (inv * 0x1000000) + (r * 0x10000) + (g * 0x100) + b;
+	*color = (inv << 24) + (r << 16) + (g << 8) + b;
 }
 
 void				rgb_addf(unsigned int *color, double d)
@@ -60,17 +59,54 @@ void				rgb_addf(unsigned int *color, double d)
 	unsigned int	b;
 	unsigned int	inv;
 
-	inv = (*color / 0x1000000);
-	*color = *color % 0x1000000;
-	r = (*color / 0x10000) + d;
+	inv = (*color >> 24);
+	*color <<= 8;
+	r = (*color >> 16) + d;
 	uiclamp(&r, 0, 255);
-	*color = *color % 0x10000;
-	g = (*color / 0x100) + d;
+	*color <<= 8;
+	g = (*color >> 8) + d;
 	uiclamp(&g, 0, 255);
-	*color = *color % 0x100;
+	*color <<= 8;
 	b = *color + d;
 	uiclamp(&b, 0, 255);
-	*color = (inv * 0x1000000) + (r * 0x10000) + (g * 0x100) + b;
+	*color = (inv << 24) + (r << 16) + (g << 8) + b;
+} OMEGALUL FILTRE */
+
+void				rgb_mult(unsigned int *color, double f)
+{
+	unsigned int	r;
+	unsigned int	g;
+	unsigned int	b;
+	unsigned int	inv;
+
+	inv = (*color >> 24);
+	*color <<= 8;
+	r = (*color >> 24) * f;
+	*color <<= 8;
+	g = (*color >> 24) * f;
+	*color <<= 8;
+	b = (*color >> 24) * f;
+	*color = (inv << 24) + (r << 16) + (g << 8) + b;
+}
+
+void				rgb_addf(unsigned int *color, double d)
+{
+	unsigned int	r;
+	unsigned int	g;
+	unsigned int	b;
+	unsigned int	inv;
+	
+	inv = (*color >> 24);
+	*color <<= 8;
+	r = (*color >> 24) + d;
+	uiclamp(&r, 0, 255);
+	*color <<= 8;
+	g = (*color >> 24) + d;
+	uiclamp(&g, 0, 255);
+	*color <<= 8;
+	b = (*color >> 24) + d;
+	uiclamp(&b, 0, 255);
+	*color = (inv << 24) + (r << 16) + (g << 8) + b;
 }
 
 double				fmax(double reflet, double d)

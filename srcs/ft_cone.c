@@ -73,8 +73,5 @@ double		ft_calc_cone(t_cone *cone, t_camera *camera)
 	vect = vrotate(camera->v, cone->rotate);
 	if ((cone->inter = ft_calc_inter_cone(cone, pos, vect)) < 0.0001)
 		return (0);
-	//Cone limité
-	//if ((e->virt_e.pos.y + cone->inter * e->virt_e.v.y) < 0.0001)
-	//	cone->inter = 0;
 	return (cone->inter);
 }
