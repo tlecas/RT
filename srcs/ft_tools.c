@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   ft_tools.c                                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: gmachena <gmachena@student.42.fr>          +#+  +:+       +#+        */
+/*   By: tlecas <tlecas@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2017/11/08 15:16:19 by acoudray          #+#    #+#             */
-/*   Updated: 2018/03/29 18:23:13 by gmachena         ###   ########.fr       */
+/*   Created: 2017/11/08 15:16:19 by tlecas            #+#    #+#             */
+/*   Updated: 2018/04/10 15:46:17 by tlecas           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -118,7 +118,7 @@ unsigned int	ft_load_post(t_thread *thr, int i, double obj)
 			rgb_add(&tmp, ambient);
 		}
 		if ((thr->mat.refraction > 0.0 && thr->recursivity > 0) || (thr->mat.reflection > 0.0 && thr->recursivity > 0))
-		{	
+		{
 			kr = fresnel(thr);
 			if (kr < 1)
 				tmp = refracted(thr, tmp, kr);

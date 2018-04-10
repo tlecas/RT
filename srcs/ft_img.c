@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   ft_img.c                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: gmachena <gmachena@student.42.fr>          +#+  +:+       +#+        */
+/*   By: tlecas <tlecas@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2017/11/03 19:32:56 by gmachena          #+#    #+#             */
-/*   Updated: 2018/03/28 13:07:49 by gmachena         ###   ########.fr       */
+/*   Created: 2017/11/03 19:32:56 by tlecas            #+#    #+#             */
+/*   Updated: 2018/04/10 15:45:44 by tlecas           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -37,4 +37,3 @@ void ft_print_obj(t_thread *thr, int x, int y)
 	ft_put_pixel_to_img(thr, x, y);
 	//printf("%c\n", thr->e->data[y * thr->e->sizeline + x * (thr->e->bpp) / 8 ]);
 }
-

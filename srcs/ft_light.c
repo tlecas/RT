@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   ft_light.c                                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: gmachena <gmachena@student.42.fr>          +#+  +:+       +#+        */
+/*   By: tlecas <tlecas@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2017/11/15 18:24:29 by gmachena          #+#    #+#             */
-/*   Updated: 2018/03/29 17:55:45 by gmachena         ###   ########.fr       */
+/*   Created: 2017/11/15 18:24:29 by tlecas            #+#    #+#             */
+/*   Updated: 2018/04/10 15:45:46 by tlecas           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -59,7 +59,7 @@ void				rgb_addf(unsigned int *color, double d)
 	unsigned int	g;
 	unsigned int	b;
 	unsigned int	inv;
-	
+
 	inv = (*color >> 24);
 	*color <<= 8;
 	r = (*color >> 24) + d;

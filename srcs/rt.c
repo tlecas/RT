@@ -1,12 +1,12 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_rt.c                                            :+:      :+:    :+:   */
+/*   rt.c                                               :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: gmachena <gmachena@student.42.fr>          +#+  +:+       +#+        */
+/*   By: tlecas <tlecas@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2017/11/03 14:52:38 by gmachena          #+#    #+#             */
-/*   Updated: 2018/03/29 18:21:45 by gmachena         ###   ########.fr       */
+/*   Created: 2017/11/03 14:52:38 by tlecas            #+#    #+#             */
+/*   Updated: 2018/04/10 15:48:22 by tlecas           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -100,13 +100,13 @@ void	ft_rt(t_env *e)
 	while (++i < THREADS)
 	{
 		thr[i].tid = i;
-		thr[i].e = e; 
+		thr[i].e = e;
 		if ((rc = pthread_create(&thread[i], NULL, thread_rt, &thr[i])))
 			return ;
 	}
 	i = -1;
 	while (++i < THREADS)
 		pthread_join(thread[i], NULL);
-	
+
 	mlx_put_image_to_window(e->mlx, e->win, e->img, 0, 0);
 }

@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   ft_reflection.c                                    :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: gmachena <gmachena@student.42.fr>          +#+  +:+       +#+        */
+/*   By: tlecas <tlecas@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2018/03/28 16:17:16 by gmachena          #+#    #+#             */
-/*   Updated: 2018/03/29 18:23:36 by gmachena         ###   ########.fr       */
+/*   Created: 2018/03/28 16:17:16 by tlecas            #+#    #+#             */
+/*   Updated: 2018/04/10 15:46:12 by tlecas           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -91,7 +91,7 @@ unsigned int	refracted(t_thread *thr, unsigned int color, double kr)
 		rgb_mult(&tmp, (1 - kr));
 		rgb_add(&color, tmp);
 	}
-	
+
 	return (color);
 }
 unsigned int	refleted(t_thread *thr, unsigned int color, double kr)

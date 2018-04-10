@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   rt.h                                               :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: gmachena <gmachena@student.42.fr>          +#+  +:+       +#+        */
+/*   By: tlecas <tlecas@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2017/10/05 16:49:17 by gmachena          #+#    #+#             */
-/*   Updated: 2018/03/29 18:29:00 by gmachena         ###   ########.fr       */
+/*   Created: 2017/10/05 16:49:17 by tlecas            #+#    #+#             */
+/*   Updated: 2018/04/10 15:45:35 by tlecas           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,7 +20,7 @@
 # include <fcntl.h>
 # include <pthread.h>
 # include "mlx.h"
-# include "../libft/includes/libft.h"
+# include "libft.h"
 # include "key_codes_macos.h"
 # include "events.h"
 
