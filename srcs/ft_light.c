@@ -59,7 +59,7 @@ void				rgb_addf(unsigned int *color, double d)
 	unsigned int	g;
 	unsigned int	b;
 	unsigned int	inv;
-//	unsigned int	filtbw;
+	unsigned int	filtbw;
 
 	inv = (*color >> 24);
 	*color <<= 8;
@@ -71,9 +71,9 @@ void				rgb_addf(unsigned int *color, double d)
 	*color <<= 8;
 	b = (*color >> 24) + d;
 	uiclamp(&b, 0, 255);
-//	filtbw = (r + g + b) >> 2;
-	*color = (inv << 24) + (r << 16) + (g << 8) + b;
-//	*color = (inv << 24) + (filtbw << 16) + (filtbw << 8) + filtbw;
+	filtbw = (r + g + b) / 3;
+	//*color = (inv << 24) + (r << 16) + (g << 8) + b;
+	*color = (inv << 24) + (filtbw << 16) + (filtbw << 8) + filtbw;
 }
 
 double				fmax(double reflet, double d)

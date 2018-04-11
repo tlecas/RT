@@ -39,6 +39,7 @@ void	rgb_add(unsigned int *color, unsigned int d)
 	unsigned int g;
 	unsigned int b;
 	unsigned int inv;
+	unsigned int filtbw;
 
 	inv = (*color >> 24);
 	*color <<= 8;
@@ -53,5 +54,7 @@ void	rgb_add(unsigned int *color, unsigned int d)
 	d <<= 8;
 	b = (*color >> 24) + (d >> 24);
 	uiclamp(&b, 0, 255);
-	*color = (inv << 24) + (r << 16) + (g << 8) + b;
+	filtbw = (r + g + b) / 3;
+	//*color = (inv << 24) + (r << 16) + (g << 8) + b;
+	*color = (inv << 24) + (filtbw << 16) + (filtbw << 8) + filtbw;
 }
