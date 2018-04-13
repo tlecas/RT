@@ -6,7 +6,7 @@
 /*   By: tlecas <tlecas@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/10/05 17:38:05 by tlecas            #+#    #+#             */
-/*   Updated: 2018/04/10 15:45:45 by tlecas           ###   ########.fr       */
+/*   Updated: 2018/04/13 18:02:56 by tlecas           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -62,7 +62,7 @@ t_env		*ft_init(char *filename)
 	e->filename = ft_strcpy(e->filename, filename);
 	tab = ft_parse_file(e);
 	e = ft_load_obj(e, tab);
-	e->win = mlx_new_window(e->mlx, WIN_X, WIN_Y, "RTV1");
+	e->win = mlx_new_window(e->mlx, WIN_X, WIN_Y, "RT");
 	e->img = mlx_new_image(e->mlx, WIN_X, WIN_Y);
 	e->data = mlx_get_data_addr(e->img, &e->bpp, &e->sizeline, &e->endian);
 	e = ft_init_eye(e);

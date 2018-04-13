@@ -20,8 +20,6 @@ int			key_hook(int keycode, t_env *e)
 		ft_rt(e);
 	}
 	if (keycode == KEY_T)
-	{
 		textures(e);
-	}
 	return (1);
 }
