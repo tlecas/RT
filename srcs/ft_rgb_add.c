@@ -11,7 +11,7 @@
 /* ************************************************************************** */
 
 #include <stdio.h>
-#include "libft.h"
+#include "rt.h"
 
 /*void	rgb_add(unsigned int *color, unsigned int d)
 {
@@ -33,13 +33,14 @@
 	*color = (inv << 24) + (r << 16) + (g << 8) + b;
 } BLACK WHITE FILTER*/
 
-void	rgb_add(unsigned int *color, unsigned int d)
+void	rgb_add(unsigned int *color, unsigned int d, t_thread *thr)
 {
 	unsigned int r;
 	unsigned int g;
 	unsigned int b;
 	unsigned int inv;
 	unsigned int filtbw;
+
 
 	inv = (*color >> 24);
 	*color <<= 8;
@@ -54,7 +55,11 @@ void	rgb_add(unsigned int *color, unsigned int d)
 	d <<= 8;
 	b = (*color >> 24) + (d >> 24);
 	uiclamp(&b, 0, 255);
-	filtbw = (r + g + b) / 3;
-	//*color = (inv << 24) + (r << 16) + (g << 8) + b;
-	*color = (inv << 24) + (filtbw << 16) + (filtbw << 8) + filtbw;
+	if (thr->keys & 0x00000001)
+	{
+		filtbw = (r + g + b) / 3;
+		*color = (inv << 24) + (filtbw << 16) + (filtbw << 8) + filtbw;
+	}
+	else
+		*color = (inv << 24) + (r << 16) + (g << 8) + b;
 }

@@ -127,29 +127,30 @@ typedef struct		s_objnb
 
 typedef struct		s_tools
 {
-	void		*mlx;
-	void		*win;
-	void		*img;
-	char		*data;
-	char		*filename;
-	int			sizeline;
-	int			endian;
-	int			bpp;
-	int			width;
-	int			height;
-	int			fd;
-	int			recursivity;
-	int			antialias;
-	double		diaphragm;
-	unsigned int ambient_light;
-	t_objnb		*objnb;
-	t_camera	*camera;
-	t_light		**light;
-	t_plane		**plane;
-	t_cone		**cone;
-	t_cylinder	**cylinder;
-	t_sphere	**sphere;
-	t_virt		virt_e;
+	void			*mlx;
+	void			*win;
+	void			*img;
+	char			*data;
+	char			*filename;
+	int				sizeline;
+	int				endian;
+	int				bpp;
+	int				width;
+	int				height;
+	int				fd;
+	int				recursivity;
+	int				antialias;
+	unsigned int	keys;
+	double			diaphragm;
+	unsigned int 	ambient_light;
+	t_objnb			*objnb;
+	t_camera		*camera;
+	t_light			**light;
+	t_plane			**plane;
+	t_cone			**cone;
+	t_cylinder		**cylinder;
+	t_sphere		**sphere;
+	t_virt			virt_e;
 }					t_env;
 
 typedef struct		s_thread
@@ -171,6 +172,7 @@ typedef struct		s_thread
 	t_env			*e;
 	int				x;
 	int				y;
+	unsigned int	keys;
 }					t_thread;
 
 int				key_hook(int keycode, t_env *e);
@@ -195,7 +197,7 @@ double			ft_calc_cylinder(t_cylinder *cylinder, t_camera *camera);
 double			ft_calc_cone(t_cone *cone, t_camera *camera);
 int				ft_shadow_sphere(t_thread *thr, int i, t_camera *shadow_eye);
 int				ft_shadow_cone(t_thread *thr, int i, t_camera *shadow_eye);
-int			ft_is_shadow(t_thread *thr, t_light *light);
+int				ft_is_shadow(t_thread *thr, t_light *light);
 void 			ft_rt(t_env *e);
 unsigned int	ft_light(t_thread *thr, t_light *light, unsigned int tmp);
 void			ft_error(char *str);
@@ -213,8 +215,9 @@ int				ft_parse_main_properties(t_env *e, char *str);
 int				ft_is_shape_named(char *str1, char *str2);
 char			*ft_concat_c_params(char *str1, const char *str2, char c);
 void			debug(char *str, t_vect vect);
-void			rgb_mult(unsigned int *color, double f);
+void			rgb_mult(unsigned int *color, double f, t_thread *thr);
 unsigned int	refleted(t_thread *thr, unsigned int color, double kr);
-void			rgb_addf(unsigned int *color, double d);
 unsigned int 	ft_calc_obj(t_thread *thr, int recursivity);
+void			rgb_add(unsigned int *color, unsigned int d, t_thread *thr);
+
 #endif

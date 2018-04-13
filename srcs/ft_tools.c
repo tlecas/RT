@@ -25,22 +25,21 @@ static unsigned int ambient_light(t_thread *thr, unsigned int color)
 	doto = fclamp((dot(vmult(thr->cam.v, -1), thr->internorm) + 0.0 * 0.15), 0, 1);
 	tmp = color;
 	ambient = 0xFFFFFFFF;
-	inv = (ambient / 0x1000000);
-	tmp = tmp % 0x1000000;
-	ambient = ambient % 0x1000000;
-	r = uimin((ambient / 0x10000) , (tmp / 0x10000)) * thr->mat.ambient * doto;
+	inv = (ambient >> 24);
+	tmp = tmp << 8;
+	ambient = ambient << 8;
+	r = uimin((ambient >> 16) , (tmp >> 16)) * thr->mat.ambient * doto;
 	uiclamp(&r, 0, 255);
-	tmp = tmp % 0x10000;
-	ambient = ambient % 0x10000;
-	g = uimin(ambient / 0x100, (tmp / 0x100)) * thr->mat.ambient * doto;
+	tmp = tmp << 16;
+	ambient = ambient << 16;
+	g = uimin(ambient >> 8, (tmp >> 8)) * thr->mat.ambient * doto;
 	uiclamp(&g, 0, 255);
-	uimin(g, (tmp / 0x100));
-	tmp = tmp % 0x100;
-	ambient = ambient % 0x100;
+	uimin(g, (tmp >> 8));
+	tmp = tmp << 24;
+	ambient = ambient << 24;
 	b = uimin(ambient, tmp) * thr->mat.ambient * doto;
 	uiclamp(&b, 0, 255);
-	ambient =(inv * 0x1000000) + (r * 0x10000) + (g * 0x100) + b;
-	//printf("ambient = 0x%08x\n", ambient);
+	ambient =(inv << 24) + (r << 16) + (g << 8) + b;
 	return (ambient);
 }
 
@@ -114,8 +113,8 @@ unsigned int	ft_load_post(t_thread *thr, int i, double obj)
 		tmp = 0xFF000000;
 		while (++j < (thr->e->objnb->light))
 		{
-			rgb_add(&tmp, color[j]);
-			rgb_add(&tmp, ambient);
+			rgb_add(&tmp, color[j], thr);
+			rgb_add(&tmp, ambient, thr);
 		}
 		if ((thr->mat.refraction > 0.0 && thr->recursivity > 0) || (thr->mat.reflection > 0.0 && thr->recursivity > 0))
 		{

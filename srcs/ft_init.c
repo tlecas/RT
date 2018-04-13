@@ -15,7 +15,7 @@
 static	t_env *ft_init_obj_nb(t_env *e)
 {
 	if (!(e->objnb = malloc(sizeof(t_objnb))))
-		ft_error("Error malloc'ing!");
+		ft_error("Error malloc!");
 	e->objnb->sphere = 0;
 	e->objnb->cylinder = 0;
 	e->objnb->cone = 0;
@@ -54,6 +54,7 @@ t_env		*ft_init(char *filename)
 	(void)tab;
 	if (!(e = malloc(sizeof(t_env))))
 		ft_error("malloc error");
+	e->keys = 0;
 	e->mlx = mlx_init();
 	e = ft_init_obj_nb(e);
 	if (!(e->filename = malloc(sizeof(char) * (ft_strlen(filename) + 1))))

@@ -76,6 +76,7 @@ void *thread_rt(void *arg)
 	thr = (t_thread *)arg;
 	i = thr->tid;
 	nbr_pxl = thr->WIN_X * thr->WIN_Y;
+	thr->keys = thr->e->keys;
 	while (i < nbr_pxl)
 	{
 		g_x = (i % thr->WIN_X);
@@ -107,6 +108,5 @@ void	ft_rt(t_env *e)
 	i = -1;
 	while (++i < THREADS)
 		pthread_join(thread[i], NULL);
-
 	mlx_put_image_to_window(e->mlx, e->win, e->img, 0, 0);
 }

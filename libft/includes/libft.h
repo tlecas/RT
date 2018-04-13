@@ -64,7 +64,6 @@ typedef struct	s_attr
 t_vect			vmv(t_vect v1, t_vect v2);
 unsigned int	uimin(unsigned int a, unsigned int b);
 void			uiclamp(unsigned int *ui, unsigned int min, unsigned int max);
-void			rgb_add(unsigned int *color, unsigned int add);
 double			fclamp(double d, double min, double max);
 double			ft_eq_second(double delta, double a, double b);
 void			ft_list_push_back(t_list **beginlist, void *data);

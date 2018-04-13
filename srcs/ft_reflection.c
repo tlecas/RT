@@ -68,7 +68,6 @@ t_vect	refracted2(t_thread *thr)
 		etai = eta;
 		v = vmult(v, -1);
 	}
-	//cosi = dot(thr->internorm, thr->cam.v);
 	eta = etai / refraction;
 	k = 1.0 - eta * eta * (1.0 - cosi * cosi);
 	return (k < 0.0 ? coord_v(0, 0, 0) : vectadd(vmult(thr->cam.v, eta), vmult(v, (eta * cosi -  sqrt(k)))));
@@ -85,15 +84,15 @@ unsigned int	refracted(t_thread *thr, unsigned int color, double kr)
 	thr->cam.v = refracted2(thr);
 	thr->cam.v = normalize(thr->cam.v);
 	tmp = ft_calc_obj(thr, (thr->recursivity - 1));
-	rgb_mult(&color, (1 - refraction));
+	rgb_mult(&color, (1 - refraction), thr);
 	if(thr->value > 0.0001)
 	{
-		rgb_mult(&tmp, (1 - kr));
-		rgb_add(&color, tmp);
+		rgb_mult(&tmp, (1 - kr), thr);
+		rgb_add(&color, tmp, thr);
 	}
-
 	return (color);
 }
+
 unsigned int	refleted(t_thread *thr, unsigned int color, double kr)
 {
 	unsigned int	tmp;
@@ -105,11 +104,11 @@ unsigned int	refleted(t_thread *thr, unsigned int color, double kr)
 	thr->cam.v = vectsub(thr->cam.v, vmult(vmult(thr->internorm, dot(thr->internorm, thr->cam.v)), 2));
 	thr->cam.v = normalize(thr->cam.v);
 	tmp = ft_calc_obj(thr, (thr->recursivity - 1));
-	rgb_mult(&color, (1 - reflection));
+	rgb_mult(&color, (1 - reflection), thr);
 	if (thr->value > 0.0001)
 	{
-		rgb_mult(&tmp, kr);
-		rgb_add(&color, tmp);
+		rgb_mult(&tmp, kr, thr);
+		rgb_add(&color, tmp, thr);
 	}
 	return(color);
 }

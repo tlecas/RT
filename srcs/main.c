@@ -12,10 +12,6 @@
 
 #include "rt.h"
 
-int g_x = 0;
-int g_y = 0;
-
-
 int		main(int ac, char **av)
 {
 	t_env	*e = 0;

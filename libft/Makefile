@@ -14,7 +14,6 @@ NAME = libft.a
 SRC_PATH = ./src/
 SRC_NAME = ft_atoi.c \
 					ft_uimin.c \
-					ft_rgb_add.c \
 					fclamp.c \
 					ft_uiclamp.c \
 					 ft_vectcpy.c \
