@@ -6,7 +6,7 @@
 /*   By: tlecas <tlecas@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/10/05 16:49:17 by tlecas            #+#    #+#             */
-/*   Updated: 2018/04/10 15:45:35 by tlecas           ###   ########.fr       */
+/*   Updated: 2018/04/13 17:17:32 by tlecas           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,6 +23,7 @@
 # include "libft.h"
 # include "key_codes_macos.h"
 # include "events.h"
+# include "lodepng.h"
 
 # define WIN_X e->width
 # define WIN_Y e->height
@@ -219,5 +220,6 @@ void			rgb_mult(unsigned int *color, double f, t_thread *thr);
 unsigned int	refleted(t_thread *thr, unsigned int color, double kr);
 unsigned int 	ft_calc_obj(t_thread *thr, int recursivity);
 void			rgb_add(unsigned int *color, unsigned int d, t_thread *thr);
+void			textures(t_env *e);
 
 #endif

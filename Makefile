@@ -6,7 +6,7 @@
 #    By: tlecas <tlecas@student.42.fr>              +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2017/07/23 22:58:05 by tlecas            #+#    #+#              #
-#    Updated: 2018/04/10 16:00:51 by tlecas           ###   ########.fr        #
+#    Updated: 2018/04/13 16:22:11 by tlecas           ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -36,25 +36,26 @@ SRC_NAME = 	main.c \
 			ft_parse_cylinder.c \
 			ft_parse_tools.c \
 			ft_concat_c_params.c \
-			ft_rgb_add.c
-
+			ft_rgb_add.c \
+			textures.c
 SRC = $(addprefix $(SRC_PATH)/,$(SRC_NAME))
 OBJ_PATH = ./obj/
 OBJ_NAME = $(SRC_NAME:.c=.o)
 OBJ = $(addprefix $(OBJ_PATH),$(OBJ_NAME))
 CC = gcc
 CFLAGS = -Wall -Wextra -Werror -Ofast -march=native
-CPPFLAGS = -Iincludes -Ilibft/includes -Iminilibx_macos
+CPPFLAGS = -Iincludes -Ilibft/includes -Iminilibx_macos -Ilodepng
 OPTI_MODE = -g
 LIBFT = ./libft/libft.a
 MLX = ./minilibx_macos/libmlx.a
+LODEPNG = ./lodepng/lodepng.c
 FRAMEWORK = -framework OpenGL -framework AppKit
 
 .PHONY: all, clean, fclean, re
 
 all: $(NAME)
 
-$(NAME): $(OBJ) $(LIBFT) $(MLX)
+$(NAME): $(OBJ) $(LIBFT) $(MLX) $(LODEPNG)
 	$(CC) $^ -o$@ $(FRAMEWORK)
 
 $(LIBFT):
