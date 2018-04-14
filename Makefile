@@ -56,7 +56,7 @@ FRAMEWORK = -framework OpenGL -framework AppKit
 all: $(NAME)
 
 $(NAME): $(OBJ) $(LIBFT) $(MLX) $(LODEPNG)
-	$(CC) $^ -o$@ $(FRAMEWORK)
+	$(CC) $(CFLAGS) $^ -o$@ $(FRAMEWORK)
 
 $(LIBFT):
 	$(MAKE) -C libft

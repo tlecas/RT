@@ -31,8 +31,6 @@ static int		ft_fill_properties(t_cone *cone, char *str)
 
 	if (!(ft_strncmp(str, "\tangle: ", 8)))
 		cone->angle = ft_atof(tmp = ft_strrcpy(str, 8));
-	/*else if (!(ft_strncmp(str, "\tcolor: ", 8)))
-		cone->color = 0xFFFFFF;// AJOUTER STRTOL*/
 	else if (!(ft_strncmp(str, "\tambient: ", 10)))
 		cone->mat.ambient = ft_atof(tmp = ft_strrcpy(str, 10));
 	else if (!(ft_strncmp(str, "\tdiffuse: ", 10)))

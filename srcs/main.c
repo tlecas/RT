@@ -22,8 +22,6 @@ int		main(int ac, char **av)
 		return (0);
 	}
 	e = ft_init(av[1]);
-//	mlx_mouse_hook(e->win, ft_mouse, e);
-//	mlx_hook(e->win, DESTROYNOTIFY, STRUCTURENOTIFYMASK, close_hook, e);
 	mlx_hook(e->win, KEYPRESS, KEYPRESSMASK, key_hook, e);
 	ft_rt(e);
 	mlx_loop(e->mlx);

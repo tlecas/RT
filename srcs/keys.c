@@ -16,6 +16,11 @@ int			key_hook(int keycode, t_env *e)
 	}
 	if (keycode == KEY_P)
 	{
+		e->keys ^= 0x00000004;
+		ft_rt(e);
+	}
+	if (keycode == KEY_A)
+	{
 		e->keys ^= 0x00000002;
 		ft_rt(e);
 	}

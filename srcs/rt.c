@@ -48,7 +48,7 @@ unsigned int ft_calc_obj(t_thread *thr, int recursivity)
 	return (ft_load_post(thr, i, obj[i]));
 }
 
-void ft_calc_ray(int i, int j, t_thread *thr)
+void ft_calc_ray(float i, float j, t_thread *thr)
 {
 	double x;
 	double y;
@@ -66,24 +66,42 @@ void ft_calc_ray(int i, int j, t_thread *thr)
 
 void *thread_rt(void *arg)
 {
-	int			i;
-	int			nbr_pxl;
-	t_thread	*thr;
-	int g_x;
-	int g_y;
+	int				i;
+	t_thread		*thr;
+	int				aa;
+	int				n;
+	unsigned int	tmp;
 
 
 	thr = (t_thread *)arg;
 	i = thr->tid;
-	nbr_pxl = thr->WIN_X * thr->WIN_Y;
 	thr->keys = thr->e->keys;
-	while (i < nbr_pxl)
+	aa = (thr->keys & 0x00000002);
+	n = aa;
+	while (i < thr->WIN_X * thr->WIN_Y)
 	{
-		g_x = (i % thr->WIN_X);
-		g_y = (i / thr->WIN_X);
-		thr->recursivity = thr->e->recursivity;
-		ft_calc_ray((i % thr->WIN_X), (i / thr->WIN_X), thr);
-		thr->color = ft_calc_obj(thr, thr->recursivity);
+		if (aa)
+		{
+			thr->recursivity = thr->e->recursivity;
+			thr->color = 0;
+			while (n-- > 0)
+			{
+			//	ft_calc_ray(i % thr->WIN_X, i / thr->WIN_X, thr);
+				ft_calc_ray((i % thr->WIN_X) + (1.0 / aa * n) - 1.0, (i / thr->WIN_X) + (1.0 / aa * n) - 1.0, thr);
+			//	thr->WIN_X += 1.0 / aa * n;
+				tmp = ft_calc_obj(thr, thr->recursivity);
+				rgb_mult(&tmp, .5, thr),
+				rgb_add(&thr->color, tmp, thr);
+			}
+			//thr->color /= 4;
+			n = aa;
+		}
+		else
+		{
+			thr->recursivity = thr->e->recursivity;
+			ft_calc_ray(i % thr->WIN_X, i / thr->WIN_X, thr);
+			thr->color = ft_calc_obj(thr, thr->recursivity);
+		}
 		ft_print_obj(thr, (i % thr->WIN_X), (i / thr->WIN_X));
 		i = i + THREADS;
 	}

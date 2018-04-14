@@ -34,7 +34,7 @@ void				rgb_mult(unsigned int *color, double f, t_thread *thr)
 	unsigned int	b;
 	unsigned int	inv;
 
-	if ((thr->keys & 0x00000002))
+	if ((thr->keys & 0x00000004))
 		*color *= f;
 	else
 	{
