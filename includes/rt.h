@@ -176,6 +176,8 @@ typedef struct		s_thread
 	unsigned int	keys;
 }					t_thread;
 
+void			argb_mult(unsigned int *color, double f, t_thread *thr);
+void			argb_add(unsigned int *color, unsigned int d, t_thread *thr);
 int				key_hook(int keycode, t_env *e);
 double			fresnel(t_thread *thr);
 unsigned int	refracted(t_thread *thr, unsigned int color, double kr);

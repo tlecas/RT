@@ -28,8 +28,6 @@ static int		ft_fill_properties(t_light *light, char *str)
 
 	if (!(ft_strncmp(str, "\tintensity: ", 12)))
 		light->intensity = ft_atof(tmp = ft_strrcpy(str, 12));
-	/*else if (!(ft_strncmp(str, "\tcolor: ", 8)))
-		light->color = 0xFFFFFF;// AJOUTER STRTOL*/
 	else
 		return (0);
 	if (light->intensity < 0.0)

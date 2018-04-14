@@ -48,8 +48,6 @@ static double	ft_calc_inter_sphere(t_vect pos, t_vect vect, t_sphere *sphere)
 	b = (dot(pos, vect)) * 2.0;
 	c = (norm2(pos)) - (sphere->radius * sphere->radius);
 	delta = (b * b) - (4.0 * a * c);
-	//printf("a = %f b = %f c = %f delta = %f\n", a, b, c, delta);
-	//while(1);
 	if (delta < 0.0001)
 		return (0);
 	else
@@ -62,17 +60,9 @@ double ft_calc_sphere(t_sphere *sphere, t_camera *camera)
 	t_vect vect;
 
 	sphere->inter = 0;
-	//if (g_x == 500 && g_y == 373)
-	//{
-	//	printf("camera->x = %f camera->y = %f camera->z = %f\n",camera->pos.x, camera->pos.y, camera->pos.z);
-	//	printf("sphere->x = %f sphere->y = %f sphere->z = %f\n",sphere->pos.x, sphere->pos.y, sphere->pos.z);
-	//}
 	pos = vrotate(vectsub(camera->pos, sphere->pos), sphere->rotate);
 	vect = vrotate(camera->v, sphere->rotate);
 	if ((sphere->inter = ft_calc_inter_sphere(pos, vect, sphere)) < 0.0001)
 		return (0);
-	//printf("coucou");
-	//printf("sphere->inter = %f\n", sphere->inter);
-	//while(1);
 	return (sphere->inter);
 }

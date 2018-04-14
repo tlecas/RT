@@ -37,7 +37,9 @@ SRC_NAME = 	main.c \
 			ft_parse_tools.c \
 			ft_concat_c_params.c \
 			ft_rgb_add.c \
+			ft_argb.c \
 			textures.c
+
 SRC = $(addprefix $(SRC_PATH)/,$(SRC_NAME))
 OBJ_PATH = ./obj/
 OBJ_NAME = $(SRC_NAME:.c=.o)
