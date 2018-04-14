@@ -39,7 +39,7 @@ static unsigned int ambient_light(t_thread *thr, unsigned int color)
 	ambient <<= 8;
 	b = uimin((ambient >> 24), tmp) * thr->mat.ambient * doto;
 	uiclamp(&b, 0, 255);
-	ambient =(inv << 24) + (r << 16) + (g << 8) + b;
+	ambient = (inv << 24) + (r << 16) + (g << 8) + b;
 	return (ambient);
 }
 

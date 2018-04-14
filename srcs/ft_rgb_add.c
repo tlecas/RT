@@ -13,26 +13,6 @@
 #include <stdio.h>
 #include "rt.h"
 
-/*void	rgb_add(unsigned int *color, unsigned int d)
-{
-	unsigned int r;
-	unsigned int g;
-	unsigned int b;
-	unsigned int inv;
-
-	inv = (*color >> 24);
-	*color <<= 8;
-	r = (*color >> 24) + d;
-	uiclamp(&r, 0, 255);
-	*color <<= 8;
-	g = (*color >> 24) + d;
-	uiclamp(&g, 0, 255);
-	*color <<= 8;
-	b = (*color >> 24) + d;
-	uiclamp(&b, 0, 255);
-	*color = (inv << 24) + (r << 16) + (g << 8) + b;
-} BLACK WHITE FILTER*/
-
 void	rgb_add(unsigned int *color, unsigned int d, t_thread *thr)
 {
 	unsigned int r;

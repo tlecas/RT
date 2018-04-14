@@ -45,11 +45,6 @@ int		ft_prepare_shadow_plane(t_thread *thr, t_light *light)
 	shadow_eye.pos = thr->interpos;
 	shadow_eye.angle = thr->cam.angle;
 	shadow_eye.v = light->vect;
-	//if (g_x == 500 && g_y == 373)
-	//{
-	//	debug("shadow_eye.pos", shadow_eye.pos);
-	//	debug("shadow_eye.v", shadow_eye.v);
-	//}
 	while (++j < thr->e->objnb->totobj)
 	{
 		if (j < thr->e->objnb->sphere && ft_shadow_sphere(thr, j, &shadow_eye))
