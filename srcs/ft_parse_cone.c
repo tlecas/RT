@@ -19,7 +19,7 @@ t_cone		*ft_init_cone(t_cone *cone)
 	cone->pos = coord_v(0, 0, 0);
 	cone->rotate = coord_v(0, 0, 0);
 	cone->angle = 0.0;
-	cone->color = 0xFF00FF00;
+	cone->color = 0xFFFFFFFF;
 	cone->inter = 0;
 	cone->mat = ft_mat_init();
 	return (cone);

@@ -68,6 +68,6 @@ cone:
 	angle: 2.0
 	ambient: 0.0
 	diffuse: 1.0
-	specular: 1.0
+	specular: 0.0
 	reflection: 0.0
-	refraction: 2.7283
+	refraction: 2.4
