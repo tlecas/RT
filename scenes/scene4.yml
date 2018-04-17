@@ -9,7 +9,7 @@ camera:
 	z: -40.0
 	angle_x: -20.0
 	angle_y: 0.0
-	angle_z: 0.0
+	angle_z: 4.0
 cylinder:
 	x: 10.0
 	y: 0.0
