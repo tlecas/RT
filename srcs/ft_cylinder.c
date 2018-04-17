@@ -63,7 +63,7 @@ float	ft_calc_cylinder(t_cylinder *cylinder, t_camera *camera)
 	cylinder->inter = 0.0f;
 	pos = vrotate(vectsub(camera->pos, cylinder->pos), cylinder->rotate);
 	vect = vrotate(camera->v, cylinder->rotate);
-	if ((cylinder->inter = ft_calc_inter_cylinder(cylinder, pos, vect)) < 0.0001f)
+	if ((cylinder->inter = ft_calc_inter_cylinder(cylinder, pos, vect)) < 0.00001f)
 		return (0);
 	return (cylinder->inter);
 }

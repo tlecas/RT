@@ -93,7 +93,7 @@ unsigned int	refracted(t_thread *thr, unsigned int color, float kr)
 	return (color);
 }
 
-unsigned int	refleted(t_thread *thr, unsigned int color, float kr)
+unsigned int	reflected(t_thread *thr, unsigned int color, float kr)
 {
 	unsigned int	tmp;
 	float			reflection;

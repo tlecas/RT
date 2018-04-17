@@ -121,7 +121,7 @@ unsigned int	ft_load_post(t_thread *thr, int i, float obj)
 			kr = fresnel(thr);
 			if (kr < 1)
 				tmp = refracted(thr, tmp, kr);
-			tmp = refleted(thr, tmp, kr);
+			tmp = reflected(thr, tmp, kr);
 		}
 	}
 	free(name);

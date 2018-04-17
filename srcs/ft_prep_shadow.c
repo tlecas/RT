@@ -12,9 +12,6 @@
 
 #include "rt.h"
 
-int g_x;
-int g_y;
-
 int		ft_prepare_shadow_sphere(t_thread *thr, t_light *light)
 {
 	t_camera	shadow_eye;

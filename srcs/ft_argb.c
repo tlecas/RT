@@ -22,7 +22,7 @@ void	argb_add(unsigned int *color, unsigned int d, t_thread *thr)
 	d <<= 8;
 	b = (*color >> 24) + (d >> 24);
 	uiclamp(&b, 0, 255);
-	if (thr->keys & 0x00000001)
+	if (thr->keys & BLACK)
 	{
 		filtbw = (r + g + b) / 3;
 		*color = (inv << 24) + (filtbw << 16) + (filtbw << 8) + filtbw;
@@ -39,7 +39,7 @@ void				rgb_mult(unsigned int *color, float f, t_thread *thr)
 	unsigned int	b;
 	unsigned int	inv;
 
-	if ((thr->keys & 0x00000004))
+	if ((thr->keys & POP))
 		*color *= f;
 	else
 	{

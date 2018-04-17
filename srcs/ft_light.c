@@ -75,7 +75,7 @@ unsigned int		ft_light(t_thread *thr, t_light *light, unsigned int tmp)
 	light->vect = vectsub(light->pos, thr->interpos);
 	if(ft_is_shadow(thr, light))
 		return (0xFF000000);
-	if ((cos_a = ft_cos_a(thr, light)) < 0.0001f)
+	if ((cos_a = ft_cos_a(thr, light)) < 0.00001f)
 		return(0xFF000000);
 	rgb_mult(&color, cos_a, thr);
 	reflet = vectsub(vmult(vmult(thr->internorm, dot(thr->internorm, light->vect)), 2.0f), light->vect);

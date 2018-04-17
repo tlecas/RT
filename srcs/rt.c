@@ -71,13 +71,12 @@ void *thread_rt(void *arg)
 	int				aa;
 	int				n;
 	unsigned int	tmp;
-//	unsigned int	color;
 
 
 	thr = (t_thread *)arg;
 	i = thr->tid;
 	thr->keys = thr->e->keys;
-	aa = (thr->keys & 0x00000002);
+	aa = (thr->keys & AA);
 	n = aa;
 	while (i < thr->WIN_X * thr->WIN_Y)
 	{
@@ -87,7 +86,7 @@ void *thread_rt(void *arg)
 			while (n-- > 0)
 			{
 				thr->recursivity = thr->e->recursivity;
-				ft_calc_ray((i % thr->WIN_X) + (1.0 / aa * n) - 1.0, (i / thr->WIN_X) + (1.0 / aa * n) - 1.0, thr);
+				ft_calc_ray((i % thr->WIN_X) + (1.0 / aa * n), (i / thr->WIN_X) + (1.0 / aa * n), thr);
 				tmp = ft_calc_obj(thr, thr->recursivity);
 				rgb_mult(&tmp, .5, thr),
 				argb_add(&thr->color, tmp, thr);
@@ -100,11 +99,8 @@ void *thread_rt(void *arg)
 			ft_calc_ray(i % thr->WIN_X, i / thr->WIN_X, thr);
 			thr->color = ft_calc_obj(thr, thr->recursivity);
 		}
-	//	ft_print_obj(thr, (i % thr->WIN_X), (i / thr->WIN_X));
-	//	color = mlx_get_color_value(thr->e->mlx, thr->color);
 		thr->e->data[i] = (thr->color << 8) >> 8;
 		i += THREADS;
-	//	++i;
 	}
 	pthread_exit(NULL);
 }

@@ -56,7 +56,7 @@ float ft_calc_sphere(t_sphere *sphere, t_camera *camera)
 	sphere->inter = 0;
 	pos = vrotate(vectsub(camera->pos, sphere->pos), sphere->rotate);
 	vect = vrotate(camera->v, sphere->rotate);
-	if ((sphere->inter = ft_calc_inter_sphere(pos, vect, sphere)) < 0.0001f)
+	if ((sphere->inter = ft_calc_inter_sphere(pos, vect, sphere)) < 0.00001f)
 		return (0);
 	return (sphere->inter);
 }

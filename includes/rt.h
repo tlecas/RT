@@ -221,7 +221,7 @@ int				ft_parse_main_properties(t_env *e, char *str);
 int				ft_is_shape_named(char *str1, char *str2);
 char			*ft_concat_c_params(char *str1, const char *str2, char c);
 void			debug(char *str, t_vect vect);
-unsigned int	refleted(t_thread *thr, unsigned int color, float kr);
+unsigned int	reflected(t_thread *thr, unsigned int color, float kr);
 unsigned int 	ft_calc_obj(t_thread *thr, int recursivity);
 void			rgb_add(unsigned int *color, unsigned int d, t_thread *thr);
 void			textures(t_env *e);
