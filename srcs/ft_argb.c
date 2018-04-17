@@ -32,7 +32,7 @@ void	argb_add(unsigned int *color, unsigned int d, t_thread *thr)
 }
 
 
-void				argb_mult(unsigned int *color, double f, t_thread *thr)
+void				rgb_mult(unsigned int *color, float f, t_thread *thr)
 {
 	unsigned int	r;
 	unsigned int	g;
@@ -43,7 +43,7 @@ void				argb_mult(unsigned int *color, double f, t_thread *thr)
 		*color *= f;
 	else
 	{
-		inv = (*color >> 24) * f;
+		inv = (*color >> 24);
 		*color <<= 8;
 		r = (*color >> 24) * f;
 		*color <<= 8;

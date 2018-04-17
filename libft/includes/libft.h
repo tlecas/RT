@@ -36,9 +36,9 @@ typedef struct	s_gnl
 
 typedef struct	s_vect
 {
-	double		x;
-	double		y;
-	double		z;
+	float		x;
+	float		y;
+	float		z;
 }				t_vect;
 
 typedef struct	s_list
@@ -142,13 +142,13 @@ void			*ft_realloc(void *ptr, size_t size);
 t_vect			vrotateinv(t_vect v, t_vect angle);
 t_vect			vectsub(t_vect vect1, t_vect vect2);
 t_vect			vectadd(t_vect vect1, t_vect vect2);
-double			norm2(t_vect v);
-double			norm(t_vect v);
+float			norm2(t_vect v);
+float			norm(t_vect v);
 t_vect			normalize(t_vect v);
-double			dot(t_vect v1, t_vect v2);
+float			dot(t_vect v1, t_vect v2);
 t_vect			vrotate(t_vect v, t_vect angle);
-t_vect			coord_v(double x, double y, double z);
-t_vect			vmult(t_vect v, double mult);
+t_vect			coord_v(float x, float y, float z);
+t_vect			vmult(t_vect v, float mult);
 
 int				get_next_line(const int fd, char **line);
 

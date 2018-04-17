@@ -15,11 +15,11 @@
 t_plane		*ft_init_plane(t_plane *plane)
 {
 	if (!(plane = malloc(sizeof(t_plane))))
-		ft_error("Error malloc'ing!");
-	plane->pos = coord_v(0, 0, 0);
-	plane->norm = coord_v(0, 0, 0);
-	plane->rotate = coord_v(0, 0, 0);
-	plane->color = 0xFFabcdef;
+		ft_error("Error malloc!");
+	plane->pos = coord_v(0.0f, 0.0f, 0.0f);
+	plane->norm = coord_v(0.0f, 0.0f, 0.0f);
+	plane->rotate = coord_v(0.0f, 0.0f, 0.0f);
+	plane->color = 0xFF000000;
 	plane->mat = ft_mat_init();
 	plane->inter = 0;
 	return (plane);

@@ -12,16 +12,16 @@
 
 #include "rt.h"
 
-double	fresnel(t_thread *thr)
+float	fresnel(t_thread *thr)
 {
-	double	kr;
-	double	cosi;
-	double	etai;
-	double	sint;
-	double	cost;
-	double	rs;
-	double	rp;
-	double	refraction;
+	float	kr;
+	float	cosi;
+	float	etai;
+	float	sint;
+	float	cost;
+	float	rs;
+	float	rp;
+	float	refraction;
 
 	etai = 1;
 	refraction = thr->mat.refraction;
@@ -48,11 +48,11 @@ double	fresnel(t_thread *thr)
 
 t_vect	refracted2(t_thread *thr)
 {
-	double			refraction;
-	double			cosi;
-	double			etai;
-	double			eta;
-	double			k;
+	float			refraction;
+	float			cosi;
+	float			etai;
+	float			eta;
+	float			k;
 	t_vect			v;
 
 	etai = 1;
@@ -73,10 +73,10 @@ t_vect	refracted2(t_thread *thr)
 	return (k < 0.0 ? coord_v(0, 0, 0) : vectadd(vmult(thr->cam.v, eta), vmult(v, (eta * cosi -  sqrt(k)))));
 }
 
-unsigned int	refracted(t_thread *thr, unsigned int color, double kr)
+unsigned int	refracted(t_thread *thr, unsigned int color, float kr)
 {
 	unsigned int	tmp;
-	double			refraction;
+	float			refraction;
 
 	tmp = 0;
 	refraction = thr->mat.refraction;
@@ -93,10 +93,10 @@ unsigned int	refracted(t_thread *thr, unsigned int color, double kr)
 	return (color);
 }
 
-unsigned int	refleted(t_thread *thr, unsigned int color, double kr)
+unsigned int	refleted(t_thread *thr, unsigned int color, float kr)
 {
 	unsigned int	tmp;
-	double			reflection;
+	float			reflection;
 
 	tmp = 0;
 	reflection = thr->mat.reflection;

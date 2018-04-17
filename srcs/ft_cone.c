@@ -17,8 +17,8 @@ void	ft_save_inter_cone(t_thread *thr, t_cone *cone, t_camera *camera)
 	t_vect	norm;
 	double	dotc;
 
-	dotc = 0;
-	norm = vrotateinv(coord_v(0, 1, 0), cone->rotate);
+	dotc = 0.0;
+	norm = vrotateinv(coord_v(0.0, 1.0, 0.0), cone->rotate);
 	thr->interpos = vectadd(camera->pos, vmult(camera->v, thr->value));
 	thr->internorm = vectsub(thr->interpos, cone->pos);
 	dotc = dot(norm, thr->internorm);
@@ -46,8 +46,8 @@ static double	ft_calc_inter_cone(t_cone *cone, t_vect pos, t_vect vect)
 	double	delta;
 	double	tmp;
 
-	delta = 0;
-	tmp = tan((cone->angle * (M_PI / 180)));
+	delta = 0.0;
+	tmp = tan((cone->angle * (M_PI / 180.0)));
 	a = (vect.z * vect.z) + (vect.x * vect.x)
 		- ((vect.y * vect.y) * tmp);
 	b = (2.0 * pos.z * vect.z) + (2.0 * pos.x * vect.x)
@@ -68,7 +68,7 @@ double		ft_calc_cone(t_cone *cone, t_camera *camera)
 	t_vect	pos;
 	t_vect	vect;
 
-	cone->inter = 0;
+	cone->inter = 0.0;
 	pos = vrotate(vectsub(camera->pos, cone->pos), cone->rotate);
 	vect = vrotate(camera->v, cone->rotate);
 	if ((cone->inter = ft_calc_inter_cone(cone, pos, vect)) < 0.0001)

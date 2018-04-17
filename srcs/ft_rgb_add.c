@@ -22,7 +22,7 @@ void	rgb_add(unsigned int *color, unsigned int d, t_thread *thr)
 	unsigned int filtbw;
 
 
-	inv = (*color >> 24);
+	inv = (*color >> 24) + (d >> 24);
 	*color <<= 8;
 	d <<= 8;
 	r = (*color >> 24) + (d >> 24);

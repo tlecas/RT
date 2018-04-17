@@ -20,7 +20,7 @@ t_vect	vmv(t_vect v1, t_vect v2)
 	return(v1);
 }
 
-t_vect	vmult(t_vect v, double mult)
+t_vect	vmult(t_vect v, float mult)
 {
 	v.x *= mult;
 	v.y *= mult;

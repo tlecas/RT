@@ -20,7 +20,7 @@ static unsigned int ambient_light(t_thread *thr, unsigned int color)
 	unsigned int b;
 	unsigned int tmp;
 	unsigned int inv;
-	double		 doto;
+	float		 doto;
 
 	doto = fclamp((dot(vmult(thr->cam.v, -1), thr->internorm) + 0.0 * 0.15), 0, 1);
 	tmp = color;
@@ -74,9 +74,9 @@ static	char *ft_which_obj(t_thread *thr, int *i)
 	return (name);
 }
 
-unsigned int	ft_load_post(t_thread *thr, int i, double obj)
+unsigned int	ft_load_post(t_thread *thr, int i, float obj)
 {
-	double			kr;
+	float			kr;
 	char			*name;
 	int				j;
 	unsigned int	color[thr->e->objnb->light + 1];
@@ -128,7 +128,7 @@ unsigned int	ft_load_post(t_thread *thr, int i, double obj)
 	return (tmp);
 }
 
-int		ft_isview(double *obj, int i)
+int		ft_isview(float *obj, int i)
 {
 	int	x;
 	int j;

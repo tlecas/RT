@@ -12,17 +12,17 @@
 
 #include "libft.h"
 
-double	norm2(t_vect v)
+float	norm2(t_vect v)
 {
-	double norm2;
+	float norm2;
 
 	norm2 = (v.x * v.x + v.y * v.y + v.z * v.z);
 	return (norm2);
 }
 
-double	norm(t_vect v)
+float	norm(t_vect v)
 {
-	double norm;
+	float norm;
 
 	norm = sqrt(norm2(v));
 	return (norm);
@@ -30,7 +30,7 @@ double	norm(t_vect v)
 
 t_vect	normalize(t_vect v)
 {
-	double normv;
+	float normv;
 
 	normv = norm(v);
 	v.x /= normv;

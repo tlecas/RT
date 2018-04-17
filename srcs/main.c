@@ -18,7 +18,7 @@ int		main(int ac, char **av)
 
 	if (ac != 2)
 	{
-		ft_error("usage: rtv1 [filename]");
+		ft_error("usage: rt [filename]");
 		return (0);
 	}
 	e = ft_init(av[1]);

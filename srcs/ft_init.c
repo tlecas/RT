@@ -64,7 +64,8 @@ t_env		*ft_init(char *filename)
 	e = ft_load_obj(e, tab);
 	e->win = mlx_new_window(e->mlx, WIN_X, WIN_Y, "RT");
 	e->img = mlx_new_image(e->mlx, WIN_X, WIN_Y);
-	e->data = mlx_get_data_addr(e->img, &e->bpp, &e->sizeline, &e->endian);
+	e->tmpaddr = mlx_get_data_addr(e->img, &e->bpp, &e->sizeline, &e->endian);
+	e->data = (int *)e->tmpaddr;
 	e = ft_init_eye(e);
 	while (tab[++i])
 		free(tab[i]);

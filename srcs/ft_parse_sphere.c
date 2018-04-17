@@ -16,12 +16,12 @@ t_sphere		*ft_init_sphere(t_sphere *sphere)
 {
 	if (!(sphere = malloc(sizeof(t_sphere))))
 		ft_error("Error malloc'ing!");
-	sphere->pos = coord_v(0, 0, 0);
-	sphere->rotate = coord_v(0, 0, 0);
-	sphere->mat = ft_mat_init(0, 0, 0);
-	sphere->radius = 1.0;
+	sphere->pos = coord_v(0.0f, 0.0f, 0.0f);
+	sphere->rotate = coord_v(0.0f, 0.0f, 0.0f);
+	sphere->mat = ft_mat_init(0.0f, 0.0f, 0.0f);
+	sphere->radius = 1.0f;
 	sphere->color = 0xFF0000FF;
-	sphere->inter = 0;
+	sphere->inter = 0.0f;
 	return (sphere);
 }
 

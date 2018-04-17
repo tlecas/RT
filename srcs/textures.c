@@ -12,7 +12,7 @@
 
 #include "rt.h"
 
-void				textures(t_env *e)
+/*void				textures(t_env *e)
 {
 	unsigned char	*textures;
 	unsigned int	width;
@@ -43,4 +43,4 @@ void				textures(t_env *e)
 	}
 	mlx_put_image_to_window(e->mlx, e->win, e->img, 0, 0);
 	free(textures);
-}
+}*/

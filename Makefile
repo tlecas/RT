@@ -23,7 +23,6 @@ SRC_NAME = 	main.c \
 			ft_plan.c \
 			ft_sphere.c \
 			ft_init.c \
-			ft_img.c \
 			ft_tools.c \
 			ft_cylinder.c \
 			ft_parse.c \
@@ -38,6 +37,7 @@ SRC_NAME = 	main.c \
 			ft_concat_c_params.c \
 			ft_rgb_add.c \
 			ft_argb.c \
+			display_hud.c \
 			textures.c
 
 SRC = $(addprefix $(SRC_PATH)/,$(SRC_NAME))

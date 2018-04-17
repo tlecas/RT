@@ -15,10 +15,10 @@
 void			ft_save_inter_cylinder(t_thread *thr, t_cylinder *cylinder, t_camera *camera)
 {
 	t_vect	norm;
-	double	dotc;
+	float	dotc;
 
-	dotc = 0;
-	norm = vrotateinv(coord_v(0, 1, 0), cylinder->rotate);
+	dotc = 0.0f;
+	norm = vrotateinv(coord_v(0.0f, 1.0f, 0.0f), cylinder->rotate);
 	thr->interpos = vectadd(camera->pos, vmult(camera->v, thr->value));
 	thr->internorm = vectsub(thr->interpos, cylinder->pos);
 	dotc = dot(norm, thr->internorm);
@@ -38,32 +38,32 @@ void			ft_post_cylinder(t_thread *thr, unsigned int *tmp)
 	*tmp = thr->e->cylinder[i]->color;
 }
 
-static double	ft_calc_inter_cylinder(t_cylinder *cylinder, t_vect pos, t_vect vect)
+static float	ft_calc_inter_cylinder(t_cylinder *cylinder, t_vect pos, t_vect vect)
 {
-	double a;
-	double b;
-	double c;
-	double delta;
+	float a;
+	float b;
+	float c;
+	float delta;
 
 	a = vect.x * vect.x + vect.z * vect.z;
-	b = (pos.x * vect.x) * 2.0 + (pos.z * vect.z) * 2.0;
+	b = (pos.x * vect.x) * 2.0f + (pos.z * vect.z) * 2.0f;
 	c = (pos.x * pos.x) + (pos.z * pos.z) - (cylinder->radius * cylinder->radius);
-	delta = (b * b) - (4.0 * a * c);
-	if (delta < 0)
+	delta = (b * b) - (4.0f * a * c);
+	if (delta < 0.0f)
 		return (0);
 	else
 		return (ft_eq_second(delta, a, b));
 }
 
-double	ft_calc_cylinder(t_cylinder *cylinder, t_camera *camera)
+float	ft_calc_cylinder(t_cylinder *cylinder, t_camera *camera)
 {
 	t_vect	pos;
 	t_vect	vect;
 
-	cylinder->inter = 0;
+	cylinder->inter = 0.0f;
 	pos = vrotate(vectsub(camera->pos, cylinder->pos), cylinder->rotate);
 	vect = vrotate(camera->v, cylinder->rotate);
-	if ((cylinder->inter = ft_calc_inter_cylinder(cylinder, pos, vect)) < 0.0001)
+	if ((cylinder->inter = ft_calc_inter_cylinder(cylinder, pos, vect)) < 0.0001f)
 		return (0);
 	return (cylinder->inter);
 }

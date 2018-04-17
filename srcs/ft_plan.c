@@ -12,12 +12,10 @@
 
 #include "rt.h"
 
-int g_x;
-int g_y;
 
 void	ft_save_inter_plan(t_thread *thr, t_plane *plane, t_camera *camera)
 {
-	thr->internorm = coord_v(0, 1, 0);
+	thr->internorm = coord_v(0.0f, 1.0f, 0.0f);
 	thr->interpos = vectadd(camera->pos, vmult(camera->v, thr->value));
 	thr->internorm = vrotateinv(thr->internorm, plane->rotate);
 }
@@ -33,26 +31,26 @@ void			ft_post_plane(t_thread *thr, unsigned int *tmp)
 	*tmp = thr->e->plane[i]->color;
 }
 
-static double	ft_calc_inter_plan(t_vect pos, t_vect vect)
+static float	ft_calc_inter_plan(t_vect pos, t_vect vect)
 {
-	double inter;
+	float inter;
 
 	inter = pos.y / vect.y;
 	inter = -inter;
-	if (inter < 0.0001)
+	if (inter < 0.0001f)
 		return (0);
 	return (inter);
 }
 
-double			ft_calc_plan(t_plane *plane, t_camera *camera)
+float			ft_calc_plan(t_plane *plane, t_camera *camera)
 {
 		t_vect pos;
 		t_vect vect;
 
-		plane->inter = 0;
+		plane->inter = 0.0f;
 		pos = vrotate(vectsub(camera->pos, plane->pos), plane->rotate);
 		vect = vrotate(camera->v, plane->rotate);
-		if ((ABS(vect.y)) < 0.0001)
+		if ((ABS(vect.y)) < 0.0001f)
 			return (0);
 		plane->inter = ft_calc_inter_plan(pos, vect);
 		return (plane->inter);

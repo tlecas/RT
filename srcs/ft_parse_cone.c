@@ -15,12 +15,12 @@
 t_cone		*ft_init_cone(t_cone *cone)
 {
 	if (!(cone = malloc(sizeof(t_cone))))
-		ft_error("Error malloc'ing!");
-	cone->pos = coord_v(0, 0, 0);
-	cone->rotate = coord_v(0, 0, 0);
+		ft_error("Error malloc");
+	cone->pos = coord_v(0.0, 0.0, 0.0);
+	cone->rotate = coord_v(0.0, 0.0, 0.0);
 	cone->angle = 0.0;
 	cone->color = 0xFFFFFFFF;
-	cone->inter = 0;
+	cone->inter = 0.0;
 	cone->mat = ft_mat_init();
 	return (cone);
 }

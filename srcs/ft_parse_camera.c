@@ -15,7 +15,7 @@
 t_camera		*ft_init_camera(t_camera *camera)
 {
 	if (!(camera = malloc(sizeof(t_camera))))
-		ft_error("Error malloc'ing!");
+		ft_error("Error malloc!");
 	camera->pos = coord_v(0, 0, 0);
 	camera->angle = coord_v(0, 0, 0);
 	camera->v = coord_v(0, 0, 0);

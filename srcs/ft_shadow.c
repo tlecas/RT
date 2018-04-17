@@ -18,14 +18,14 @@ int g_y;
 int		ft_shadow_sphere(t_thread *thr, int i, t_camera *shadow_eye)
 {
 	t_sphere	shadow_sphere;
-	double			j;
+	float			j;
 
-	j = 0.0;
+	j = 0.0f;
 	shadow_sphere.pos = thr->e->sphere[i]->pos;
 	shadow_sphere.rotate = thr->e->sphere[i]->rotate;
 	shadow_sphere.radius = thr->e->sphere[i]->radius;
 	j = ft_calc_sphere(&shadow_sphere, shadow_eye);
-	if (j > 0.0001 && j <= 1.0)
+	if (j > 0.0001f && j <= 1.0f)
 		return (1);
 	return (0);
 }
@@ -33,14 +33,14 @@ int		ft_shadow_sphere(t_thread *thr, int i, t_camera *shadow_eye)
 int		ft_shadow_cone(t_thread *thr, int i, t_camera *shadow_eye)
 {
 	t_cone	shadow_cone;
-	double			j;
+	float			j;
 
-	j = 0.0;
+	j = 0.0f;
 	shadow_cone.pos = thr->e->cone[i]->pos;
 	shadow_cone.rotate = thr->e->cone[i]->rotate;
 	shadow_cone.angle = thr->e->cone[i]->angle;
 	j = ft_calc_cone(&shadow_cone, shadow_eye);
-	if (j > 0.0001 && j <= 1.0)
+	if (j > 0.0001f && j <= 1.0f)
 		return (1);
 	return (0);
 }
@@ -48,14 +48,14 @@ int		ft_shadow_cone(t_thread *thr, int i, t_camera *shadow_eye)
 int		ft_shadow_cylinder(t_thread *thr, int i, t_camera *shadow_eye)
 {
 	t_cylinder	shadow_cylinder;
-	double			j;
+	float			j;
 
-	j = 0.0;
+	j = 0.0f;
 	shadow_cylinder.pos = thr->e->cylinder[i]->pos;
 	shadow_cylinder.rotate = thr->e->cylinder[i]->rotate;
 	shadow_cylinder.radius = thr->e->cylinder[i]->radius;
 	j = ft_calc_cylinder(&shadow_cylinder, shadow_eye);
-	if (j > 0.0001 && j <= 1.0)
+	if (j > 0.0001f && j <= 1.0f)
 		return (1);
 	return (0);
 }

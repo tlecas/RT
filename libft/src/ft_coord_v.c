@@ -12,7 +12,7 @@
 
 #include "libft.h"
 
-t_vect	coord_v(double x, double y, double z)
+t_vect	coord_v(float x, float y, float z)
 {
 	t_vect v;
 
