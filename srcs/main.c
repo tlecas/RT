@@ -25,5 +25,6 @@ int		main(int ac, char **av)
 	mlx_hook(e->win, KEYPRESS, KEYPRESSMASK, key_hook, e);
 	ft_rt(e);
 	mlx_loop(e->mlx);
+	free(e);
 	return (0);
 }
