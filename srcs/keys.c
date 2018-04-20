@@ -75,12 +75,12 @@ int			key_hook(int keycode, t_env *e)
 		e->camera->pos.z -= 4.0f;
 		ft_rt(e);
 	}
-	if (keycode == KEY_Q)
+	if (keycode == KEY_E)
 	{
 		e->camera->pos.x += 4.0f;
 		ft_rt(e);
 	}
-	if (keycode == KEY_E)
+	if (keycode == KEY_Q)
 	{
 		e->camera->pos.x -= 4.0f;
 		ft_rt(e);
