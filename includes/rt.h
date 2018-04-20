@@ -6,7 +6,7 @@
 /*   By: tlecas <tlecas@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/10/05 16:49:17 by tlecas            #+#    #+#             */
-/*   Updated: 2018/04/13 17:17:32 by tlecas           ###   ########.fr       */
+/*   Updated: 2018/04/20 21:04:25 by tlecas           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -49,14 +49,17 @@ typedef	struct		s_mat
 
 typedef	struct		s_plane
 {
-	t_vect		pos;
-	t_vect		norm;
-	t_vect		rotate;
-	t_vect		interpos;
-	t_vect		internorm;
-	unsigned int color;
-	float		inter;
-	t_mat		mat;
+	t_vect			pos;
+	t_vect			norm;
+	t_vect			rotate;
+	t_vect			interpos;
+	t_vect			internorm;
+	unsigned int	color;
+	float			inter;
+	t_mat			mat;
+	unsigned char	*tx;
+	unsigned int	t_w;
+	unsigned int	t_h;
 }					t_plane;
 
 typedef	struct		s_cone

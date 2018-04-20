@@ -47,13 +47,13 @@ cylinder:
 	reflection: 0.0
 	refraction: 0.0
 plane:
-	x: -5.0
-	y: -5.0
-	z: 5.0
-	rotX: -90.0
-	rotY: 90.0
-	rotZ: 20.0
-	ambient: 0.0
+	x: 0.0
+	y: 0.0
+	z: 20.0
+	rotX: -45.0
+	rotY: 0.0
+	rotZ: 0.0
+	ambient: 0.01
 	diffuse: 1.0
 	specular: 0.2
 	reflection: 0.5

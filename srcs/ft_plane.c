@@ -1,12 +1,12 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_plan.c                                          :+:      :+:    :+:   */
+/*   ft_plane.c                                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: tlecas <tlecas@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/11/14 14:02:36 by tlecas            #+#    #+#             */
-/*   Updated: 2018/04/10 15:46:07 by tlecas           ###   ########.fr       */
+/*   Updated: 2018/04/20 21:16:33 by tlecas           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,18 +19,38 @@ void	ft_save_inter_plan(t_thread *thr, t_plane *plane, t_camera *camera)
 	thr->interpos = vectadd(camera->pos, vmult(camera->v, thr->value));
 	thr->internorm = vrotateinv(thr->internorm, plane->rotate);
 	if (!(plane->mat.refraction || plane->mat.reflection) && (thr->e->keys & ROUGH))
-		thr->internorm = vmult(thr->internorm, (sin(thr->x / 8) * .1f) + 1.0f); // surface rugueuse 
+		thr->internorm = vmult(thr->internorm, (sin(thr->x / 8) * .1f) + 1.0f); // surface rugueuse
 }
 
 void			ft_post_plane(t_thread *thr, unsigned int *tmp)
 {
-	int	i;
+	int		i;
+	float	t_1;
+	float	t_2;
+	t_vect	e_1;
+	t_vect	e_2;
+	t_vect	u;
 
 	i = thr->number;
 	thr->pos = thr->e->plane[i]->pos;
 	thr->rotate = thr->e->plane[i]->rotate;
 	ft_save_inter_plan(thr, thr->e->plane[i], &thr->cam);
-	*tmp = thr->e->plane[i]->color;
+	if (thr->e->plane[i]->tx)
+	{
+		u = thr->internorm;
+		e_1 = normalize(coord_v(-(u.y), u.x, 0));
+		e_2 = normalize(coord_v(((-(u.x)) * u.z),((-(u.y)) * u.z), (u.x * u.x + u.y * u.y)));
+		t_1 = 10.0f * dot(e_1, vectsub(thr->interpos, thr->pos)) + 500.0f;
+		t_2 = 10.0f * dot(e_2, vectsub(thr->interpos, thr->pos)) + 500.0f;
+		if ((int)t_1 < (int)thr->e->plane[i]->t_w && (int)t_2 < (int)thr->e->plane[i]->t_h)
+		{
+			*tmp += thr->e->plane[i]->tx[((int)t_2 * thr->e->plane[i]->t_w + (int)t_1) * 4] << 16;
+			*tmp += thr->e->plane[i]->tx[((int)t_2 * thr->e->plane[i]->t_w + (int)t_1) * 4 + 1] << 8;
+			*tmp += thr->e->plane[i]->tx[((int)t_2 * thr->e->plane[i]->t_w + (int)t_1) * 4 + 2] ;
+		}
+	}
+	else
+		*tmp = thr->e->plane[i]->color;
 }
 
 static float	ft_calc_inter_plan(t_vect pos, t_vect vect)

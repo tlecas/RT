@@ -30,11 +30,6 @@ int			key_hook(int keycode, t_env *e)
 		e->keys ^= ROUGH;
 		ft_rt(e);
 	}
-//	if (keycode == KEY_T)
-//	{
-//		textures(e);
-//		ft_rt(e);
-//	}
 	if (keycode == KEY_UP)
 	{
 		e->camera->angle.x += 4.0f;

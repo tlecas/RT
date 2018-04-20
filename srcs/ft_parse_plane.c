@@ -6,7 +6,7 @@
 /*   By: tlecas <tlecas@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/11/15 12:37:22 by tlecas            #+#    #+#             */
-/*   Updated: 2018/04/10 15:45:53 by tlecas           ###   ########.fr       */
+/*   Updated: 2018/04/20 21:07:09 by tlecas           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,6 +22,9 @@ t_plane		*ft_init_plane(t_plane *plane)
 	plane->color = 0xFF000000;
 	plane->mat = ft_mat_init();
 	plane->inter = 0;
+	plane->tx = 0;
+	plane->t_w = 0;
+	plane->t_h = 0;
 	return (plane);
 }
 
@@ -41,6 +44,11 @@ static int		ft_fill_properties(t_plane *plane, char *str)
 		plane->mat.reflection = ft_atof(tmp = ft_strrcpy(str, 13));
 	else if (!(ft_strncmp(str, "\trefraction: ", 13)))
 		plane->mat.refraction = ft_atof(tmp = ft_strrcpy(str, 13));
+	else if (!(ft_strncmp(str, "\ttexture: ", 10)))
+	{
+		tmp = ft_strrcpy(str, 10);
+		lodepng_decode32_file(&(plane->tx), &(plane->t_w), &(plane->t_h), tmp);
+	}
 	else
 		return (0);
 	free(tmp);
