@@ -15,9 +15,9 @@ int			key_hook(int keycode, t_env *e)
 		e->keys ^= BLACK;
 		ft_rt(e);
 	}
-	if (keycode == KEY_P)
+	if (keycode == KEY_F)
 	{
-		e->keys ^= POP;
+		e->keys ^= FRACTAL;
 		ft_rt(e);
 	}
 	if (keycode == KEY_Z)
@@ -31,10 +31,10 @@ int			key_hook(int keycode, t_env *e)
 		ft_rt(e);
 	}
 //	if (keycode == KEY_T)
-	{
+//	{
 //		textures(e);
-		ft_rt(e);
-	}
+//		ft_rt(e);
+//	}
 	if (keycode == KEY_UP)
 	{
 		e->camera->angle.x += 4.0f;

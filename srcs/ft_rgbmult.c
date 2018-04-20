@@ -6,7 +6,7 @@ void				rgb_mult(unsigned int *color, float f, t_thread *thr)
 	unsigned int	g;
 	unsigned int	b;
 
-	if ((thr->keys & POP))
+	if ((thr->keys & FRACTAL))
 		*color *= f;
 	else
 	{

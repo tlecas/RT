@@ -25,16 +25,16 @@
 # include "events.h"
 # include "lodepng.h"
 
-# define WIN_X e->width
-# define WIN_Y e->height
-# define THREADS 8
-# define VIEWP e->camera->viewp
-# define POW2(x) (x * x)
-# define FOCALE	300
-# define BLACK	0x00000001
-# define AA		0x00000002
-# define POP	0x00000004
-# define ROUGH	0x00000008
+# define WIN_X		e->width
+# define WIN_Y		e->height
+# define THREADS	8
+# define VIEWP		e->camera->viewp
+# define POW2(x)	(x * x)
+# define FOCALE		300
+# define BLACK		0x00000001
+# define AA			0x00000002
+# define FRACTAL	0x00000004
+# define ROUGH		0x00000008
 
 typedef	struct		s_mat
 {
