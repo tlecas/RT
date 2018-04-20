@@ -18,7 +18,7 @@ cone:
 	rotY: 1.000000
 	rotZ: 45.000000
 	angle: 2.0
-	ambient: 0.00000
+	ambient: 150.00000
 	diffuse: 1.00000
 	specular: 1.0
 	reflection: 0.000000
@@ -31,7 +31,7 @@ sphere:
 	rotY: 1.000000
 	rotZ: 1.000000
 	radius: 1.0
-	ambient: 0.00000
+	ambient: 150.00000
 	diffuse: 1.00000
 	specular: 1.0
 	reflection: 0.000000
@@ -43,7 +43,7 @@ plane:
 	rotX: -90.0
 	rotY: 0.0
 	rotZ: 0.0
-	ambient: 0.0
+	ambient: 150.0
 	diffuse: 1.000000
 	specular: 1.0
 	reflection: 0.0000000
@@ -55,7 +55,7 @@ plane:
 	rotX: 0.0
 	rotY: 0.0
 	rotZ: 0.0
-	ambient: 0.0
+	ambient: 150.0
 	diffuse: 1.000000
 	specular: 1.0
 	reflection: 0.000000000
@@ -67,13 +67,8 @@ plane:
 	rotX: 0.0
 	rotY: 0.0
 	rotZ: 0.0
-	ambient: 0.0
+	ambient: 150.0
 	diffuse: 1.000000
 	specular: 1.0
 	reflection: 0.500000000000
 	refraction: 0.980
-light:
-	x: 5.000000
-	y: 1.000000
-	z: -10.000000
-	intensity: 1000.00000

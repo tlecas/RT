@@ -72,8 +72,3 @@ plane:
 	specular: 1.0
 	reflection: 0.500000000000
 	refraction: 0.980
-light:
-	x: 5.000000
-	y: 1.000000
-	z: -10.000000
-	intensity: 1000.00000
