@@ -80,7 +80,7 @@ unsigned int		ft_light(t_thread *thr, t_light *light, unsigned int tmp)
 	reflet = normalize(reflet);
 	cam = vectsub(thr->e->camera->pos, thr->interpos);
 	cam = normalize(cam);
-	spec = pow(flmax(dot(reflet, cam), 0.0f), 500.0f) * 500.0f;
+	spec = pow(flmax(dot(reflet, cam), 0.0f), 100.0f) * 100.0f; // ?
 	if (spec > 0.0f)
 		rgb_addf(&color, (unsigned int)(spec * thr->mat.specular 
 					* fclamp((light->intensity / POW2(light->norm_l)), 0.0f, 1.0f)), thr);

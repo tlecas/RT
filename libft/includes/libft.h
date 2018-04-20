@@ -64,8 +64,8 @@ typedef struct	s_attr
 t_vect			vmv(t_vect v1, t_vect v2);
 unsigned int	uimin(unsigned int a, unsigned int b);
 void			uiclamp(unsigned int *ui, unsigned int min, unsigned int max);
-double			fclamp(double d, double min, double max);
-double			ft_eq_second(double delta, double a, double b);
+float			fclamp(float d, float min, float max);
+float			ft_eq_second(float delta, float a, float b);
 void			ft_list_push_back(t_list **beginlist, void *data);
 size_t			ft_strlcat(char *dst, const char *src, size_t size);
 int				ft_atoi(const char *c);

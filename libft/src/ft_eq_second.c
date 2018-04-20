@@ -12,10 +12,10 @@
 
 #include "libft.h"
 
-double		ft_eq_second(double delta, double a, double b)
+float		ft_eq_second(float delta, float a, float b)
 {
-	double inter1;
-	double inter2;
+	float inter1;
+	float inter2;
 
 	inter1 = 0;
 	inter2 = 0;

@@ -2,7 +2,7 @@ width: 1920
 height: 1080
 recursivity: 32
 antialias: true
-diaphragm: 120.00
+diaphragm: 90.00
 camera:
 	x: 0.0
 	y: 0.0
@@ -14,25 +14,25 @@ sphere:
 	x: 5.0
 	y: 5.0
 	z: 5.0
-	rotX: 1.000000
-	rotY: 1.000000
-	rotZ: 1.000000
+	rotX: 0.000000
+	rotY: 0.000000
+	rotZ: 0.000000
 	radius: 4.0
 	ambient: 0.000000
 	diffuse: 1.000000
-	specular: 2.200000
+	specular: .500000
 	reflection: 0.000000
 	refraction: 0.000000
 light:
 	x: -15.000000
 	y: 5.000000
-	z: -5.000000
-	intensity: 3500.00000
+	z: -15.000000
+	intensity: 300.00000
 light:
 	x: 15.000000
 	y: 5.000000
-	z: -5.000000
-	intensity: 3500.00000
+	z: -15.000000
+	intensity: 300.00000
 cylinder:
 	x: -5.0
 	y: 0.0
@@ -53,7 +53,7 @@ plane:
 	rotX: -90.0
 	rotY: 90.0
 	rotZ: 20.0
-	ambient: 0.01
+	ambient: 0.0
 	diffuse: 1.0
 	specular: 0.2
 	reflection: 0.5

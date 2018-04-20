@@ -97,7 +97,7 @@ OBJ_PATH = ./obj/
 OBJ_NAME = $(SRC_NAME:.c=.o)
 OBJ = $(addprefix $(OBJ_PATH),$(OBJ_NAME))
 CC = gcc
-CFLAGS = -Wall -Wextra -Werror
+CFLAGS = -Wall -Wextra -Werror -Ofast -march=native
 CPPFLAGS = -Iincludes
 
 .PHONY: all, clean, fclean, re

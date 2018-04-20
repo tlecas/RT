@@ -12,7 +12,7 @@
 
 #include "libft.h"
 
-double	fclamp(double d, double min, double max)
+float	fclamp(float d, float min, float max)
 {
 	if(d > max)
 		d = max;
