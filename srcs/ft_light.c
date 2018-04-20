@@ -20,7 +20,7 @@ static float		ft_cos_a(t_thread *thr, t_light *light)
 	light->prod_scal = dot(light->vect, thr->internorm);
 	light->norm_l = norm(light->vect);
 	light->norm_obj = norm(thr->internorm);
-	intensity = fclamp((light->intensity / POW2(light->norm_l)), 1.0f, 1.0f);
+	intensity = fclamp((light->intensity / POW2(light->norm_l)), 0.0f, 1.0f);
 	cos_a = -1.0f;
 	if (light->norm_l * light->norm_obj != 0.0f)
 		cos_a = (light->prod_scal / (light->norm_l * light->norm_obj)) * intensity * thr->mat.diffuse;
