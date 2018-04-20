@@ -46,18 +46,18 @@ OBJ_NAME = $(SRC_NAME:.c=.o)
 OBJ = $(addprefix $(OBJ_PATH),$(OBJ_NAME))
 CC = gcc
 CFLAGS = -Wall -Wextra -Werror -Ofast -march=native
-CPPFLAGS = -Iincludes -Ilibft/includes -Iminilibx_macos -Ilodepng
+CPPFLAGS = -Iincludes -Ilibft/includes -Iminilibx_macos -Iimages
 OPTI_MODE = -g
 LIBFT = ./libft/libft.a
 MLX = ./minilibx_macos/libmlx.a
-LODEPNG = ./lodepng/lodepng.c
+IMAGES = ./images/loadpng.c
 FRAMEWORK = -framework OpenGL -framework AppKit
 
 .PHONY: all, clean, fclean, re
 
 all: $(NAME)
 
-$(NAME): $(OBJ) $(LIBFT) $(MLX) $(LODEPNG)
+$(NAME): $(OBJ) $(LIBFT) $(MLX) $(IMAGES)
 	$(CC) $(CFLAGS) $^ -o$@ $(FRAMEWORK)
 
 $(LIBFT):
