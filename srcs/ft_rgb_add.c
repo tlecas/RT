@@ -18,11 +18,9 @@ void	rgb_add(unsigned int *color, unsigned int d, t_thread *thr)
 	unsigned int r;
 	unsigned int g;
 	unsigned int b;
-	unsigned int inv;
 	unsigned int filtbw;
 
 
-	inv = (*color >> 24) + (d >> 24);
 	*color <<= 8;
 	d <<= 8;
 	r = (*color >> 24) + (d >> 24);
@@ -38,8 +36,8 @@ void	rgb_add(unsigned int *color, unsigned int d, t_thread *thr)
 	if (thr->keys & 0x00000001)
 	{
 		filtbw = (r + g + b) / 3;
-		*color = (inv << 24) + (filtbw << 16) + (filtbw << 8) + filtbw;
+		*color = (filtbw << 16) + (filtbw << 8) + filtbw;
 	}
 	else
-		*color = (inv << 24) + (r << 16) + (g << 8) + b;
+		*color = (r << 16) + (g << 8) + b;
 }

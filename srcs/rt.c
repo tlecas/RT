@@ -89,7 +89,7 @@ void *thread_rt(void *arg)
 				ft_calc_ray((i % thr->WIN_X) + (1.0 / aa * n), (i / thr->WIN_X) + (1.0 / aa * n), thr);
 				tmp = ft_calc_obj(thr, thr->recursivity);
 				rgb_mult(&tmp, .5, thr),
-				argb_add(&thr->color, tmp, thr);
+				rgb_add(&thr->color, tmp, thr);
 			}
 			n = aa;
 		}

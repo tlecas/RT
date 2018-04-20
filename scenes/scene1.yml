@@ -1,8 +1,8 @@
 width: 1920
 height: 1080
-recursivity: 512
+recursivity: 32
 antialias: 2
-diaphragm: 90.00
+diaphragm: 120.00
 camera:
 	x: 0.0
 	y: 0.0

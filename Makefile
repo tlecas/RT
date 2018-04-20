@@ -36,7 +36,7 @@ SRC_NAME = 	main.c \
 			ft_parse_tools.c \
 			ft_concat_c_params.c \
 			ft_rgb_add.c \
-			ft_argb.c \
+			ft_rgbmult.c \
 			display_hud.c \
 			textures.c
 
