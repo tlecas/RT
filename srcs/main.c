@@ -12,16 +12,29 @@
 
 #include "rt.h"
 
+/*
+** La fonction main va :
+** 
+** - initialiser une variable `t_env *e`
+** C'est une grosse boite à variables qui contient principalement les variables
+** parcées dans la scène
+**
+** 
+*/
+
 int		main(int ac, char **av)
 {
-	t_env	*e = 0;
+	t_env	*e;
 
+	e = 0;
 	if (ac != 2)
 	{
 		ft_error("usage: rt [filename]");
 		return (0);
 	}
 	e = ft_init(av[1]);
+	if (e->antialias)
+		e->keys ^= AA;
 	mlx_hook(e->win, KEYPRESS, KEYPRESSMASK, key_hook, e);
 	ft_rt(e);
 	mlx_loop(e->mlx);

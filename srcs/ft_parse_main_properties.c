@@ -23,7 +23,7 @@ int		ft_parse_main_properties(t_env *e, char *str)
 	else if (!(ft_strncmp(str, "recursivity: ", 13)))
 		e->recursivity = ft_atoi(tmp = ft_strrcpy(str, 13));
 	else if (!(ft_strncmp(str, "antialias: ", 11)))
-		e->antialias = ft_atoi(tmp = ft_strrcpy(str, 11));
+		e->antialias = ft_strequ("true", tmp = ft_strrcpy(str, 11));
 	else if (!(ft_strncmp(str, "diaphragm: ", 11)))
 		e->diaphragm = ft_atof(tmp = ft_strrcpy(str, 11));
 	else

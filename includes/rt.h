@@ -36,6 +36,8 @@
 # define FRACTAL	0x00000004
 # define ROUGH		0x00000008
 
+typedef char			t_bool;
+
 typedef	struct		s_mat
 {
 	float	ambient;
@@ -145,7 +147,7 @@ typedef struct		s_tools
 	int				height;
 	int				fd;
 	int				recursivity;
-	int				antialias;
+	t_bool			antialias;
 	unsigned int	keys;
 	float			diaphragm;
 	unsigned int 	ambient_light;

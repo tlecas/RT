@@ -1,7 +1,7 @@
 width: 1920
 height: 1280
 recursivity: 6
-antialias: 2
+antialias: true
 diaphragm: 110.00
 camera:
 	x: 0.0
