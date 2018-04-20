@@ -24,6 +24,8 @@ void	ft_save_inter_cone(t_thread *thr, t_cone *cone, t_camera *camera)
 	dotc = dot(norm, thr->internorm);
 	thr->internorm = vectsub(thr->internorm, vmult(norm, dotc));
 	thr->internorm = normalize(thr->internorm);
+	if (!(cone->mat.refraction) && (thr->e->keys & ROUGH))
+		thr->internorm = vmult(thr->internorm, (sin(thr->x / 8) * .1f) + 1.0f); // surface rugueuse 
 }
 
 void			ft_post_cone(t_thread *thr, unsigned int *tmp)

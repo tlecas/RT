@@ -18,6 +18,8 @@ void	ft_save_inter_plan(t_thread *thr, t_plane *plane, t_camera *camera)
 	thr->internorm = coord_v(0.0f, 1.0f, 0.0f);
 	thr->interpos = vectadd(camera->pos, vmult(camera->v, thr->value));
 	thr->internorm = vrotateinv(thr->internorm, plane->rotate);
+	if (!(plane->mat.refraction || plane->mat.reflection) && (thr->e->keys & ROUGH))
+		thr->internorm = vmult(thr->internorm, (sin(thr->x / 8) * .1f) + 1.0f); // surface rugueuse 
 }
 
 void			ft_post_plane(t_thread *thr, unsigned int *tmp)

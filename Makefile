@@ -20,7 +20,7 @@ SRC_NAME = 	main.c \
 			ft_shadow.c \
 			ft_prep_shadow.c \
 			ft_cone.c \
-			ft_plan.c \
+			ft_plane.c \
 			ft_sphere.c \
 			ft_init.c \
 			ft_tools.c \

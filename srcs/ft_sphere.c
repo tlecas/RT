@@ -16,6 +16,8 @@ void	ft_save_inter_sphere(t_thread *thr, t_sphere *sphere, t_camera *camera)
 {
 	thr->interpos = vectadd(camera->pos, vmult(camera->v, thr->value));
 	thr->internorm = vectsub(thr->interpos, sphere->pos);
+	if (!(sphere->mat.refraction) && (thr->e->keys & ROUGH))
+		thr->internorm = vmult(thr->internorm, (sin(thr->x / 8) * .1f) + 1.0f); // surface rugueuse
 }
 
 void			ft_post_sphere(t_thread *thr, unsigned int *tmp)

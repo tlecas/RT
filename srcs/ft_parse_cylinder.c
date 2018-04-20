@@ -15,11 +15,11 @@
 t_cylinder		*ft_init_cylinder(t_cylinder *cylinder)
 {
 	if (!(cylinder = malloc(sizeof(t_cylinder))))
-		ft_error("Error malloc'ing!");
+		ft_error("Error malloc");
 	cylinder->pos = coord_v(0, 0, 0);
 	cylinder->rotate = coord_v(0, 0, 0);
 	cylinder->radius = 1.0;
-	cylinder->color = 0xFF707070;
+	cylinder->color = 0xFF00FF00;
 	cylinder->mat = ft_mat_init();
 	cylinder->inter = 0;
 

@@ -24,6 +24,8 @@ void			ft_save_inter_cylinder(t_thread *thr, t_cylinder *cylinder, t_camera *cam
 	dotc = dot(norm, thr->internorm);
 	thr->internorm = vectsub(thr->internorm, vmult(norm, dotc));
 	thr->internorm = normalize(thr->internorm);
+	if (!(cylinder->mat.refraction) && (thr->e->keys & ROUGH))
+	thr->internorm = vmult(thr->internorm, (sin(thr->x / 8) * .1f) + 1.0f); 
 }
 
 void			ft_post_cylinder(t_thread *thr, unsigned int *tmp)
