@@ -18,7 +18,7 @@ t_light		*ft_init_light(t_light *light)
 		ft_error("Error malloc'ing!");
 	light->pos = coord_v(0, 0, 0);
 	light->intensity = 1.0;
-	light->color = 0xFFFFFF;
+	light->color = 0x00FFFFFF;
 	return (light);
 }
 

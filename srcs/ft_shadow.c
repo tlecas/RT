@@ -25,7 +25,7 @@ int		ft_shadow_sphere(t_thread *thr, int i, t_camera *shadow_eye)
 	shadow_sphere.rotate = thr->e->sphere[i]->rotate;
 	shadow_sphere.radius = thr->e->sphere[i]->radius;
 	j = ft_calc_sphere(&shadow_sphere, shadow_eye);
-	if (j > 0.00001f && j <= 1.0f)
+	if (j > 0.0001f && j <= 1.0f)
 		return (1);
 	return (0);
 }
@@ -55,7 +55,7 @@ int		ft_shadow_cylinder(t_thread *thr, int i, t_camera *shadow_eye)
 	shadow_cylinder.rotate = thr->e->cylinder[i]->rotate;
 	shadow_cylinder.radius = thr->e->cylinder[i]->radius;
 	j = ft_calc_cylinder(&shadow_cylinder, shadow_eye);
-	if (j > 0.00001f && j <= 1.0f)
+	if (j > 0.0001f && j <= 1.0f)
 		return (1);
 	return (0);
 }

@@ -48,7 +48,7 @@ unsigned int ft_calc_obj(t_thread *thr, int recursivity)
 	return (ft_load_post(thr, i, obj[i]));
 }
 
-void ft_calc_ray(float i, float j, t_thread *thr)
+static void ft_calc_ray(float i, float j, t_thread *thr)
 {
 	float x;
 	float y;
@@ -80,7 +80,7 @@ void *thread_rt(void *arg)
 	n = aa;
 	while (i < thr->WIN_X * thr->WIN_Y)
 	{
-		thr->color = 0;
+		thr->color = 0x00000000;
 		if (aa)
 		{
 			while (n-- > 0)
@@ -99,7 +99,7 @@ void *thread_rt(void *arg)
 			ft_calc_ray(i % thr->WIN_X, i / thr->WIN_X, thr);
 			thr->color = ft_calc_obj(thr, thr->recursivity);
 		}
-		thr->e->data[i] = (thr->color << 8) >> 8;
+		thr->e->data[i] = thr->color;
 		i += THREADS;
 	}
 	pthread_exit(NULL);

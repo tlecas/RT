@@ -19,13 +19,11 @@ static unsigned int ambient_light(t_thread *thr, unsigned int color)
 	unsigned int g;
 	unsigned int b;
 	unsigned int tmp;
-	unsigned int inv;
 	float		 doto;
 
 	doto = fclamp((dot(vmult(thr->cam.v, -1), thr->internorm) + 0.0 * 0.15), 0, 1);
 	tmp = color;
-	ambient = 0xFFFFFFFF;
-	inv = (ambient >> 24);
+	ambient = 0x00FFFFFF;
 	tmp <<= 8;
 	ambient <<= 8;
 	r = uimin((ambient >> 24) , (tmp >> 24)) * thr->mat.ambient * doto;
@@ -39,7 +37,7 @@ static unsigned int ambient_light(t_thread *thr, unsigned int color)
 	ambient <<= 8;
 	b = uimin((ambient >> 24), tmp) * thr->mat.ambient * doto;
 	uiclamp(&b, 0, 255);
-	ambient = (inv << 24) + (r << 16) + (g << 8) + b;
+	ambient = (r << 16) + (g << 8) + b;
 	return (ambient);
 }
 
@@ -86,12 +84,12 @@ unsigned int	ft_load_post(t_thread *thr, int i, float obj)
 	j = -1;
 	kr = 0;
 	name = 0;
-	tmp = 0xFF000000;
+	tmp = 0x00000000;
 	thr->value = obj;
 	if (obj > 0.0001)
 	{
 		name = ft_which_obj(thr, &i);
-		color[0] = 0xFF000000;
+		color[0] = 0x00000000;
 		thr->name = name;
 		thr->number = i;
 		thr->value = obj;
@@ -110,7 +108,7 @@ unsigned int	ft_load_post(t_thread *thr, int i, float obj)
 			color[j] = ft_light(thr, &thr->light, tmp);
 		}
 		j = -1;
-		tmp = 0xFF000000;
+		tmp = 0x00000000;
 		while (++j < (thr->e->objnb->light))
 		{
 			rgb_add(&tmp, color[j], thr);

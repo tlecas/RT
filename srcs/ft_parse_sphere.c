@@ -20,7 +20,7 @@ t_sphere		*ft_init_sphere(t_sphere *sphere)
 	sphere->rotate = coord_v(0.0f, 0.0f, 0.0f);
 	sphere->mat = ft_mat_init(0.0f, 0.0f, 0.0f);
 	sphere->radius = 1.0f;
-	sphere->color = 0xFF0000FF;
+	sphere->color = 0x000000FF;
 	sphere->inter = 0.0f;
 	return (sphere);
 }

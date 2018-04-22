@@ -19,7 +19,7 @@ t_plane		*ft_init_plane(t_plane *plane)
 	plane->pos = coord_v(0.0f, 0.0f, 0.0f);
 	plane->norm = coord_v(0.0f, 0.0f, 0.0f);
 	plane->rotate = coord_v(0.0f, 0.0f, 0.0f);
-	plane->color = 0xFF000000;
+	plane->color = 0x00000000;
 	plane->mat = ft_mat_init();
 	plane->inter = 0;
 	plane->tx = 0;
