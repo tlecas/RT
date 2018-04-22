@@ -23,16 +23,19 @@ sphere:
 	specular: .500000
 	reflection: 0.000000
 	refraction: 0.000000
+	color: 0xFFFFFFFF
 light:
 	x: -15.000000
 	y: 5.000000
 	z: -15.000000
 	intensity: 300.00000
+	color: 0x00000000
 light:
 	x: 15.000000
 	y: 5.000000
 	z: -15.000000
 	intensity: 300.00000
+	color: 0x00000000
 cylinder:
 	x: -5.0
 	y: 0.0
@@ -46,6 +49,7 @@ cylinder:
 	specular: 1.0
 	reflection: 0.0
 	refraction: 0.0
+	color: 0xBBBBBBBB
 plane:
 	x: 0.0
 	y: 0.0
@@ -71,3 +75,4 @@ cone:
 	specular: 0.0
 	reflection: 0.0
 	refraction: 1.33
+	color: 0xABCDEF00

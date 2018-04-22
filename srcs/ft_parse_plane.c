@@ -31,11 +31,20 @@ t_plane		*ft_init_plane(t_plane *plane)
 static int		ft_fill_properties(t_plane *plane, char *str)
 {
 	char	*tmp;
+	char	*test;
 
 	if (!(ft_strncmp(str, "\tambient: ", 10)))
 		plane->mat.ambient = ft_atof(tmp = ft_strrcpy(str, 10));
-	/*else if (!(ft_strncmp(str, "\tcolor: ", 8)))
-		plane->color = 0xFFFFFF;// AJOUTER STRTOL*/
+	else if (!(ft_strncmp(str, "\tcolor: ", 8)))
+	{
+		errno = 0;
+		plane->color = strtol(tmp = ft_strrcpy(str, 8), &test, 16);
+		if ((errno == ERANGE && (plane->color == UINT_MAX || plane->color == 0))
+            || (errno != 0 && plane->color == 0) || '\0' != *test)
+		{
+			ft_error("Invalid color");
+		}
+	}
 	else if (!(ft_strncmp(str, "\tdiffuse: ", 10)))
 		plane->mat.diffuse = ft_atof(tmp = ft_strrcpy(str, 10));
 	else if (!(ft_strncmp(str, "\tspecular: ", 11)))

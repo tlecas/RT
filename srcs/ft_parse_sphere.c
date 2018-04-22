@@ -28,11 +28,20 @@ t_sphere		*ft_init_sphere(t_sphere *sphere)
 static int		ft_fill_properties(t_sphere *sphere, char *str)
 {
 	char	*tmp;
+	char	*test;
 
 	if (!(ft_strncmp(str, "\tradius: ", 9)))
 		sphere->radius = ft_atof(tmp = ft_strrcpy(str, 9));
-	/*else if (!(ft_strncmp(str, "\tcolor: ", 8)))
-		sphere->color = 0xFFFFFF;// AJOUTER STRTOL*/
+	else if (!(ft_strncmp(str, "\tcolor: ", 8)))
+	{
+		errno = 0;
+		sphere->color = strtol(tmp = ft_strrcpy(str, 8), &test, 16);
+		if ((errno == ERANGE && (sphere->color == UINT_MAX || sphere->color == 0))
+            || (errno != 0 && sphere->color == 0) || '\0' != *test)
+		{
+			ft_error("Invalid color");
+		}
+	}
 	else if (!(ft_strncmp(str, "\tambient: ", 10)))
 		sphere->mat.ambient = ft_atof(tmp = ft_strrcpy(str, 10));
 	else if (!(ft_strncmp(str, "\tdiffuse: ", 10)))

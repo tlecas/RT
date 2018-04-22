@@ -25,9 +25,20 @@ t_light		*ft_init_light(t_light *light)
 static int		ft_fill_properties(t_light *light, char *str)
 {
 	char	*tmp;
+	char	*test;
 
 	if (!(ft_strncmp(str, "\tintensity: ", 12)))
 		light->intensity = ft_atof(tmp = ft_strrcpy(str, 12));
+	else if (!(ft_strncmp(str, "\tcolor: ", 8)))
+	{
+		errno = 0;
+		light->color = strtol(tmp = ft_strrcpy(str, 8), &test, 16);
+		if ((errno == ERANGE && (light->color == UINT_MAX || light->color == 0))
+            || (errno != 0 && light->color == 0) || '\0' != *test)
+		{
+			ft_error("Invalid color");
+		}
+	}
 	else
 		return (0);
 	if (light->intensity < 0.0)

@@ -28,6 +28,7 @@ t_cone		*ft_init_cone(t_cone *cone)
 static int		ft_fill_properties(t_cone *cone, char *str)
 {
 	char	*tmp;
+	char	*test;
 
 	if (!(ft_strncmp(str, "\tangle: ", 8)))
 		cone->angle = ft_atof(tmp = ft_strrcpy(str, 8));
@@ -41,6 +42,16 @@ static int		ft_fill_properties(t_cone *cone, char *str)
 		cone->mat.reflection = ft_atof(tmp = ft_strrcpy(str, 13));
 	else if (!(ft_strncmp(str, "\trefraction: ", 13)))
 		cone->mat.refraction = ft_atof(tmp = ft_strrcpy(str, 13));
+	else if (!(ft_strncmp(str, "\tcolor: ", 8)))
+	{
+		errno = 0;
+		cone->color = strtol(tmp = ft_strrcpy(str, 8), &test, 16);
+		if ((errno == ERANGE && (cone->color == UINT_MAX || cone->color == 0))
+            || (errno != 0 && cone->color == 0) || '\0' != *test)
+		{
+			ft_error("Invalid color");
+		}
+	}
 	else
 		return (0);
 	free(tmp);

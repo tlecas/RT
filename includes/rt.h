@@ -24,6 +24,8 @@
 # include "key_codes_macos.h"
 # include "events.h"
 # include "lodepng.h"
+# include <errno.h>
+# include <limits.h>
 
 # define WIN_X		e->width
 # define WIN_Y		e->height

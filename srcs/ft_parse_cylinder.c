@@ -29,11 +29,20 @@ t_cylinder		*ft_init_cylinder(t_cylinder *cylinder)
 static int		ft_fill_properties(t_cylinder *cylinder, char *str)
 {
 	char	*tmp;
+	char	*test;
 
 	if (!(ft_strncmp(str, "\tradius: ", 9)))
 		cylinder->radius = ft_atof(tmp = ft_strrcpy(str, 9));
-	/*else if (!(ft_strncmp(str, "\tcolor: ", 8)))
-		cylinder->color = 0xFFFFFF;// AJOUTER STRTOL*/
+	else if (!(ft_strncmp(str, "\tcolor: ", 8)))
+	{
+		errno = 0;
+		cylinder->color = strtol(tmp = ft_strrcpy(str, 8), &test, 16);
+		if ((errno == ERANGE && (cylinder->color == UINT_MAX || cylinder->color == 0))
+            || (errno != 0 && cylinder->color == 0) || '\0' != *test)
+		{
+			ft_error("Invalid color");
+		}
+	}
 	else if (!(ft_strncmp(str, "\tambient: ", 10)))
 		cylinder->mat.ambient = ft_atof(tmp = ft_strrcpy(str, 10));
 	else if (!(ft_strncmp(str, "\tdiffuse: ", 10)))
