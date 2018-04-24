@@ -16,33 +16,37 @@ unsigned int ft_calc_obj(t_thread *thr, int recursivity)
 {
 	float	obj[thr->e->objnb->totobj];
 	int		i;
-	int		j;
+	int		x;
 
-	j = 0;
+	x = 0;
 	i = 0;
 	thr->recursivity = recursivity;
 	while (thr->e->objnb->sphere != 0 && i < thr->e->objnb->sphere)
 	{
 		obj[i] = ft_calc_sphere(thr->e->sphere[i], &thr->cam);
 		i++;
+		++x;
 	}
-	j = i;
-	while (thr->e->objnb->plane != 0 && (i - j) < thr->e->objnb->plane)
+	x = 0;
+	while (thr->e->objnb->plane != 0 && (x) < thr->e->objnb->plane)
 	{
-		obj[i] = ft_calc_plan(thr->e->plane[i - j], &thr->cam);
+		obj[i] = ft_calc_plan(thr->e->plane[x], &thr->cam);
 		i++;
+		++x;
 	}
-	j = i;
-	while (thr->e->objnb->cylinder != 0 && (i - j) < thr->e->objnb->cylinder)
+	x = 0;
+	while (thr->e->objnb->cylinder != 0 && (x) < thr->e->objnb->cylinder)
 	{
-		obj[i] = ft_calc_cylinder(thr->e->cylinder[i - j], &thr->cam);
+		obj[i] = ft_calc_cylinder(thr->e->cylinder[x], &thr->cam);
 		i++;
+		++x;
 	}
-	j = i;
-	while (thr->e->objnb->cone != 0 && (i - j) < thr->e->objnb->cone)
+	x = 0;
+	while (thr->e->objnb->cone != 0 && (x) < thr->e->objnb->cone)
 	{
-		obj[i] = ft_calc_cone(thr->e->cone[i - j], &thr->cam);
+		obj[i] = ft_calc_cone(thr->e->cone[x], &thr->cam);
 		i++;
+		++x;
 	}
 	i = ft_isview(obj, i - 1);
 	return (ft_load_post(thr, i, obj[i]));
