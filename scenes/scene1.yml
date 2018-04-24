@@ -27,12 +27,12 @@ light:
 	x: -15.000000
 	y: 5.000000
 	z: -15.000000
-	intensity: 300.00000
+	intensity: 500.00000
 light:
 	x: 15.000000
 	y: 5.000000
 	z: -15.000000
-	intensity: 300.00000
+	intensity: 500.00000
 cylinder:
 	x: -5.0
 	y: 0.0
@@ -59,6 +59,7 @@ plane:
 	specular: 0.2
 	reflection: 0.5
 	refraction: 0.0
+	texture: ./textures/test.png
 cone:
 	x: 5.0
 	y: 5.0
