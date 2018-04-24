@@ -6,7 +6,7 @@
 /*   By: tlecas <tlecas@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/10/05 16:49:17 by tlecas            #+#    #+#             */
-/*   Updated: 2018/04/20 21:04:25 by tlecas           ###   ########.fr       */
+/*   Updated: 2018/04/24 17:01:34 by tlecas           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -137,7 +137,7 @@ typedef struct		s_objnb
 	int				totobj;
 }					t_objnb;
 
-typedef struct		s_tools
+typedef struct		s_env
 {
 	void			*mlx;
 	void			*win;
@@ -164,6 +164,9 @@ typedef struct		s_tools
 	t_cylinder		**cylinder;
 	t_sphere		**sphere;
 	t_virt			virt_e;
+	float			t_ratio;
+	float			t_x;
+	float			t_y;
 }					t_env;
 
 typedef struct		s_thread

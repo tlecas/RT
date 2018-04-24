@@ -10,6 +10,36 @@ int			key_hook(int keycode, t_env *e)
 		exit(0);
 		return (0);
 	}
+	if (keycode == KEY_PAD_SUB)
+	{
+		e->t_ratio *= 1.25f;
+		ft_rt(e);
+	}
+	if (keycode == KEY_PAD_ADD)
+	{
+		e->t_ratio *= 0.8f;
+		ft_rt(e);
+	}
+	if (keycode == KEY_I)
+	{
+		e->t_y -= 50.0f;
+		ft_rt(e);
+	}
+	if (keycode == KEY_K)
+	{
+		e->t_y += 50.0f;
+		ft_rt(e);
+	}
+	if (keycode == KEY_J)
+	{
+		e->t_x -= 50.0f;
+		ft_rt(e);
+	}
+	if (keycode == KEY_L)
+	{
+		e->t_x += 50.0f;
+		ft_rt(e);
+	}
 	if (keycode == KEY_B)
 	{
 		e->keys ^= BLACK;

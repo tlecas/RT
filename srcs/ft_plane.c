@@ -6,7 +6,7 @@
 /*   By: tlecas <tlecas@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/11/14 14:02:36 by tlecas            #+#    #+#             */
-/*   Updated: 2018/04/24 16:50:56 by tlecas           ###   ########.fr       */
+/*   Updated: 2018/04/24 17:04:08 by tlecas           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -40,8 +40,8 @@ void			ft_post_plane(t_thread *thr, unsigned int *tmp)
 		u = thr->internorm;
 		e_1 = normalize(coord_v(-(u.y), u.x, 0));
 		e_2 = normalize(coord_v(((-(u.x)) * u.z),((-(u.y)) * u.z), (u.x * u.x + u.y * u.y)));
-		t_1 = 10.0f * dot(e_1, vectsub(thr->interpos, thr->pos)) + 500.0f;
-		t_2 = 10.0f * dot(e_2, vectsub(thr->interpos, thr->pos)) + 500.0f;
+		t_1 = thr->e->t_ratio * dot(e_1, vectsub(thr->interpos, thr->pos)) + thr->e->t_x;
+		t_2 = thr->e->t_ratio * dot(e_2, vectsub(thr->interpos, thr->pos)) + thr->e->t_y;
 		if (t_1 >= 0.0f && t_2 >= 0.0f && (int)t_1 < (int)thr->e->plane[i]->t_w && (int)t_2 < (int)thr->e->plane[i]->t_h)
 		{
 			*tmp += thr->e->plane[i]->tx[((int)t_2 * thr->e->plane[i]->t_w + (int)t_1) * 4] << 16;
