@@ -41,6 +41,7 @@ t_env		*ft_load_obj(t_env *e, char **tab)
 	ft_parse_cone(e, tab);
 	ft_parse_cylinder(e, tab);
 	ft_parse_camera(e, tab);
+	//ft_parse_cuboid(e, tab);
 	return (e);
 }
 

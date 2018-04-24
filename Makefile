@@ -38,6 +38,7 @@ SRC_NAME = 	main.c \
 			ft_rgb_add.c \
 			ft_rgbmult.c \
 			display_hud.c
+#			ft_parse_cuboid.c
 
 SRC = $(addprefix $(SRC_PATH)/,$(SRC_NAME))
 OBJ_PATH = ./obj/

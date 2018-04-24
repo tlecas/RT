@@ -100,6 +100,21 @@ typedef	struct		s_cylinder
 	t_mat		mat;
 }					t_cylinder;
 
+typedef	struct		s_cuboid
+{
+	t_vect		pos;
+	t_vect		rotate;
+	t_vect		interpos;
+	t_vect		internorm;
+	//float		radius;
+	float		height;
+	float		width;
+	float		dept;
+	unsigned int color;
+	float		inter;
+	t_mat		mat;
+}					t_cuboid;
+
 typedef	struct		s_light
 {
 	t_vect		pos;
