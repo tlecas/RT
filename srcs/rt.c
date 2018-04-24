@@ -71,6 +71,7 @@ void *thread_rt(void *arg)
 	int				aa;
 	int				n;
 	unsigned int	tmp;
+	int 			win_area;
 
 
 	thr = (t_thread *)arg;
@@ -78,7 +79,8 @@ void *thread_rt(void *arg)
 	thr->keys = thr->e->keys;
 	aa = (thr->keys & AA);
 	n = aa;
-	while (i < thr->WIN_X * thr->WIN_Y)
+	win_area = thr->WIN_X * thr->WIN_Y;
+	while (i < win_area)
 	{
 		thr->color = 0x00000000;
 		if (aa)
