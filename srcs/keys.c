@@ -63,51 +63,76 @@ int			key_hook(int keycode, t_env *e)
 	if (keycode == KEY_UP)
 	{
 		e->camera->angle.x += 4.0f;
+		if (e->keys & BLUR)
+			e->blur = 1;
 		ft_rt(e);
 	}
 	if (keycode == KEY_DOWN)
 	{
 		e->camera->angle.x -= 4.0f;
+		if (e->keys & BLUR)
+			e->blur = 1;
 		ft_rt(e);
 	}
 	if (keycode == KEY_LEFT)
 	{
 		e->camera->angle.y += 4.0f;
+		if (e->keys & BLUR)
+			e->blur = 1;
 		ft_rt(e);
 	}
 	if (keycode == KEY_RIGHT)
 	{
 		e->camera->angle.y -= 4.0f;
+		if (e->keys & BLUR)
+			e->blur = 1;
 		ft_rt(e);
 	}
 	if (keycode == KEY_A)
 	{
 		e->camera->angle.z += 4.0f;
+		if (e->keys & BLUR)
+			e->blur = 1;
 		ft_rt(e);
 	}
 	if (keycode == KEY_D)
 	{
 		e->camera->angle.z -= 4.0f;
+		if (e->keys & BLUR)
+			e->blur = 1;
 		ft_rt(e);
 	}
 	if (keycode == KEY_W)
 	{
 		e->camera->pos.z += 4.0f;
+		if (e->keys & BLUR)
+			e->blur = 1;
 		ft_rt(e);
 	}
 	if (keycode == KEY_S)
 	{
 		e->camera->pos.z -= 4.0f;
+		if (e->keys & BLUR)
+			e->blur = 1;
 		ft_rt(e);
 	}
 	if (keycode == KEY_E)
 	{
 		e->camera->pos.x += 4.0f;
+		if (e->keys & BLUR)
+			e->blur = 1;
 		ft_rt(e);
 	}
 	if (keycode == KEY_Q)
 	{
 		e->camera->pos.x -= 4.0f;
+		if (e->keys & BLUR)
+			e->blur = 1;
+		ft_rt(e);
+	}
+	if (keycode == KEY_M)
+	{
+		e->keys ^= BLUR;
 		ft_rt(e);
 	}
 	return (1);

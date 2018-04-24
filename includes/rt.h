@@ -37,6 +37,7 @@
 # define AA			0x00000002
 # define FRACTAL	0x00000004
 # define ROUGH		0x00000008
+# define BLUR		0x00000010
 
 typedef char			t_bool;
 
@@ -167,6 +168,7 @@ typedef struct		s_env
 	int				height;
 	int				fd;
 	int				recursivity;
+	int				blur;
 	t_bool			antialias;
 	unsigned int	keys;
 	float			diaphragm;

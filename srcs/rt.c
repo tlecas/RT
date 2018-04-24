@@ -87,7 +87,7 @@ void *thread_rt(void *arg)
 	while (i < win_area)
 	{
 		thr->color = 0x00000000;
-		if (aa)
+		if (aa && !(thr->e->blur))
 		{
 			while (n-- > 0)
 			{
@@ -102,7 +102,10 @@ void *thread_rt(void *arg)
 		else
 		{
 			thr->recursivity = thr->e->recursivity;
-			ft_calc_ray(i % thr->WIN_X, i / thr->WIN_X, thr);
+			if ((thr->e->keys & BLUR) && thr->e->blur)
+				ft_calc_ray(i % (thr->WIN_X) + ((rand() % 32) / 8) - 2, i / (thr->WIN_X) + ((rand() % 32) / 8) - 2, thr);
+			else
+				ft_calc_ray(i % (thr->WIN_X), i / (thr->WIN_X), thr);
 			thr->color = ft_calc_obj(thr, thr->recursivity);
 		}
 		thr->e->data[i] = thr->color;
@@ -131,4 +134,10 @@ void	ft_rt(t_env *e)
 		pthread_join(thread[i], NULL);
 	mlx_put_image_to_window(e->mlx, e->win, e->img, 0, 0);
 	ft_display_info(e->keys, e);
+	if ((e->keys & BLUR) && e->blur)
+	{
+		mlx_do_sync(e->mlx);
+		e->blur = 0;
+		ft_rt(e);
+	}
 }
