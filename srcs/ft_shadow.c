@@ -15,7 +15,7 @@
 int g_x;
 int g_y;
 
-int		ft_shadow_sphere(t_thread *thr, int i, t_camera *shadow_eye)
+int		ft_shadow_sphere(t_thread *thr, int i, t_ray *shadow_eye)
 {
 	t_sphere	shadow_sphere;
 	float			j;
@@ -30,7 +30,7 @@ int		ft_shadow_sphere(t_thread *thr, int i, t_camera *shadow_eye)
 	return (0);
 }
 
-int		ft_shadow_cone(t_thread *thr, int i, t_camera *shadow_eye)
+int		ft_shadow_cone(t_thread *thr, int i, t_ray *shadow_eye)
 {
 	t_cone	shadow_cone;
 	float			j;
@@ -45,7 +45,7 @@ int		ft_shadow_cone(t_thread *thr, int i, t_camera *shadow_eye)
 	return (0);
 }
 
-int		ft_shadow_cylinder(t_thread *thr, int i, t_camera *shadow_eye)
+int		ft_shadow_cylinder(t_thread *thr, int i, t_ray *shadow_eye)
 {
 	t_cylinder	shadow_cylinder;
 	float			j;

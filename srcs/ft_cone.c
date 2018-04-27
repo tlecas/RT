@@ -6,29 +6,29 @@
 /*   By: tlecas <tlecas@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/11/15 11:10:19 by tlecas            #+#    #+#             */
-/*   Updated: 2018/04/10 15:45:41 by tlecas           ###   ########.fr       */
+/*   Updated: 2018/04/27 06:06:07 by tlecas           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "rt.h"
 
-void	ft_save_inter_cone(t_thread *thr, t_cone *cone, t_camera *camera)
+void		ft_save_inter_cone(t_thread *thr, t_cone *cone, t_ray *ray)
 {
 	t_vect	norm;
 	double	dotc;
 
 	dotc = 0.0;
-	norm = vrotateinv(coord_v(0.0, 1.0, 0.0), cone->rotate);
-	thr->interpos = vectadd(camera->pos, vmult(camera->v, thr->value));
+	norm = vrotate(coord_v(0.0, 1.0, 0.0), cone->rotate);
+	thr->interpos = vectadd(ray->pos, vmult(ray->dir, thr->value));
 	thr->internorm = vectsub(thr->interpos, cone->pos);
 	dotc = dot(norm, thr->internorm);
 	thr->internorm = vectsub(thr->internorm, vmult(norm, dotc));
 	thr->internorm = normalize(thr->internorm);
 	if (!(cone->mat.refraction) && (thr->e->keys & ROUGH))
-		thr->internorm = vmult(thr->internorm, (sin(thr->x / 8) * .1f) + 1.0f); // surface rugueuse 
+		thr->internorm = vmult(thr->internorm, (sin(thr->x / 8) * .1f) + 1.0f); // surface rugueuse
 }
 
-void			ft_post_cone(t_thread *thr, unsigned int *tmp)
+void		ft_post_cone(t_thread *thr, unsigned int *tmp)
 {
 	int	i;
 
@@ -36,44 +36,26 @@ void			ft_post_cone(t_thread *thr, unsigned int *tmp)
 	thr->ar = thr->e->cone[i]->angle;
 	thr->pos = thr->e->cone[i]->pos;
 	thr->rotate = thr->e->cone[i]->rotate;
-	ft_save_inter_cone(thr, thr->e->cone[i], &thr->cam);
+	ft_save_inter_cone(thr, thr->e->cone[i], &thr->ray);
 	*tmp = thr->e->cone[i]->color;
 }
 
-static double	ft_calc_inter_cone(t_cone *cone, t_vect pos, t_vect vect)
+float			ft_calc_cone(t_cone *cone, t_ray *ray)
 {
-	double	a;
-	double	b;
-	double	c;
-	double	delta;
-	double	tmp;
-
-	delta = 0.0;
-	tmp = tan((cone->angle * (M_PI / 180.0)));
-	a = (vect.z * vect.z) + (vect.x * vect.x)
-		- ((vect.y * vect.y) * tmp);
-	b = (2.0 * pos.z * vect.z) + (2.0 * pos.x * vect.x)
-		- ((2.0 * pos.y * vect.y) * tmp);
-	c = (pos.z * pos.z) + (pos.x * pos.x)
-		- ((pos.y * pos.y) * tmp);
-	delta = (b * b) - (4.0 * a * c);
-	if (delta < 0.0)
-	{
-		return (0);
-	}
-	else
-		return (ft_eq_second(delta, a, b));
-}
-
-double		ft_calc_cone(t_cone *cone, t_camera *camera)
-{
+	t_vect	normal;
+	float	a;
+	float	b;
+	float	c;
 	t_vect	pos;
-	t_vect	vect;
+	float	delta;
+	float	tmp;
 
-	cone->inter = 0.0;
-	pos = vrotate(vectsub(camera->pos, cone->pos), cone->rotate);
-	vect = vrotate(camera->v, cone->rotate);
-	if ((cone->inter = ft_calc_inter_cone(cone, pos, vect)) < 0.0001)
-		return (0);
-	return (cone->inter);
+	normal = vrotate(coord_v(0.0f, 1.0f, 0.0f), cone->rotate);
+	pos = vectsub(ray->pos, cone->pos);
+	tmp = dot(ray->dir, normal);
+	a = POW2(tmp) - POW2(cos(cone->angle * (M_PI / 180.0f)));
+	b = 2.0f * (tmp * dot(pos, normal) - dot(ray->dir, pos) * POW2(cos(cone->angle * (M_PI / 180.0f))));
+	c = POW2(dot(pos, normal)) - dot(pos, pos) * POW2(cos(cone->angle * (M_PI / 180.0f)));
+	delta = b * b - 4.0f * a * c;
+	return (ft_eq_second(delta, a, b, c));
 }

@@ -6,18 +6,18 @@
 /*   By: tlecas <tlecas@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/11/03 19:10:01 by tlecas            #+#    #+#             */
-/*   Updated: 2018/04/10 15:46:15 by tlecas           ###   ########.fr       */
+/*   Updated: 2018/04/27 06:15:21 by tlecas           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "rt.h"
 
-void	ft_save_inter_sphere(t_thread *thr, t_sphere *sphere, t_camera *camera)
+void	ft_save_inter_sphere(t_thread *thr, t_sphere *sphere, t_ray *ray)
 {
-	thr->interpos = vectadd(camera->pos, vmult(camera->v, thr->value));
+	thr->interpos = vectadd(ray->pos, vmult(ray->dir, thr->value));
 	thr->internorm = vectsub(thr->interpos, sphere->pos);
 	if (!(sphere->mat.refraction) && (thr->e->keys & ROUGH))
-		thr->internorm = vmult(thr->internorm, (sin(thr->x / 8) * .1f) + 1.0f); // surface rugueuse
+		thr->internorm = vmult(thr->internorm, (sin(thr->x / 8) * 0.1f) + 1.0f); // surface rugueuse
 }
 
 void			ft_post_sphere(t_thread *thr, unsigned int *tmp)
@@ -28,37 +28,22 @@ void			ft_post_sphere(t_thread *thr, unsigned int *tmp)
 	thr->ar = thr->e->sphere[i]->radius;
 	thr->pos = thr->e->sphere[i]->pos;
 	thr->rotate = thr->e->sphere[i]->rotate;
-	ft_save_inter_sphere(thr, thr->e->sphere[i], &thr->cam);
+	ft_save_inter_sphere(thr, thr->e->sphere[i], &thr->ray);
 	*tmp = thr->e->sphere[i]->color;
 }
 
-static float	ft_calc_inter_sphere(t_vect pos, t_vect vect, t_sphere *sphere)
+float ft_calc_sphere(t_sphere *sphere, t_ray *ray)
 {
 	float	a;
 	float	b;
 	float	c;
 	float	delta;
+	t_vect	pos;
 
-	delta = 0.0f;
-	a = norm2(vect);
-	b = (dot(pos, vect)) * 2.0f;
-	c = (norm2(pos)) - (sphere->radius * sphere->radius);
-	delta = (b * b) - (4.0f * a * c);
-	if (delta < 0.0001f)
-		return (0);
-	else
-		return (ft_eq_second(delta, a, b));
-}
-
-float ft_calc_sphere(t_sphere *sphere, t_camera *camera)
-{
-	t_vect pos;
-	t_vect vect;
-
-	sphere->inter = 0;
-	pos = vrotate(vectsub(camera->pos, sphere->pos), sphere->rotate);
-	vect = vrotate(camera->v, sphere->rotate);
-	if ((sphere->inter = ft_calc_inter_sphere(pos, vect, sphere)) < 0.0001f)
-		return (0);
-	return (sphere->inter);
+	pos = vectsub(ray->pos, sphere->pos);
+	a = dot(ray->dir, ray->dir);
+	b = 2.0f * dot(pos, ray->dir);
+	c = dot(pos, pos) - (sphere->radius * sphere->radius);
+	delta = b * b - 4.0f * a * c;
+	return (ft_eq_second(delta, a, b, c));
 }

@@ -6,7 +6,7 @@
 /*   By: tlecas <tlecas@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/10/16 13:50:12 by tlecas            #+#    #+#             */
-/*   Updated: 2018/04/10 15:46:06 by tlecas           ###   ########.fr       */
+/*   Updated: 2018/04/27 06:27:19 by tlecas           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -50,10 +50,7 @@ char		**ft_parse_file(t_env *e)
 		if (++i <= 4)
 		{
 			if (ft_parse_main_properties(e, line) == -1)
-			{
-				ft_putendl("olo");
 				ft_error("error parse main properties.");
-			}
 		}
 		else if (i > 4)
 		{

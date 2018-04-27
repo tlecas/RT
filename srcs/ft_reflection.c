@@ -6,7 +6,7 @@
 /*   By: tlecas <tlecas@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/03/28 16:17:16 by tlecas            #+#    #+#             */
-/*   Updated: 2018/04/10 15:46:12 by tlecas           ###   ########.fr       */
+/*   Updated: 2018/04/27 05:53:05 by tlecas           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,7 +25,7 @@ float	fresnel(t_thread *thr)
 
 	etai = 1;
 	refraction = thr->mat.refraction;
-	cosi = fclamp(dot(thr->internorm, thr->cam.v), -1.0, 1.0);
+	cosi = fclamp(dot(thr->internorm, thr->ray.dir), -1.0, 1.0);
 	if (cosi > 0)
 	{
 		sint = etai;
@@ -58,7 +58,7 @@ t_vect	refracted2(t_thread *thr)
 	etai = 1;
 	v = thr->internorm;
 	refraction = thr->mat.refraction;
-	cosi = fclamp(dot(thr->internorm, thr->cam.v), -1.0f, 1.0f);
+	cosi = fclamp(dot(thr->internorm, thr->ray.dir), -1.0f, 1.0f);
 	if (cosi < 0)
 		cosi = -cosi;
 	else
@@ -70,7 +70,7 @@ t_vect	refracted2(t_thread *thr)
 	}
 	eta = etai / refraction;
 	k = 1.0f - eta * eta * (1.0f - cosi * cosi);
-	return (k < 0.0f ? coord_v(0, 0, 0) : vectadd(vmult(thr->cam.v, eta), vmult(v, (eta * cosi -  sqrt(k)))));
+	return (k < 0.0f ? coord_v(0, 0, 0) : vectadd(vmult(thr->ray.dir, eta), vmult(v, (eta * cosi -  sqrt(k)))));
 }
 
 unsigned int	refracted(t_thread *thr, unsigned int color, float kr)
@@ -80,9 +80,9 @@ unsigned int	refracted(t_thread *thr, unsigned int color, float kr)
 
 	tmp = 0;
 	refraction = thr->mat.refraction;
-	thr->cam.pos = thr->interpos;
-	thr->cam.v = refracted2(thr);
-	thr->cam.v = normalize(thr->cam.v);
+	thr->ray.pos = thr->interpos;
+	thr->ray.dir = refracted2(thr);
+	thr->ray.dir = normalize(thr->ray.dir);
 	tmp = ft_calc_obj(thr, (thr->recursivity - 1));
 	rgb_mult(&color, (1 - refraction), thr);
 	if(thr->value > 0.0001f)
@@ -100,9 +100,9 @@ unsigned int	reflected(t_thread *thr, unsigned int color, float kr)
 
 	tmp = 0;
 	reflection = thr->mat.reflection;
-	thr->cam.pos = thr->interpos;
-	thr->cam.v = vectsub(thr->cam.v, vmult(vmult(thr->internorm, dot(thr->internorm, thr->cam.v)), 2));
-	thr->cam.v = normalize(thr->cam.v);
+	thr->ray.pos = thr->interpos;
+	thr->ray.dir = vectsub(thr->ray.dir, vmult(vmult(thr->internorm, dot(thr->internorm, thr->ray.dir)), 2));
+	thr->ray.dir = normalize(thr->ray.dir);
 	tmp = ft_calc_obj(thr, (thr->recursivity - 1));
 	rgb_mult(&color, (1 - reflection), thr);
 	if (thr->value > 0.0001f)

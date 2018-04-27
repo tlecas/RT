@@ -6,7 +6,7 @@
 /*   By: tlecas <tlecas@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/10/05 16:49:17 by tlecas            #+#    #+#             */
-/*   Updated: 2018/04/24 17:01:34 by tlecas           ###   ########.fr       */
+/*   Updated: 2018/04/27 05:51:04 by tlecas           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,8 +29,7 @@
 
 # define WIN_X		e->width
 # define WIN_Y		e->height
-# define THREADS	8
-# define VIEWP		e->camera->viewp
+# define THREADS	1
 # define POW2(x)	(x * x)
 # define FOCALE		300
 # define BLACK		0x00000001
@@ -63,6 +62,7 @@ typedef	struct		s_plane
 	unsigned char	*tx;
 	unsigned int	t_w;
 	unsigned int	t_h;
+	unsigned int	chess;
 }					t_plane;
 
 typedef	struct		s_cone
@@ -128,13 +128,20 @@ typedef	struct		s_light
 	unsigned int color_p;
 }					t_light;
 
-typedef struct		s_camera
+typedef struct		s_ray
 {
-	t_vect		v;
+	t_vect		dir;
+	t_vect		pos;
+	float		prod_scal;
+}					t_ray;
+
+typedef struct		s_cam
+{
+	t_vect		dir;
 	t_vect		angle;
 	t_vect		pos;
 	float		prod_scal;
-}					t_camera;
+}					t_cam;
 
 typedef struct		s_virt
 {
@@ -171,10 +178,10 @@ typedef struct		s_env
 	int				blur;
 	t_bool			antialias;
 	unsigned int	keys;
-	float			diaphragm;
+	float			fov;
 	unsigned int 	ambient_light;
 	t_objnb			*objnb;
-	t_camera		*camera;
+	t_cam			*cam;
 	t_light			**light;
 	t_plane			**plane;
 	t_cone			**cone;
@@ -201,7 +208,7 @@ typedef struct		s_thread
 	t_vect			rotate;
 	t_vect			interpos;
 	t_vect			internorm;
-	t_camera		cam;
+	t_ray			ray;
 	t_env			*e;
 	int				x;
 	int				y;
@@ -225,12 +232,12 @@ void 			ft_rotate_x(float *y, float *z, float angle);
 void 			ft_rotate_y(float *x, float *z, float angle);
 void 			ft_rotate_z(float *x, float *y, float angle);
 t_env			*ft_rotate(t_env *e);
-float			ft_calc_sphere(t_sphere *sphere, t_camera *camera);
-float			ft_calc_plan(t_plane *plan, t_camera *camera);
-float			ft_calc_cylinder(t_cylinder *cylinder, t_camera *camera);
-double			ft_calc_cone(t_cone *cone, t_camera *camera);
-int				ft_shadow_sphere(t_thread *thr, int i, t_camera *shadow_eye);
-int				ft_shadow_cone(t_thread *thr, int i, t_camera *shadow_eye);
+float			ft_calc_sphere(t_sphere *sphere, t_ray *ray);
+float			ft_calc_plan(t_plane *plan, t_ray *ray);
+float			ft_calc_cylinder(t_cylinder *cylinder, t_ray *ray);
+float			ft_calc_cone(t_cone *cone, t_ray *ray);
+int				ft_shadow_sphere(t_thread *thr, int i, t_ray *shadow_eye);
+int				ft_shadow_cone(t_thread *thr, int i, t_ray *shadow_eye);
 int				ft_is_shadow(t_thread *thr, t_light *light);
 void 			ft_rt(t_env *e);
 unsigned int	ft_light(t_thread *thr, t_light *light, unsigned int tmp);
@@ -243,7 +250,7 @@ int				ft_parse_sphere(t_env *e, char **eab);
 int				ft_parse_camera(t_env *e, char **eab);
 int				ft_parse_light(t_env *e, char **eab);
 int				ft_parse_plane(t_env *e, char **eab);
-int				ft_shadow_cylinder(t_thread *thr, int i, t_camera *shadow_eye);
+int				ft_shadow_cylinder(t_thread *thr, int i, t_ray *shadow_eye);
 t_env			*ft_init(char *filename);
 int				ft_parse_main_properties(t_env *e, char *str);
 int				ft_is_shape_named(char *str1, char *str2);
@@ -251,7 +258,6 @@ char			*ft_concat_c_params(char *str1, const char *str2, char c);
 unsigned int	reflected(t_thread *thr, unsigned int color, float kr);
 unsigned int 	ft_calc_obj(t_thread *thr, int recursivity);
 void			rgb_add(unsigned int *color, unsigned int d, t_thread *thr);
-void			textures(t_env *e);
 void			ft_display_info(unsigned int keys, t_env *e);
 
 #endif

@@ -6,7 +6,7 @@
 /*   By: tlecas <tlecas@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/11/03 14:52:38 by tlecas            #+#    #+#             */
-/*   Updated: 2018/04/10 15:48:22 by tlecas           ###   ########.fr       */
+/*   Updated: 2018/04/27 07:06:22 by tlecas           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,49 +23,41 @@ unsigned int ft_calc_obj(t_thread *thr, int recursivity)
 	thr->recursivity = recursivity;
 	while (thr->e->objnb->sphere != 0 && i < thr->e->objnb->sphere)
 	{
-		obj[i] = ft_calc_sphere(thr->e->sphere[i], &thr->cam);
+		obj[i] = ft_calc_sphere(thr->e->sphere[i], &thr->ray);
 		i++;
 		++x;
 	}
 	x = 0;
 	while (thr->e->objnb->plane != 0 && (x) < thr->e->objnb->plane)
 	{
-		obj[i] = ft_calc_plan(thr->e->plane[x], &thr->cam);
+		obj[i] = ft_calc_plan(thr->e->plane[x], &thr->ray);
 		i++;
 		++x;
 	}
 	x = 0;
 	while (thr->e->objnb->cylinder != 0 && (x) < thr->e->objnb->cylinder)
 	{
-		obj[i] = ft_calc_cylinder(thr->e->cylinder[x], &thr->cam);
+		obj[i] = ft_calc_cylinder(thr->e->cylinder[x], &thr->ray);
 		i++;
 		++x;
 	}
 	x = 0;
 	while (thr->e->objnb->cone != 0 && (x) < thr->e->objnb->cone)
 	{
-		obj[i] = ft_calc_cone(thr->e->cone[x], &thr->cam);
+		obj[i] = ft_calc_cone(thr->e->cone[x], &thr->ray);
 		i++;
 		++x;
 	}
-	i = ft_isview(obj, i - 1);
-	return (ft_load_post(thr, i, obj[i]));
+	return (ft_load_post(thr, i, obj[ft_isview(obj, i - 1)]));
 }
 
-static void ft_calc_ray(float i, float j, t_thread *thr)
+static void ft_calc_ray(float x, float y, t_thread *thr)
 {
-	float x;
-	float y;
-	float z;
-	float fov;
-
-	fov = (thr->e->diaphragm * (M_PI / 180));
-	x = (i - (thr->WIN_X / 2.0));
-	y = ((thr->WIN_Y / 2.0) - j);
-	z = (thr->WIN_X / (tan(fov / 2.0) * 2.0));
-	thr->cam.v = vrotate(normalize(coord_v(x, y, z)), thr->e->camera->angle);
-	thr->cam.pos = thr->e->camera->pos;
-	thr->cam.angle = thr->e->camera->angle;
+	x = (2.0f * ((x + 0.5f) / thr->WIN_X) - 1.0f) * tanf(thr->e->fov / 2.0f * M_PI / 180.0f);
+	y = (1.0f - 2.0f * ((y + 0.5f) / thr->WIN_X)) * tanf(thr->e->fov / 2.0f * M_PI / 180.0f);
+	x = x * thr->WIN_X / thr->WIN_Y;
+	thr->ray.dir = vrotate(normalize(coord_v (x, y, -1.0f)), thr->e->cam->angle);
+	thr->ray.pos = thr->e->cam->pos;
 }
 
 void *thread_rt(void *arg)
@@ -92,9 +84,9 @@ void *thread_rt(void *arg)
 			while (n-- > 0)
 			{
 				thr->recursivity = thr->e->recursivity;
-				ft_calc_ray((i % thr->WIN_X) + (1.0 / aa * n), (i / thr->WIN_X) + (1.0 / aa * n), thr);
+				ft_calc_ray((i % thr->WIN_X) + (1.0f / aa * n), (i / thr->WIN_X) + (1.0f / aa * n), thr);
 				tmp = ft_calc_obj(thr, thr->recursivity);
-				rgb_mult(&tmp, .5, thr),
+				rgb_mult(&tmp, 0.5f, thr),
 				rgb_add(&thr->color, tmp, thr);
 			}
 			n = aa;

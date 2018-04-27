@@ -6,7 +6,7 @@
 /*   By: tlecas <tlecas@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/11/08 15:16:19 by tlecas            #+#    #+#             */
-/*   Updated: 2018/04/10 15:46:17 by tlecas           ###   ########.fr       */
+/*   Updated: 2018/04/27 05:44:03 by tlecas           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,7 +21,7 @@ static unsigned int ambient_light(t_thread *thr, unsigned int color)
 	unsigned int tmp;
 	float		 doto;
 
-	doto = fclamp((dot(vmult(thr->cam.v, -1), thr->internorm) + 0.0 * 0.15), 0, 1);
+	doto = fclamp((dot(vmult(thr->ray.dir, -1), thr->internorm) + 0.0 * 0.15), 0, 1);
 	tmp = color;
 	ambient = 0x00FFFFFF;
 	tmp <<= 8;
@@ -86,7 +86,7 @@ unsigned int	ft_load_post(t_thread *thr, int i, float obj)
 	name = 0;
 	tmp = 0x00000000;
 	thr->value = obj;
-	if (obj > 0.0001)
+	if (obj > 0.0f)
 	{
 		name = ft_which_obj(thr, &i);
 		color[0] = 0x00000000;
@@ -112,9 +112,9 @@ unsigned int	ft_load_post(t_thread *thr, int i, float obj)
 		while (++j < (thr->e->objnb->light))
 		{
 			rgb_add(&tmp, color[j], thr);
-			rgb_add(&tmp, ambient, thr);
 		}
-		if ((thr->mat.refraction > 0.0 && thr->recursivity > 0) || (thr->mat.reflection > 0.0 && thr->recursivity > 0))
+			rgb_add(&tmp, ambient, thr);
+		if ((thr->mat.refraction > 0.0f && thr->recursivity > 0) || (thr->mat.reflection > 0.0f && thr->recursivity > 0))
 		{
 			kr = fresnel(thr);
 			if (kr < 1)
@@ -122,7 +122,8 @@ unsigned int	ft_load_post(t_thread *thr, int i, float obj)
 			tmp = reflected(thr, tmp, kr);
 		}
 	}
-	free(name);
+	if (name)
+		free(name);
 	return (tmp);
 }
 
@@ -136,7 +137,7 @@ int		ft_isview(float *obj, int i)
 	if (i > 0)
 		while (++x <= i)
 		{
-			if ((obj[j] == 0.0) || (obj[x] < obj[j] && obj[x] != 0.0 && obj[x] > 0.0))
+			if ((obj[j] == 0.0f) || (obj[x] < obj[j] && obj[x] > 0.0f))
 				j = x;
 		}
 	return (j);

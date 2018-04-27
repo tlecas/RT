@@ -6,7 +6,7 @@
 #    By: tlecas <tlecas@student.42.fr>              +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2017/07/23 22:58:05 by tlecas            #+#    #+#              #
-#    Updated: 2018/04/20 20:59:53 by tlecas           ###   ########.fr        #
+#    Updated: 2018/04/27 06:52:28 by tlecas           ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -38,8 +38,6 @@ SRC_NAME = 	main.c \
 			ft_rgb_add.c \
 			ft_rgbmult.c \
 			display_hud.c
-#			ft_parse_cuboid.c
-
 SRC = $(addprefix $(SRC_PATH)/,$(SRC_NAME))
 OBJ_PATH = ./obj/
 OBJ_NAME = $(SRC_NAME:.c=.o)

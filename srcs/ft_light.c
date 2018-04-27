@@ -6,7 +6,7 @@
 /*   By: tlecas <tlecas@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/11/15 18:24:29 by tlecas            #+#    #+#             */
-/*   Updated: 2018/04/10 15:45:46 by tlecas           ###   ########.fr       */
+/*   Updated: 2018/04/27 05:41:55 by tlecas           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -77,11 +77,11 @@ unsigned int		ft_light(t_thread *thr, t_light *light, unsigned int tmp)
 	rgb_mult(&color, cos_a, thr);
 	reflet = vectsub(vmult(vmult(thr->internorm, dot(thr->internorm, light->vect)), 2.0f), light->vect);
 	reflet = normalize(reflet);
-	cam = vectsub(thr->e->camera->pos, thr->interpos);
+	cam = vectsub(thr->e->cam->pos, thr->interpos);
 	cam = normalize(cam);
 	spec = pow(flmax(dot(reflet, cam), 0.0f), 100.0f) * 100.0f; // ?
 	if (spec > 0.0f)
-		rgb_addl(&color, (unsigned int)(spec * thr->mat.specular 
+		rgb_addl(&color, (unsigned int)(spec * thr->mat.specular
 					* fclamp((light->intensity / POW2(light->norm_l)), 0.0f, 1.0f)), thr);
 	return (color);
 }

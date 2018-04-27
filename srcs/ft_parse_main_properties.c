@@ -6,7 +6,7 @@
 /*   By: tlecas <tlecas@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/11/08 14:08:17 by tlecas            #+#    #+#             */
-/*   Updated: 2018/04/10 15:45:52 by tlecas           ###   ########.fr       */
+/*   Updated: 2018/04/27 06:29:05 by tlecas           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,8 +24,8 @@ int		ft_parse_main_properties(t_env *e, char *str)
 		e->recursivity = ft_atoi(tmp = ft_strrcpy(str, 13));
 	else if (!(ft_strncmp(str, "antialias: ", 11)))
 		e->antialias = ft_strequ("true", tmp = ft_strrcpy(str, 11));
-	else if (!(ft_strncmp(str, "diaphragm: ", 11)))
-		e->diaphragm = ft_atof(tmp = ft_strrcpy(str, 11));
+	else if (!(ft_strncmp(str, "fov: ", 5)))
+		e->fov = ft_atof(tmp = ft_strrcpy(str, 5));
 	else
 		return (-1);
 	free(tmp);

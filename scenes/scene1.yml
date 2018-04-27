@@ -2,7 +2,7 @@ width: 1920
 height: 1080
 recursivity: 8
 antialias: true
-diaphragm: 90.00
+fov: 90.00
 camera:
 	x: 0.0
 	y: 0.0
@@ -20,9 +20,9 @@ sphere:
 	radius: 4.0
 	ambient: 0.000000
 	diffuse: 1.000000
-	specular: .500000
+	specular: 2.200000
 	reflection: 0.000000
-	refraction: 0.000000
+	refraction: 1.0
 light:
 	x: -15.000000
 	y: 5.000000
@@ -57,19 +57,6 @@ plane:
 	ambient: 0.0
 	diffuse: 1.0
 	specular: 0.2
-	reflection: 0.5
-	refraction: 0.0
-	texture: ./textures/test.png
-cone:
-	x: 5.0
-	y: 5.0
-	z: 5.0
-	rotX: 20.0
-	rotY: 0.0
-	rotZ: -45.0
-	angle: 2.0
-	ambient: 0.0
-	diffuse: 1.0
-	specular: 0.0
 	reflection: 0.0
-	refraction: 1.33
+	refraction: 0.0
+	color: 0x00FFFFFF

@@ -6,7 +6,7 @@
 /*   By: tlecas <tlecas@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/01/09 18:10:20 by tlecas            #+#    #+#             */
-/*   Updated: 2018/04/10 15:46:09 by tlecas           ###   ########.fr       */
+/*   Updated: 2018/04/27 05:36:47 by tlecas           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,13 +14,12 @@
 
 int		ft_prepare_shadow_sphere(t_thread *thr, t_light *light)
 {
-	t_camera	shadow_eye;
+	t_ray	shadow_eye;
 	int			j;
 
 	j = -1;
 	shadow_eye.pos = thr->interpos;
-	shadow_eye.angle = thr->cam.angle;
-	shadow_eye.v = light->vect;
+	shadow_eye.dir = light->vect;
 	while (++j < thr->e->objnb->totobj)
 	{
 		if (thr->number != j && j < thr->e->objnb->sphere && ft_shadow_sphere(thr, j, &shadow_eye))
@@ -35,13 +34,12 @@ int		ft_prepare_shadow_sphere(t_thread *thr, t_light *light)
 
 int		ft_prepare_shadow_plane(t_thread *thr, t_light *light)
 {
-	t_camera	shadow_eye;
+	t_ray	shadow_eye;
 	int			j;
 
 	j = -1;
 	shadow_eye.pos = thr->interpos;
-	shadow_eye.angle = thr->cam.angle;
-	shadow_eye.v = light->vect;
+	shadow_eye.dir = light->vect;
 	while (++j < thr->e->objnb->totobj)
 	{
 		if (j < thr->e->objnb->sphere && ft_shadow_sphere(thr, j, &shadow_eye))
@@ -56,13 +54,12 @@ int		ft_prepare_shadow_plane(t_thread *thr, t_light *light)
 
 int		ft_prepare_shadow_cone(t_thread *thr, t_light *light)
 {
-	t_camera	shadow_eye;
+	t_ray	shadow_eye;
 	int			j;
 
 	j = -1;
 	shadow_eye.pos = thr->interpos;
-	shadow_eye.angle = thr->cam.angle;
-	shadow_eye.v = light->vect;
+	shadow_eye.dir = light->vect;
 	while (++j <thr->e->objnb->totobj)
 	{
 		if (j < thr->e->objnb->sphere && ft_shadow_sphere(thr, j, &shadow_eye))
@@ -77,13 +74,12 @@ int		ft_prepare_shadow_cone(t_thread *thr, t_light *light)
 
 int		ft_prepare_shadow_cylinder(t_thread *thr, t_light *light)
 {
-	t_camera	shadow_eye;
+	t_ray	shadow_eye;
 	int			j;
 
 	j = -1;
 	shadow_eye.pos = thr->interpos;
-	shadow_eye.angle = thr->cam.angle;
-	shadow_eye.v = light->vect;
+	shadow_eye.dir = light->vect;
 	while (++j < thr->e->objnb->totobj)
 	{
 		if (j < thr->e->objnb->sphere && ft_shadow_sphere(thr, j, &shadow_eye))

@@ -6,7 +6,7 @@
 /*   By: tlecas <tlecas@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/10/05 17:38:05 by tlecas            #+#    #+#             */
-/*   Updated: 2018/04/24 17:03:18 by tlecas           ###   ########.fr       */
+/*   Updated: 2018/04/27 05:41:02 by tlecas           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -41,7 +41,6 @@ t_env		*ft_load_obj(t_env *e, char **tab)
 	ft_parse_cone(e, tab);
 	ft_parse_cylinder(e, tab);
 	ft_parse_camera(e, tab);
-	//ft_parse_cuboid(e, tab);
 	return (e);
 }
 

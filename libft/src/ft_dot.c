@@ -6,7 +6,7 @@
 /*   By: tlecas <tlecas@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/02/22 12:23:58 by tlecas            #+#    #+#             */
-/*   Updated: 2018/04/10 16:02:56 by tlecas           ###   ########.fr       */
+/*   Updated: 2018/04/26 20:56:21 by tlecas           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,8 +14,5 @@
 
 float	dot(t_vect v1, t_vect v2)
 {
-	float prod_scal;
-
-	prod_scal = (v1.x * v2.x) + (v1.y * v2.y) + (v1.z * v2.z);
-	return (prod_scal);
+	return(v1.x * v2.x + v1.y * v2.y + v1.z * v2.z);
 }

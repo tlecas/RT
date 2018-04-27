@@ -2,7 +2,7 @@ width: 1920
 height: 1280
 recursivity: 0
 antialias: false
-diaphragm: 110.00
+fov: 110.00
 camera:
 	x: 0.0
 	y: 0.0

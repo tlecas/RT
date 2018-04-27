@@ -6,7 +6,7 @@
 /*   By: tlecas <tlecas@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/11/07 16:32:51 by tlecas            #+#    #+#             */
-/*   Updated: 2018/04/10 16:01:05 by tlecas           ###   ########.fr       */
+/*   Updated: 2018/04/27 06:50:24 by tlecas           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,6 +26,7 @@
 # include <math.h>
 # include <fcntl.h>
 # include <string.h>
+# include <stdio.h>
 
 typedef struct	s_gnl
 {
@@ -65,7 +66,7 @@ t_vect			vmv(t_vect v1, t_vect v2);
 unsigned int	uimin(unsigned int a, unsigned int b);
 void			uiclamp(unsigned int *ui, unsigned int min, unsigned int max);
 float			fclamp(float d, float min, float max);
-float			ft_eq_second(float delta, float a, float b);
+float			ft_eq_second(float delta, float a, float b, float c);
 void			ft_list_push_back(t_list **beginlist, void *data);
 size_t			ft_strlcat(char *dst, const char *src, size_t size);
 int				ft_atoi(const char *c);
@@ -139,7 +140,6 @@ void			ft_list_sort(t_attr ***list, int (*compare)(t_attr*, t_attr*));
 void			ft_ptrswap(void **data_1, void **data_2);
 void			*ft_realloc(void *ptr, size_t size);
 
-t_vect			vrotateinv(t_vect v, t_vect angle);
 t_vect			vectsub(t_vect vect1, t_vect vect2);
 t_vect			vectadd(t_vect vect1, t_vect vect2);
 float			norm2(t_vect v);
