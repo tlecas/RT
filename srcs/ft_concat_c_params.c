@@ -12,7 +12,7 @@
 
 #include "rt.h"
 
-t_mat	ft_mat_init()
+t_mat		ft_mat_init(void)
 {
 	t_mat mat;
 
@@ -24,7 +24,15 @@ t_mat	ft_mat_init()
 	return (mat);
 }
 
-char	*ft_concat_c_params(char *str1, const char *str2, char c)
+static void	ft_init_params_concat_c_params(int i, int j, int k, int l)
+{
+	j = -1;
+	i = 0;
+	k = 0;
+	l = -1;
+}
+
+char		*ft_concat_c_params(char *str1, const char *str2, char c)
 {
 	char	*ret;
 	int		i;
@@ -32,10 +40,7 @@ char	*ft_concat_c_params(char *str1, const char *str2, char c)
 	int		k;
 	int		l;
 
-	j = -1;
-	i = 0;
-	k = 0;
-	l = -1;
+	ft_init_params_concat_c_params(i, j, k, l);
 	if (str1 == 0 && --k)
 		i = ft_strlen(str2) + 1;
 	else if (str1 != 0 && ++k)
