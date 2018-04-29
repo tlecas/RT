@@ -14,7 +14,7 @@
 
 unsigned int	uimin(unsigned int a, unsigned int b)
 {
-	if ( a > b)
+	if (a > b)
 		return (b);
 	else
 		return (a);

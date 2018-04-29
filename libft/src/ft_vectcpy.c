@@ -19,5 +19,5 @@ t_vect	vectcpy(t_vect v)
 	vect.x = v.x;
 	vect.y = v.y;
 	vect.z = v.z;
-	return(vect);
+	return (vect);
 }

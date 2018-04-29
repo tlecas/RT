@@ -14,7 +14,7 @@
 
 float	fclamp(float d, float min, float max)
 {
-	if(d > max)
+	if (d > max)
 		d = max;
 	if (d < min)
 		d = min;
