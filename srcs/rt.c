@@ -98,7 +98,11 @@ void *thread_rt(void *arg)
 		else
 		{
 			thr->recursivity = thr->e->recursivity;
-			if ((thr->e->keys & BLUR) && thr->e->blur)
+			if ((thr->e->keys & BLUR) && thr->e->blur == 3)
+				ft_calc_ray(i % (thr->WIN_X), i / (thr->WIN_X) + ((rand() % 32) / 8) - 2, thr);
+			else if ((thr->e->keys & BLUR) && thr->e->blur == 2)
+				ft_calc_ray(i % (thr->WIN_X) + ((rand() % 32) / 8) - 2, i / (thr->WIN_X), thr);
+			else if ((thr->e->keys & BLUR) && thr->e->blur)
 				ft_calc_ray(i % (thr->WIN_X) + ((rand() % 32) / 8) - 2, i / (thr->WIN_X) + ((rand() % 32) / 8) - 2, thr);
 			else
 				ft_calc_ray(i % (thr->WIN_X), i / (thr->WIN_X), thr);

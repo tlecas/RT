@@ -64,38 +64,38 @@ int			key_hook(int keycode, t_env *e)
 	{
 		e->cam->angle.x += 4.0f;
 		if (e->keys & BLUR)
-			e->blur = 1;
+			e->blur = 3;
 		ft_rt(e);
 	}
 	if (keycode == KEY_DOWN)
 	{
 		e->cam->angle.x -= 4.0f;
 		if (e->keys & BLUR)
-			e->blur = 1;
+			e->blur = 3;
 		ft_rt(e);
 	}
 	if (keycode == KEY_LEFT)
 	{
 		e->cam->angle.y += 4.0f;
 		if (e->keys & BLUR)
-			e->blur = 1;
+			e->blur = 2;
 		ft_rt(e);
 	}
 	if (keycode == KEY_RIGHT)
 	{
 		e->cam->angle.y -= 4.0f;
 		if (e->keys & BLUR)
-			e->blur = 1;
+			e->blur = 2;
 		ft_rt(e);
 	}
-	if (keycode == KEY_A)
+	if (keycode == KEY_Q)
 	{
 		e->cam->angle.z += 4.0f;
 		if (e->keys & BLUR)
 			e->blur = 1;
 		ft_rt(e);
 	}
-	if (keycode == KEY_D)
+	if (keycode == KEY_E)
 	{
 		e->cam->angle.z -= 4.0f;
 		if (e->keys & BLUR)
@@ -104,30 +104,44 @@ int			key_hook(int keycode, t_env *e)
 	}
 	if (keycode == KEY_W)
 	{
-		e->cam->pos.z += 4.0f;
+		e->cam->pos.y += 4.0f;
 		if (e->keys & BLUR)
 			e->blur = 1;
 		ft_rt(e);
 	}
 	if (keycode == KEY_S)
 	{
+		e->cam->pos.y -= 4.0f;
+		if (e->keys & BLUR)
+			e->blur = 1;
+		ft_rt(e);
+	}
+	if (keycode == KEY_2)
+	{
+		e->cam->pos.z += 4.0f;
+		if (e->keys & BLUR)
+			e->blur = 1;
+		ft_rt(e);
+	}
+	if (keycode == KEY_3)
+	{
 		e->cam->pos.z -= 4.0f;
 		if (e->keys & BLUR)
 			e->blur = 1;
 		ft_rt(e);
 	}
-	if (keycode == KEY_E)
+	if (keycode == KEY_D)
 	{
 		e->cam->pos.x += 4.0f;
 		if (e->keys & BLUR)
-			e->blur = 1;
+			e->blur = 2;
 		ft_rt(e);
 	}
-	if (keycode == KEY_Q)
+	if (keycode == KEY_A)
 	{
 		e->cam->pos.x -= 4.0f;
 		if (e->keys & BLUR)
-			e->blur = 1;
+			e->blur = 2;
 		ft_rt(e);
 	}
 	if (keycode == KEY_M)
