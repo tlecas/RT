@@ -6,7 +6,7 @@
 /*   By: tlecas <tlecas@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/11/08 15:16:19 by tlecas            #+#    #+#             */
-/*   Updated: 2018/04/27 05:44:03 by tlecas           ###   ########.fr       */
+/*   Updated: 2018/04/29 01:36:10 by tlecas           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -80,7 +80,9 @@ unsigned int	ft_load_post(t_thread *thr, int i, float obj)
 	unsigned int	color[thr->e->objnb->light + 1];
 	unsigned int	ambient;
 	unsigned int	tmp;
+	unsigned int	test;
 
+	test = 0x00AAAAAA;
 	j = -1;
 	kr = 0;
 	name = 0;
@@ -89,19 +91,18 @@ unsigned int	ft_load_post(t_thread *thr, int i, float obj)
 	if (obj > 0.0f)
 	{
 		name = ft_which_obj(thr, &i);
-		color[0] = 0x00000000;
 		thr->name = name;
 		thr->number = i;
 		thr->value = obj;
 		if (!(ft_strcmp(thr->name, "sphere")))
 			ft_post_sphere(thr, &tmp);
-		else if (!(ft_strcmp(thr->name, "plane")))
+		if (!(ft_strcmp(thr->name, "plane")))
 			ft_post_plane(thr, &tmp);
-		else if (!(ft_strcmp(thr->name, "cylinder")))
+		if (!(ft_strcmp(thr->name, "cylinder")))
 			ft_post_cylinder(thr, &tmp);
-		else if (!(ft_strcmp(thr->name, "cone")))
+		if (!(ft_strcmp(thr->name, "cone")))
 			ft_post_cone(thr, &tmp);
-		ambient = ambient_light(thr, tmp);
+			ambient = ambient_light(thr, tmp);
 		while (++j < thr->e->objnb->light)
 		{
 			thr->light = *thr->e->light[j];
@@ -110,10 +111,8 @@ unsigned int	ft_load_post(t_thread *thr, int i, float obj)
 		j = -1;
 		tmp = 0x00000000;
 		while (++j < (thr->e->objnb->light))
-		{
 			rgb_add(&tmp, color[j], thr);
-		}
-			rgb_add(&tmp, ambient, thr);
+		rgb_add(&tmp, ambient, thr);
 		if ((thr->mat.refraction > 0.0f && thr->recursivity > 0) || (thr->mat.reflection > 0.0f && thr->recursivity > 0))
 		{
 			kr = fresnel(thr);
@@ -137,8 +136,10 @@ int		ft_isview(float *obj, int i)
 	if (i > 0)
 		while (++x <= i)
 		{
-			if ((obj[j] == 0.0f) || (obj[x] < obj[j] && obj[x] > 0.0f))
+			if (obj[j] == 0.0f || (obj[x] < obj[j] && obj[x] > 0.0f))
+			{
 				j = x;
+			}
 		}
 	return (j);
 }

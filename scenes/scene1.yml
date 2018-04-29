@@ -7,12 +7,12 @@ camera:
 	x: 0.0
 	y: 0.0
 	z: -20.0
-	angle_x: 5.0
-	angle_y: 5.0
-	angle_z: 5.0
+	angle_x: 0.0
+	angle_y: 0.0
+	angle_z: 0.0
 sphere:
-	x: 5.0
-	y: 5.0
+	x: 0.0
+	y: 0.0
 	z: 5.0
 	rotX: 0.000000
 	rotY: 0.000000
@@ -22,7 +22,7 @@ sphere:
 	diffuse: 1.000000
 	specular: 2.200000
 	reflection: 0.000000
-	refraction: 1.0
+	refraction: 0.0
 light:
 	x: -15.000000
 	y: 5.000000
@@ -47,16 +47,3 @@ cylinder:
 	reflection: 0.0
 	refraction: 0.0
 	color: 0x00AAAAAA
-plane:
-	x: 0.0
-	y: 0.0
-	z: 20.0
-	rotX: -45.0
-	rotY: 0.0
-	rotZ: 0.0
-	ambient: 0.0
-	diffuse: 1.0
-	specular: 0.2
-	reflection: 0.0
-	refraction: 0.0
-	color: 0x00FFFFFF

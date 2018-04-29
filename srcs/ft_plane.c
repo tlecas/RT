@@ -6,18 +6,16 @@
 /*   By: tlecas <tlecas@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/11/14 14:02:36 by tlecas            #+#    #+#             */
-/*   Updated: 2018/04/27 06:12:52 by tlecas           ###   ########.fr       */
+/*   Updated: 2018/04/29 01:51:45 by tlecas           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "rt.h"
 
-
 void	ft_save_inter_plan(t_thread *thr, t_plane *plane, t_ray *ray)
 {
-	thr->internorm = coord_v(0.0f, 1.0f, 0.0f);
 	thr->interpos = vectadd(ray->pos, vmult(ray->dir, thr->value));
-	thr->internorm = vrotate(thr->internorm, plane->rotate);
+	thr->internorm = vrotate(coord_v(0.0f, 1.0f, 0.0f), plane->rotate);
 	if (!(plane->mat.refraction || plane->mat.reflection) && (thr->e->keys & ROUGH))
 		thr->internorm = vmult(thr->internorm, (sin(thr->x / 8) * .1f) + 1.0f); // surface rugueuse
 }
@@ -70,7 +68,7 @@ float		ft_calc_plan(t_plane *plane, t_ray *ray)
 
 	normal = vrotate(coord_v(0.0f, 1.0f, 0.0f), plane->rotate);
 	tmp = dot(normal, ray->dir);
-	if (tmp < 0.0001f)
+	if (ABS(tmp) < 0.0001f)
 		return (0.0f);
 	inter = (dot(normal, vectsub(plane->pos, ray->pos))) / tmp;
 	if (inter > 0.0f)

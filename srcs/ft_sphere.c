@@ -6,7 +6,7 @@
 /*   By: tlecas <tlecas@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/11/03 19:10:01 by tlecas            #+#    #+#             */
-/*   Updated: 2018/04/27 06:15:21 by tlecas           ###   ########.fr       */
+/*   Updated: 2018/04/28 23:57:01 by tlecas           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,7 +15,7 @@
 void	ft_save_inter_sphere(t_thread *thr, t_sphere *sphere, t_ray *ray)
 {
 	thr->interpos = vectadd(ray->pos, vmult(ray->dir, thr->value));
-	thr->internorm = vectsub(thr->interpos, sphere->pos);
+	thr->internorm = normalize(vectsub(thr->interpos, sphere->pos));
 	if (!(sphere->mat.refraction) && (thr->e->keys & ROUGH))
 		thr->internorm = vmult(thr->internorm, (sin(thr->x / 8) * 0.1f) + 1.0f); // surface rugueuse
 }
