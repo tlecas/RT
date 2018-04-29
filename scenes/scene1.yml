@@ -57,7 +57,7 @@ plane:
 	rotX: 100.0
 	rotY: 0.0
 	rotZ: 0.0
-	ambient: 0.01
+	ambient: 0
 	diffuse: 1.0
 	specular: 0.2
 	reflection: 0.5
