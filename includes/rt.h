@@ -243,5 +243,11 @@ unsigned int	reflected(t_thread *thr, unsigned int color, float kr);
 unsigned int 	ft_calc_obj(t_thread *thr, int recursivity);
 void			rgb_add(unsigned int *color, unsigned int d, t_thread *thr);
 void			ft_display_info(unsigned int keys, t_env *e);
+void			keys_angle1(int keycode, t_env *e);
+void			keys_angle2(int keycode, t_env *e);
+void			keys_move1(int keycode, t_env *e);
+void			keys_move2(int keycode, t_env *e);
+void			keys_blur(int keycode, t_env *e);
+
 
 #endif

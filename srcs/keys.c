@@ -1,6 +1,6 @@
-# include "rt.h"
+#include "rt.h"
 
-int			key_hook(int keycode, t_env *e)
+static void		keys_escape(int keycode, t_env *e)
 {
 	if (keycode == KEY_ESC)
 	{
@@ -8,8 +8,11 @@ int			key_hook(int keycode, t_env *e)
 		mlx_destroy_window(e->mlx, e->win);
 		free(e);
 		exit(0);
-		return (0);
 	}
+}
+
+static void		keys_texture1(int keycode, t_env *e)
+{
 	if (keycode == KEY_PAD_SUB)
 	{
 		e->t_ratio *= 1.25f;
@@ -30,6 +33,10 @@ int			key_hook(int keycode, t_env *e)
 		e->t_y += 50.0f;
 		ft_rt(e);
 	}
+}
+
+static void		keys_texture2(int keycode, t_env *e)
+{
 	if (keycode == KEY_J)
 	{
 		e->t_x -= 50.0f;
@@ -40,6 +47,10 @@ int			key_hook(int keycode, t_env *e)
 		e->t_x += 50.0f;
 		ft_rt(e);
 	}
+}
+
+static void		keys_settings(int keycode, t_env *e)
+{
 	if (keycode == KEY_B)
 	{
 		e->keys ^= BLACK;
@@ -60,94 +71,18 @@ int			key_hook(int keycode, t_env *e)
 		e->keys ^= ROUGH;
 		ft_rt(e);
 	}
-	if (keycode == KEY_UP)
-	{
-		e->cam->angle.x += 4.0f;
-		if (e->keys & BLUR)
-			e->blur = 3;
-		ft_rt(e);
-	}
-	if (keycode == KEY_DOWN)
-	{
-		e->cam->angle.x -= 4.0f;
-		if (e->keys & BLUR)
-			e->blur = 3;
-		ft_rt(e);
-	}
-	if (keycode == KEY_LEFT)
-	{
-		e->cam->angle.y += 4.0f;
-		if (e->keys & BLUR)
-			e->blur = 2;
-		ft_rt(e);
-	}
-	if (keycode == KEY_RIGHT)
-	{
-		e->cam->angle.y -= 4.0f;
-		if (e->keys & BLUR)
-			e->blur = 2;
-		ft_rt(e);
-	}
-	if (keycode == KEY_Q)
-	{
-		e->cam->angle.z += 4.0f;
-		if (e->keys & BLUR)
-			e->blur = 1;
-		ft_rt(e);
-	}
-	if (keycode == KEY_E)
-	{
-		e->cam->angle.z -= 4.0f;
-		if (e->keys & BLUR)
-			e->blur = 1;
-		ft_rt(e);
-	}
-	if (keycode == KEY_W)
-	{
-		e->cam->pos.y += 4.0f;
-		if (e->keys & BLUR)
-			e->blur = 1;
-		ft_rt(e);
-	}
-	if (keycode == KEY_S)
-	{
-		e->cam->pos.y -= 4.0f;
-		if (e->keys & BLUR)
-			e->blur = 1;
-		ft_rt(e);
-	}
-	if (keycode == KEY_2)
-	{
-		e->cam->pos.z += 4.0f;
-		if (e->keys & BLUR)
-			e->blur = 1;
-		ft_rt(e);
-	}
-	if (keycode == KEY_3)
-	{
-		e->cam->pos.z -= 4.0f;
-		if (e->keys & BLUR)
-			e->blur = 1;
-		ft_rt(e);
-	}
-	if (keycode == KEY_D)
-	{
-		e->cam->pos.x += 4.0f;
-		if (e->keys & BLUR)
-			e->blur = 2;
-		ft_rt(e);
-	}
-	if (keycode == KEY_A)
-	{
-		e->cam->pos.x -= 4.0f;
-		if (e->keys & BLUR)
-			e->blur = 2;
-		ft_rt(e);
-	}
-	if (keycode == KEY_M)
-	{
-		e->keys ^= BLUR;
-		ft_rt(e);
-	}
+}
+
+int				key_hook(int keycode, t_env *e)
+{
+	keys_escape(keycode, e);
+	keys_texture1(keycode, e);
+	keys_texture2(keycode, e);
+	keys_settings(keycode, e);
+	keys_angle1(keycode, e);
+	keys_angle2(keycode, e);
+	keys_move1(keycode, e);
+	keys_move2(keycode, e);
+	keys_blur(keycode, e);
 	return (1);
 }

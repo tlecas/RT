@@ -15,6 +15,7 @@ SRC_PATH = ./srcs/
 SRC_NAME = 	main.c \
 			rt.c \
 			keys.c \
+			keys2.c \
 			ft_reflection.c \
 			ft_light.c \
 			ft_shadow.c \
