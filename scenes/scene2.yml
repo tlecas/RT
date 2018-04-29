@@ -14,7 +14,7 @@ plane:
 	x: 0.0
 	y: -2.0
 	z: 0.0
-	rotX: 0.0
+	rotX: 180.0
 	rotY: 0.0
 	rotZ: 0.0
 	ambient: 0.0
@@ -30,7 +30,7 @@ plane:
 	x: 0.0
 	y: 7.0
 	z: 0.0
-	rotX: -180.0
+	rotX: 0.0
 	rotY: 0.0
 	rotZ: 0.0
 	ambient: 0.0

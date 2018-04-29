@@ -6,7 +6,7 @@
 /*   By: tlecas <tlecas@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/11/14 14:02:36 by tlecas            #+#    #+#             */
-/*   Updated: 2018/04/29 04:20:11 by tlecas           ###   ########.fr       */
+/*   Updated: 2018/04/29 07:45:30 by tlecas           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,7 +30,7 @@ void			ft_post_plane(t_thread *thr, unsigned int *tmp)
 	t_vect	u;
 
 	i = thr->number;
-	thr->e->plane[i]->chess = 1;
+	thr->e->plane[i]->chess = 0;
 	thr->pos = thr->e->plane[i]->pos;
 	thr->rotate = thr->e->plane[i]->rotate;
 	ft_save_inter_plan(thr, thr->e->plane[i], &thr->ray);

@@ -22,7 +22,7 @@ sphere:
 	diffuse: 1.000000
 	specular: 1
 	reflection: 0.000000
-	refraction: 0.9
+	refraction: 0.0
 	color: 0x000000FF
 light:
 	x: -15.000000
@@ -70,10 +70,10 @@ cone:
 	rotX: 20.0
 	rotY: 0.0
 	rotZ: -45.0
-	angle: 12
+	angle: 15
 	ambient: 0.0
 	diffuse: 1.0
 	specular: 0.0
 	reflection: 0.0
-	refraction: 0.0
+	refraction: 1.33
 	color: 0x00CDEF00
