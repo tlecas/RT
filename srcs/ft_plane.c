@@ -6,7 +6,7 @@
 /*   By: tlecas <tlecas@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/11/14 14:02:36 by tlecas            #+#    #+#             */
-/*   Updated: 2018/04/29 01:51:45 by tlecas           ###   ########.fr       */
+/*   Updated: 2018/04/29 02:40:39 by tlecas           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,7 +15,7 @@
 void	ft_save_inter_plan(t_thread *thr, t_plane *plane, t_ray *ray)
 {
 	thr->interpos = vectadd(ray->pos, vmult(ray->dir, thr->value));
-	thr->internorm = vrotate(coord_v(0.0f, 1.0f, 0.0f), plane->rotate);
+	thr->internorm = vrotate(coord_v(0.0f, -1.0f, 0.0f), (plane->rotate));
 	if (!(plane->mat.refraction || plane->mat.reflection) && (thr->e->keys & ROUGH))
 		thr->internorm = vmult(thr->internorm, (sin(thr->x / 8) * .1f) + 1.0f); // surface rugueuse
 }

@@ -6,7 +6,7 @@
 #    By: tlecas <tlecas@student.42.fr>              +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2016/11/08 14:37:39 by tlecas            #+#    #+#              #
-#    Updated: 2018/04/27 06:49:47 by tlecas           ###   ########.fr        #
+#    Updated: 2018/04/29 03:05:06 by tlecas           ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -91,7 +91,8 @@ SRC_NAME = 	ft_atoi.c \
 			ft_coord_v.c \
 			ft_dot.c \
 			ft_vmult.c \
-			get_next_line.c
+			get_next_line.c \
+			ft_ddot.c
 SRC = $(addprefix $(SRC_PATH),$(SRC_NAME))
 OBJ_PATH = ./obj/
 OBJ_NAME = $(SRC_NAME:.c=.o)

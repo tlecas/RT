@@ -22,7 +22,7 @@ sphere:
 	diffuse: 1.000000
 	specular: 1
 	reflection: 0.000000
-	refraction: 0
+	refraction: 0.9
 	color: 0x000000FF
 light:
 	x: -15.000000

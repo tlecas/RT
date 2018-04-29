@@ -6,7 +6,7 @@
 /*   By: tlecas <tlecas@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/11/15 11:10:19 by tlecas            #+#    #+#             */
-/*   Updated: 2018/04/27 06:06:07 by tlecas           ###   ########.fr       */
+/*   Updated: 2018/04/29 03:59:49 by tlecas           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,7 +21,7 @@ void		ft_save_inter_cone(t_thread *thr, t_cone *cone, t_ray *ray)
 	norm = vrotate(coord_v(0.0, 1.0, 0.0), cone->rotate);
 	thr->interpos = vectadd(ray->pos, vmult(ray->dir, thr->value));
 	thr->internorm = vectsub(thr->interpos, cone->pos);
-	dotc = dot(norm, thr->internorm);
+	dotc = ddot(norm, thr->internorm);
 	thr->internorm = vectsub(thr->internorm, vmult(norm, dotc));
 	thr->internorm = normalize(thr->internorm);
 	if (!(cone->mat.refraction) && (thr->e->keys & ROUGH))
@@ -40,22 +40,25 @@ void		ft_post_cone(t_thread *thr, unsigned int *tmp)
 	*tmp = thr->e->cone[i]->color;
 }
 
-float			ft_calc_cone(t_cone *cone, t_ray *ray)
+double		ft_calc_cone(t_cone *cone, t_ray *ray)
 {
 	t_vect	normal;
-	float	a;
-	float	b;
-	float	c;
+	double	a;
+	double	b;
+	double	c;
 	t_vect	pos;
-	float	delta;
-	float	tmp;
+	double	delta;
+	double	tmp;
 
 	normal = vrotate(coord_v(0.0f, 1.0f, 0.0f), cone->rotate);
 	pos = vectsub(ray->pos, cone->pos);
-	tmp = dot(ray->dir, normal);
-	a = POW2(tmp) - POW2(cos(cone->angle * (M_PI / 180.0f)));
-	b = 2.0f * (tmp * dot(pos, normal) - dot(ray->dir, pos) * POW2(cos(cone->angle * (M_PI / 180.0f))));
-	c = POW2(dot(pos, normal)) - dot(pos, pos) * POW2(cos(cone->angle * (M_PI / 180.0f)));
-	delta = b * b - 4.0f * a * c;
-	return (ft_eq_second(delta, a, b, c));
+	tmp = ddot(ray->dir, normal);
+	a = pow(tmp, 2) - pow(cos(cone->angle * (M_PI / 180.0)), 2);
+	b = 2.0 * (tmp * ddot(pos, normal) - ddot(ray->dir, pos) * pow(cos(cone->angle * (M_PI / 180.0)), 2));
+	c = pow(ddot(pos, normal), 2) - ddot(pos, pos) * pow(cos(cone->angle * (M_PI / 180.0)), 2);
+	delta = b * b - 4.0 * a * c;
+	tmp = (ft_eq_second(delta, a, b, c));
+	if (tmp < 0.0001)
+		return (0);
+	return (tmp);
 }

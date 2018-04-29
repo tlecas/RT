@@ -6,7 +6,7 @@
 /*   By: tlecas <tlecas@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/11/07 16:32:51 by tlecas            #+#    #+#             */
-/*   Updated: 2018/04/27 06:50:24 by tlecas           ###   ########.fr       */
+/*   Updated: 2018/04/29 03:04:10 by tlecas           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -146,6 +146,7 @@ float			norm2(t_vect v);
 float			norm(t_vect v);
 t_vect			normalize(t_vect v);
 float			dot(t_vect v1, t_vect v2);
+double			ddot(t_vect v1, t_vect v2);
 t_vect			vrotate(t_vect v, t_vect angle);
 t_vect			coord_v(float x, float y, float z);
 t_vect			vmult(t_vect v, float mult);

@@ -6,7 +6,7 @@
 /*   By: tlecas <tlecas@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/10/05 16:49:17 by tlecas            #+#    #+#             */
-/*   Updated: 2018/04/27 05:51:04 by tlecas           ###   ########.fr       */
+/*   Updated: 2018/04/29 02:59:55 by tlecas           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,9 +29,8 @@
 
 # define WIN_X		e->width
 # define WIN_Y		e->height
-# define THREADS	1
+# define THREADS	8
 # define POW2(x)	(x * x)
-# define FOCALE		300
 # define BLACK		0x00000001
 # define AA			0x00000002
 # define FRACTAL	0x00000004
@@ -100,21 +99,6 @@ typedef	struct		s_cylinder
 	float		inter;
 	t_mat		mat;
 }					t_cylinder;
-
-typedef	struct		s_cuboid
-{
-	t_vect		pos;
-	t_vect		rotate;
-	t_vect		interpos;
-	t_vect		internorm;
-	//float		radius;
-	float		height;
-	float		width;
-	float		dept;
-	unsigned int color;
-	float		inter;
-	t_mat		mat;
-}					t_cuboid;
 
 typedef	struct		s_light
 {
@@ -235,7 +219,7 @@ t_env			*ft_rotate(t_env *e);
 float			ft_calc_sphere(t_sphere *sphere, t_ray *ray);
 float			ft_calc_plan(t_plane *plan, t_ray *ray);
 float			ft_calc_cylinder(t_cylinder *cylinder, t_ray *ray);
-float			ft_calc_cone(t_cone *cone, t_ray *ray);
+double			ft_calc_cone(t_cone *cone, t_ray *ray);
 int				ft_shadow_sphere(t_thread *thr, int i, t_ray *shadow_eye);
 int				ft_shadow_cone(t_thread *thr, int i, t_ray *shadow_eye);
 int				ft_is_shadow(t_thread *thr, t_light *light);
