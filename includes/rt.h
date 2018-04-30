@@ -6,7 +6,7 @@
 /*   By: tlecas <tlecas@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/10/05 16:49:17 by tlecas            #+#    #+#             */
-/*   Updated: 2018/04/30 02:47:57 by tlecas           ###   ########.fr       */
+/*   Updated: 2018/04/30 03:25:38 by tlecas           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -88,7 +88,7 @@ typedef	struct		s_sphere
 typedef	struct		s_cylinder
 {
 	t_vect		pos;
-	t_vect		rotate;
+	t_vect		axis;
 	t_vect		interpos;
 	t_vect		internorm;
 	float		radius;
@@ -187,6 +187,7 @@ typedef struct		s_thread
 	float			ar;
 	t_mat			mat;
 	t_vect			normal;
+	t_vect			axis;
 	t_vect			rotate;
 	t_vect			interpos;
 	t_vect			internorm;

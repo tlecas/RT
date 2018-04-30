@@ -6,7 +6,7 @@
 /*   By: tlecas <tlecas@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/12/19 13:01:31 by tlecas            #+#    #+#             */
-/*   Updated: 2018/04/30 02:49:24 by tlecas           ###   ########.fr       */
+/*   Updated: 2018/04/30 03:23:59 by tlecas           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -51,7 +51,7 @@ int		ft_shadow_cylinder(t_thread *thr, int i, t_ray *shadow_eye)
 
 	j = 0.0f;
 	shadow_cylinder.pos = thr->e->cylinder[i]->pos;
-	shadow_cylinder.rotate = thr->e->cylinder[i]->rotate;
+	shadow_cylinder.axis = thr->e->cylinder[i]->axis;
 	shadow_cylinder.radius = thr->e->cylinder[i]->radius;
 	j = ft_calc_cylinder(&shadow_cylinder, shadow_eye);
 	if (j > 0.0001f && j <= 1.0f)

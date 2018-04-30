@@ -14,9 +14,6 @@ sphere:
 	x: 5.0
 	y: 5.0
 	z: 5.0
-	rotX: 1.000000
-	rotY: 1.000000
-	rotZ: 1.000000
 	radius: 2.0
 	ambient: 0.000000
 	diffuse: 1.000000
@@ -37,9 +34,9 @@ cylinder:
 	x: -5.0
 	y: 0.0
 	z: 5.0
-	rotX: 20.0
-	rotY: 0.0
-	rotZ: 45.0
+	axisX: -1.0
+	axisY: 1.0
+	axisZ: 1.0
 	radius: 2.0
 	ambient: 0.0
 	diffuse: 1.0

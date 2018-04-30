@@ -22,12 +22,25 @@ light:
 	x: -1.0
 	y: 2.0
 	z: 0.0
-	intensity: 350.0
+	intensity: 150.0
 light:
 	x: 1.0
 	y: 2.0
 	z: 0.0
-	intensity: 350.0
+	intensity: 150.0
+cylinder:
+	x: 0.0
+	y: 0.0
+	z: 5.0
+	axisX: -1.0
+	axisY: 1.0
+	axisZ: 0.0
+	radius: 0.33
+	ambient: 0.0
+	diffuse: 1.0
+	specular: 1.0
+	reflection: 0.0
+	refraction: 1.33
 plane:
 	x: 0.0
 	y: -3.0
@@ -38,8 +51,8 @@ plane:
 	ambient: 0.0
 	diffuse: 1.0
 	specular: 2.2
-	reflection: 0
-	refraction: 0
+	reflection: 0.0
+	refraction: 0.0
 	color: 0x00FFFFFF
 plane:
 	x: 0.0
@@ -51,6 +64,6 @@ plane:
 	ambient: 0.0
 	diffuse: 1.0
 	specular: 2.2
-	reflection: 0
-	refraction: 0
+	reflection: 0.0
+	refraction: 0.0
 	color: 0x00FFFFFF

@@ -6,7 +6,7 @@
 /*   By: tlecas <tlecas@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/11/30 12:52:22 by tlecas            #+#    #+#             */
-/*   Updated: 2018/04/10 15:45:50 by tlecas           ###   ########.fr       */
+/*   Updated: 2018/04/30 03:10:21 by tlecas           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,7 +17,7 @@ t_cylinder		*ft_init_cylinder(t_cylinder *cylinder)
 	if (!(cylinder = malloc(sizeof(t_cylinder))))
 		ft_error("Error malloc");
 	cylinder->pos = coord_v(0, 0, 0);
-	cylinder->rotate = coord_v(0, 0, 0);
+	cylinder->axis = coord_v(0, 0, 0);
 	cylinder->radius = 1.0;
 	cylinder->color = 0xFF00FF00;
 	cylinder->mat = ft_mat_init();
@@ -69,12 +69,12 @@ static int		ft_fill_coords(t_cylinder *cylinder, char *str)
 		cylinder->pos.y = ft_atof(tmp = ft_strrcpy(str, 4));
 	else if (!(ft_strncmp(str, "\tz: ", 4)))
 		cylinder->pos.z = ft_atof(tmp = ft_strrcpy(str, 4));
-	else if (!(ft_strncmp(str, "\trotX: ", 7)))
-		cylinder->rotate.x = ft_atof(tmp = ft_strrcpy(str, 7));
-	else if (!(ft_strncmp(str, "\trotY: ", 7)))
-		cylinder->rotate.y = ft_atof(tmp = ft_strrcpy(str, 7));
-	else if (!(ft_strncmp(str, "\trotZ: ", 7)))
-		cylinder->rotate.z = ft_atof(tmp = ft_strrcpy(str, 7));
+	else if (!(ft_strncmp(str, "\taxisX: ", 8)))
+		cylinder->axis.x = ft_atof(tmp = ft_strrcpy(str, 8));
+	else if (!(ft_strncmp(str, "\taxisY: ", 8)))
+		cylinder->axis.y = ft_atof(tmp = ft_strrcpy(str, 8));
+	else if (!(ft_strncmp(str, "\taxisZ: ", 8)))
+		cylinder->axis.z = ft_atof(tmp = ft_strrcpy(str, 8));
 	else
 		return (0);
 	free(tmp);
