@@ -6,7 +6,7 @@
 /*   By: tlecas <tlecas@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/11/03 14:52:38 by tlecas            #+#    #+#             */
-/*   Updated: 2018/04/29 01:47:37 by tlecas           ###   ########.fr       */
+/*   Updated: 2018/04/30 06:13:19 by tlecas           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -57,9 +57,6 @@ static void ft_calc_ray(float x, float y, t_thread *thr)
 	x = (2.0f * (x + 0.5f) / thr->WIN_X - 1.0f) * tanf(thr->e->fov * 0.5f * M_PI / 180.0f);
 	y = (1.0f - 2.0f * ((y + 0.5f) / thr->WIN_Y)) * tanf(thr->e->fov * 0.5f * M_PI / 180.0f);
 	x = x * thr->WIN_X / thr->WIN_Y;
-	//x = x - thr->WIN_X / 2;
-	//y = - y
-	//z
 	thr->ray.dir = vrotate(normalize(coord_v (x, y, 1)), thr->e->cam->angle);
 	thr->ray.pos = thr->e->cam->pos;
 }
@@ -72,7 +69,6 @@ void *thread_rt(void *arg)
 	int				n;
 	unsigned int	tmp;
 	int 			win_area;
-
 
 	thr = (t_thread *)arg;
 	i = thr->tid;

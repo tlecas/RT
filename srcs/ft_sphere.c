@@ -6,7 +6,7 @@
 /*   By: tlecas <tlecas@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/11/03 19:10:01 by tlecas            #+#    #+#             */
-/*   Updated: 2018/04/30 02:48:38 by tlecas           ###   ########.fr       */
+/*   Updated: 2018/04/30 06:16:59 by tlecas           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -46,7 +46,7 @@ float			ft_calc_sphere(t_sphere *sphere, t_ray *ray)
 	c = dot(pos, pos) - (sphere->radius * sphere->radius);
 	delta = b * b - 4.0f * a * c;
 	tmp = ft_eq_second(delta, a, b, c);
-	if (tmp < 0.01f)
+	if (tmp < 0.0001f)
 		return (0);
 	return (tmp);
 }

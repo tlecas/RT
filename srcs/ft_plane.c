@@ -6,7 +6,7 @@
 /*   By: tlecas <tlecas@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/11/14 14:02:36 by tlecas            #+#    #+#             */
-/*   Updated: 2018/04/30 03:23:20 by tlecas           ###   ########.fr       */
+/*   Updated: 2018/04/30 06:17:36 by tlecas           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -37,30 +37,52 @@ void			ft_post_plane(t_thread *thr, unsigned int *tmp)
 	t_vect	u;
 
 	i = thr->number;
-	thr->e->plane[i]->chess = 0;
 	thr->pos = thr->e->plane[i]->pos;
 	thr->normal = thr->e->plane[i]->normal;
 	ft_save_inter_plan(thr, thr->e->plane[i], &thr->ray);
-	if (thr->e->plane[i]->tx || thr->e->plane[i]->chess)
+	if (thr->e->plane[i]->tx || thr->e->plane[i]->checker)
 	{
 		u = thr->internorm;
-		e_1 = normalize(coord_v(-(u.y), u.x, 0.0f));
-		e_2 = normalize(coord_v(((-(u.x)) * u.z),((-(u.y)) * u.z), (u.x * u.x + u.y * u.y)));
-		t_1 = thr->e->t_ratio * dot(e_1, vectsub(thr->interpos, thr->pos)) + thr->e->t_x;
-		t_2 = thr->e->t_ratio * dot(e_2, vectsub(thr->interpos, thr->pos)) + thr->e->t_y;
-		if (thr->e->plane[i]->chess)
+		if (u.x == 0 && u.y == 0)
 		{
-			if (((int)t_1 % 2 == 0 && (int)t_2 % 2 == 0) || (((int)t_1 % 2 == 1 && (int)t_2 % 2 == 1)))
-				*tmp = 0x00000000;
-			else
-				*tmp = 0x00FFFFFF;
+			e_1 = coord_v(1.0f, 0.0f, 0.0f);
+			e_2 = coord_v(0.0f, 1.0f, 0.0f);
 		}
-		if (thr->e->plane[i]->tx && t_1 >= 0.0f && t_2 >= 0.0f && (int)t_1 < (int)thr->e->plane[i]->t_w && (int)t_2 < (int)thr->e->plane[i]->t_h)
+		else
 		{
-			*tmp = 0x00000000;
-			*tmp += thr->e->plane[i]->tx[((int)t_2 * thr->e->plane[i]->t_w + (int)t_1) * 4] << 16;
-			*tmp += thr->e->plane[i]->tx[((int)t_2 * thr->e->plane[i]->t_w + (int)t_1) * 4 + 1] << 8;
-			*tmp += thr->e->plane[i]->tx[((int)t_2 * thr->e->plane[i]->t_w + (int)t_1) * 4 + 2] ;
+			e_1 = normalize(coord_v(-(u.y), u.x, 0.0f));
+			e_2 = normalize(coord_v(((-(u.x)) * u.z),((-(u.y)) * u.z), (u.x * u.x + u.y * u.y)));
+		}
+		if (thr->e->plane[i]->checker)
+		{
+			t_1 = thr->e->c_ratio * dot(e_1, vectsub(thr->interpos, thr->pos));
+			t_2 = thr->e->c_ratio * dot(e_2, vectsub(thr->interpos, thr->pos));
+			if ((t_1 >= 0.0f && t_2 >= 0.0f) || (t_1 < 0.0f && t_2 < 0.0f))
+			{
+				if (((int)t_1 % 2 == 0 && (int)t_2 % 2 == 0) || ((abs((int)t_1 % 2) == 1 && abs((int)t_2 % 2) == 1)))
+					*tmp = 0x00000000;
+				else
+					*tmp = 0x00FFFFFF;
+			}
+			else
+			{
+				if (((int)t_1 % 2 == 0 && (int)t_2 % 2 == 0) || ((abs((int)t_1 % 2) == 1 && abs((int)t_2 % 2) == 1)))
+					*tmp = 0x00FFFFFF;
+				else
+					*tmp = 0x00000000;
+			}
+		}
+		else
+		{
+			t_1 = thr->e->t_ratio * dot(e_1, vectsub(thr->interpos, thr->pos)) + thr->e->t_x;
+			t_2 = thr->e->t_ratio * dot(e_2, vectsub(thr->interpos, thr->pos)) + thr->e->t_y;
+			if (thr->e->plane[i]->tx && t_1 >= 0.0f && t_2 >= 0.0f && (int)t_1 < (int)thr->e->plane[i]->t_w && (int)t_2 < (int)thr->e->plane[i]->t_h)
+			{
+				*tmp = 0x00000000;
+				*tmp += thr->e->plane[i]->tx[((int)t_2 * thr->e->plane[i]->t_w + (int)t_1) * 4] << 16;
+				*tmp += thr->e->plane[i]->tx[((int)t_2 * thr->e->plane[i]->t_w + (int)t_1) * 4 + 1] << 8;
+				*tmp += thr->e->plane[i]->tx[((int)t_2 * thr->e->plane[i]->t_w + (int)t_1) * 4 + 2] ;
+			}
 		}
 	}
 	else
@@ -79,7 +101,7 @@ float		ft_calc_plan(t_plane *plane, t_ray *ray)
 	if (fabsf(tmp) < 0.0001f)
 		return (0.0f);
 	inter = -(dot(plane->normal, vectsub(ray->pos, plane->pos))) / tmp;
-	if (inter > 0.0f)
-		return (inter);
-	return (0.0f);
+	if (inter < 0.0001f)
+		return (0);
+	return (inter);
 }

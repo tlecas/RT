@@ -6,7 +6,7 @@
 /*   By: tlecas <tlecas@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/12/19 13:01:31 by tlecas            #+#    #+#             */
-/*   Updated: 2018/04/30 03:23:59 by tlecas           ###   ########.fr       */
+/*   Updated: 2018/04/30 03:49:56 by tlecas           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -36,7 +36,7 @@ int		ft_shadow_cone(t_thread *thr, int i, t_ray *shadow_eye)
 
 	j = 0.0f;
 	shadow_cone.pos = thr->e->cone[i]->pos;
-	shadow_cone.rotate = thr->e->cone[i]->rotate;
+	shadow_cone.axis = thr->e->cone[i]->axis;
 	shadow_cone.angle = thr->e->cone[i]->angle;
 	j = ft_calc_cone(&shadow_cone, shadow_eye);
 	if (j > 0.0001f && j <= 1.0f)

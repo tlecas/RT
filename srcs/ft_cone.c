@@ -6,7 +6,7 @@
 /*   By: tlecas <tlecas@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/11/15 11:10:19 by tlecas            #+#    #+#             */
-/*   Updated: 2018/04/30 03:23:07 by tlecas           ###   ########.fr       */
+/*   Updated: 2018/04/30 06:17:45 by tlecas           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -33,17 +33,15 @@ void		ft_post_cone(t_thread *thr, unsigned int *tmp)
 	int		i;
 	double	m;
 	double	k;
-	t_vect	axis_v;
 
 	i = thr->number;
 	thr->ar = thr->e->cone[i]->angle;
 	thr->pos = thr->e->cone[i]->pos;
-	thr->rotate = thr->e->cone[i]->rotate;
+	thr->axis = thr->e->cone[i]->axis;
 	thr->interpos = vectadd(thr->ray.pos, vmult(thr->ray.dir, thr->value));
-	axis_v = vrotate(coord_v(0.0f, 1.0f, 0.0f), thr->rotate);
-	m = dot(thr->ray.dir, axis_v) * thr->value + dot(thr->ray.pos, axis_v);
+	m = dot(thr->ray.dir, thr->axis) * thr->value + dot(thr->ray.pos, thr->axis);
 	k = tan(thr->ar * (M_PI / 180));
-	thr->internorm = normalize(vectsub(vectsub(thr->interpos, thr->pos), vmult(vmult(axis_v, (1 * k * k)), m)));
+	thr->internorm = normalize(vectsub(vectsub(thr->interpos, thr->pos), vmult(vmult(thr->axis, (1 + k * k)), m)));
 	if (!(thr->e->cone[i]->mat.refraction) && (thr->e->keys & ROUGH))
 		thr->internorm = normalize(vmult(thr->internorm, (sin(thr->x / 8) * .1f) + 1.0f));
 	*tmp = thr->e->cone[i]->color;
@@ -101,7 +99,6 @@ void		ft_post_cone(t_thread *thr, unsigned int *tmp)
 
 double		ft_calc_cone(t_cone *cone, t_ray *ray)
 {
-	t_vect	axis_v;
 	double	a;
 	double	b;
 	double	c;
@@ -110,12 +107,14 @@ double		ft_calc_cone(t_cone *cone, t_ray *ray)
 	double	tmp;
 	double	k;
 
-	axis_v = vrotate(coord_v(0.0f, 1.0f, 0.0f), cone->rotate);
+	if (!norm2(cone->axis))
+		cone->axis = coord_v(0.0f, 1.0f, 0.0f);
+	cone->axis = normalize(cone->axis);
 	pos = vectsub(ray->pos, cone->pos);
 	k = tan(cone->angle * (M_PI / 180));
-	a = dot(ray->dir, ray->dir) - (1 + k * k) * pow(dot(ray->dir, axis_v), 2);
-	b = 2.0f * (dot(pos, ray->dir) - (1 + k * k) * dot(ray->dir, axis_v) * dot(pos, axis_v));
-	c = dot(pos, pos) - (1 + k * k) * pow(dot(pos, axis_v), 2);
+	a = dot(ray->dir, ray->dir) - (1 + k * k) * pow(dot(ray->dir, cone->axis), 2);
+	b = 2.0f * (dot(pos, ray->dir) - (1 + k * k) * dot(ray->dir, cone->axis) * dot(pos, cone->axis));
+	c = dot(pos, pos) - (1 + k * k) * pow(dot(pos, cone->axis), 2);
 	delta = b * b - 4.0 * a * c;
 	tmp = (ft_eq_second(delta, a, b, c));
 	if (tmp < 0.0001)

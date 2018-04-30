@@ -6,7 +6,7 @@
 /*   By: tlecas <tlecas@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/11/14 18:30:37 by tlecas            #+#    #+#             */
-/*   Updated: 2018/04/30 03:35:59 by tlecas           ###   ########.fr       */
+/*   Updated: 2018/04/30 06:17:42 by tlecas           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -75,7 +75,7 @@ float			ft_calc_cylinder(t_cylinder *cylinder, t_ray *ray)
 	c = dot(pos, pos) - dot(pos, cylinder->axis) * dot(pos, cylinder->axis) - (cylinder->radius * cylinder->radius);
 	delta = b * b - 4.0f * a * c;
 	tmp = ft_eq_second(delta, a, b, c);
-	if (tmp < 0.01f)
+	if (tmp < 0.0001f)
 		return (0);
 	return (tmp);
 }

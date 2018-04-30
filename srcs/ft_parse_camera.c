@@ -6,7 +6,7 @@
 /*   By: tlecas <tlecas@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/11/14 16:15:43 by tlecas            #+#    #+#             */
-/*   Updated: 2018/04/27 07:01:00 by tlecas           ###   ########.fr       */
+/*   Updated: 2018/04/30 06:18:11 by tlecas           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,7 +18,6 @@ t_cam		*ft_init_camera(t_cam *cam)
 		ft_error("Error malloc!");
 	cam->pos = coord_v(0.0f, 0.0f, 0.0f);
 	cam->angle = coord_v(0.0f, 0.0f, 0.0f);
-	cam->dir = coord_v(0.0f, 0.0f, 0.0f);
 	return (cam);
 }
 

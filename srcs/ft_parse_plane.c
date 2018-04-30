@@ -6,7 +6,7 @@
 /*   By: tlecas <tlecas@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/11/15 12:37:22 by tlecas            #+#    #+#             */
-/*   Updated: 2018/04/30 02:58:55 by tlecas           ###   ########.fr       */
+/*   Updated: 2018/04/30 04:08:36 by tlecas           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,6 +24,7 @@ t_plane		*ft_init_plane(t_plane *plane)
 	plane->tx = 0;
 	plane->t_w = 0;
 	plane->t_h = 0;
+	plane->checker = 0;
 	return (plane);
 }
 
@@ -55,7 +56,10 @@ static int		ft_fill_properties(t_plane *plane, char *str)
 	else if (!(ft_strncmp(str, "\ttexture: ", 10)))
 	{
 		tmp = ft_strrcpy(str, 10);
-		lodepng_decode32_file(&(plane->tx), &(plane->t_w), &(plane->t_h), tmp);
+		if (!(ft_strncmp(tmp, "checker", 7)))
+			plane->checker = 1;
+		else
+			lodepng_decode32_file(&(plane->tx), &(plane->t_w), &(plane->t_h), tmp);
 	}
 	else
 		return (0);

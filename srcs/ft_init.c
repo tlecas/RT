@@ -6,7 +6,7 @@
 /*   By: tlecas <tlecas@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/10/05 17:38:05 by tlecas            #+#    #+#             */
-/*   Updated: 2018/04/27 05:41:02 by tlecas           ###   ########.fr       */
+/*   Updated: 2018/04/30 06:15:24 by tlecas           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,14 +22,6 @@ static	t_env *ft_init_obj_nb(t_env *e)
 	e->objnb->light = 0;
 	e->objnb->plane = 0;
 	e->objnb->totobj = 0;
-	return (e);
-}
-
-static		t_env *ft_init_eye(t_env *e)
-{
-	e->virt_e.pos = coord_v(0, 0, 0);
-	e->virt_e.angle = coord_v(0, 0, 0);
-	e->virt_e.v = coord_v(0, 0, 0);
 	return (e);
 }
 
@@ -69,7 +61,7 @@ t_env		*ft_init(char *filename)
 	e->t_ratio = 10.0f;
 	e->t_x = 500.0f;
 	e->t_y = 500.0f;
-	e = ft_init_eye(e);
+	e->c_ratio = 1.0f;
 	while (tab[++i])
 		free(tab[i]);
 	free(tab);

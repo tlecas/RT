@@ -6,7 +6,7 @@
 /*   By: tlecas <tlecas@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/10/05 16:49:17 by tlecas            #+#    #+#             */
-/*   Updated: 2018/04/30 03:25:38 by tlecas           ###   ########.fr       */
+/*   Updated: 2018/04/30 06:09:34 by tlecas           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -59,13 +59,13 @@ typedef	struct		s_plane
 	unsigned char	*tx;
 	unsigned int	t_w;
 	unsigned int	t_h;
-	unsigned int	chess;
+	unsigned int	checker;
 }					t_plane;
 
 typedef	struct		s_cone
 {
 	t_vect		pos;
-	t_vect		rotate;
+	t_vect		axis;
 	t_vect		interpos;
 	t_vect		internorm;
 	float		angle;
@@ -118,7 +118,6 @@ typedef struct		s_ray
 
 typedef struct		s_cam
 {
-	t_vect		dir;
 	t_vect		angle;
 	t_vect		pos;
 	float		prod_scal;
@@ -172,6 +171,7 @@ typedef struct		s_env
 	float			t_ratio;
 	float			t_x;
 	float			t_y;
+	float			c_ratio;
 }					t_env;
 
 typedef struct		s_thread
@@ -188,7 +188,6 @@ typedef struct		s_thread
 	t_mat			mat;
 	t_vect			normal;
 	t_vect			axis;
-	t_vect			rotate;
 	t_vect			interpos;
 	t_vect			internorm;
 	t_ray			ray;

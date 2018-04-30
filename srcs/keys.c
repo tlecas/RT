@@ -1,3 +1,15 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   keys.c                                             :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: tlecas <tlecas@student.42.fr>              +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2018/04/30 04:57:51 by tlecas            #+#    #+#             */
+/*   Updated: 2018/04/30 05:27:06 by tlecas           ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
+
 #include "rt.h"
 
 static void		keys_escape(int keycode, t_env *e)
@@ -23,14 +35,14 @@ static void		keys_texture1(int keycode, t_env *e)
 		e->t_ratio *= 0.8f;
 		ft_rt(e);
 	}
-	if (keycode == KEY_I)
+	if (keycode == KEY_PAD_DIVIDE)
 	{
-		e->t_y -= 50.0f;
+		e->c_ratio *= 1.25f;
 		ft_rt(e);
 	}
-	if (keycode == KEY_K)
+	if (keycode == KEY_PAD_MULTIPLY)
 	{
-		e->t_y += 50.0f;
+		e->c_ratio *= 0.8f;
 		ft_rt(e);
 	}
 }
@@ -45,6 +57,16 @@ static void		keys_texture2(int keycode, t_env *e)
 	if (keycode == KEY_L)
 	{
 		e->t_x += 50.0f;
+		ft_rt(e);
+	}
+	if (keycode == KEY_I)
+	{
+		e->t_y += 50.0f;
+		ft_rt(e);
+	}
+	if (keycode == KEY_K)
+	{
+		e->t_y -= 50.0f;
 		ft_rt(e);
 	}
 }

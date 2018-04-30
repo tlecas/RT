@@ -1,0 +1,139 @@
+width: 1920
+height: 1080
+recursivity: 4
+antialias: 2
+fov: 90.0
+camera:
+	x: 0.0
+	y: 0.0
+	z: 0.0
+	angle_x: 1.0
+	angle_y: 0.0
+	angle_z: 0.0
+sphere:
+	x: 0.0
+	y: 0.0
+	z: 5.0
+	radius: 1.5
+	ambient: 0.0
+	diffuse: 1.0
+	specular: 2.0
+sphere:
+	x: 5.0
+	y: 0.0
+	z: 0.0
+	radius: 1.5
+	ambient: 0.0
+	diffuse: 1.0
+	specular: 2.0
+sphere:
+	x: 0.0
+	y: 0.0
+	z: -5.0
+	radius: 1.5
+	ambient: 0.0
+	diffuse: 1.0
+	specular: 2.0
+sphere:
+	x: -5.0
+	y: 0.0
+	z: 0.0
+	radius: 1.5
+	ambient: 0.0
+	diffuse: 1.0
+	specular: 2.0
+light:
+	x: 0.0
+	y: 2.0
+	z: 0.0
+	intensity: 150.0
+light:
+	x: 5.0
+	y: 2.0
+	z: 5.0
+	intensity: 150.0
+light:
+	x: 5.0
+	y: 2.0
+	z: -5.0
+	intensity: 150.0
+light:
+	x: -5.0
+	y: 2.0
+	z: 5.0
+	intensity: 150.0
+light:
+	x: -5.0
+	y: 2.0
+	z: -5.0
+	intensity: 150.0
+plane:
+	x: 0.0
+	y: 0.0
+	z: 20.0
+	normalX: 0.0
+	normalY: 0.0
+	normalZ: 1.0
+	ambient: 0.0
+	diffuse: 1.0
+	specular: 2.2
+	reflection: 0.0
+	refraction: 0.0
+	color: 0x00FFFFFF
+	texture: checker
+plane:
+	x: 0.0
+	y: 0.0
+	z: -20.0
+	normalX: 0.0
+	normalY: 0.0
+	normalZ: 1.0
+	ambient: 0.0
+	diffuse: 1.0
+	specular: 2.2
+	reflection: 0.0
+	refraction: 0.0
+	color: 0x00FFFFFF
+	texture: checker
+plane:
+	x: -20.0
+	y: 0.0
+	z: 0.0
+	normalX: 1.0
+	normalY: 0.0
+	normalZ: 0.0
+	ambient: 0.0
+	diffuse: 1.0
+	specular: 2.2
+	reflection: 0.0
+	refraction: 0.0
+	color: 0x00FFFFFF
+	texture: checker
+plane:
+	x: 20.0
+	y: 0.0
+	z: 0.0
+	normalX: 1.0
+	normalY: 0.0
+	normalZ: 0.0
+	ambient: 0.0
+	diffuse: 1.0
+	specular: 2.2
+	reflection: 0.0
+	refraction: 0.0
+	color: 0x00FFFFFF
+	texture: checker
+plane:
+	x: 0.0
+	y: -3.0
+	z: 20.0
+	normalX: 0.0
+	normalY: 1.0
+	normalZ: 0.0
+	ambient: 0.0
+	diffuse: 1.0
+	specular: 2.2
+	reflection: 0.0
+	refraction: 0.0
+	color: 0x00FFFFFF
+	texture: checker

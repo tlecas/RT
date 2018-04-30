@@ -35,7 +35,7 @@ cylinder:
 	y: 0.0
 	z: 5.0
 	axisX: -1.0
-	axisY: 1.0
+	axisY: 0.0
 	axisZ: 1.0
 	radius: 2.0
 	ambient: 0.0
@@ -60,9 +60,9 @@ cone:
 	x: 5.0
 	y: 5.0
 	z: 5.0
-	rotX: 20.0
-	rotY: 0.0
-	rotZ: -30.0
+	axisX: 1.0
+	axisY: 0.0
+	axisZ: 1.0
 	angle: 15
 	ambient: 0.0
 	diffuse: 1.0

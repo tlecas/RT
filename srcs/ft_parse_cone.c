@@ -6,7 +6,7 @@
 /*   By: tlecas <tlecas@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/11/30 12:41:39 by tlecas            #+#    #+#             */
-/*   Updated: 2018/04/10 15:45:48 by tlecas           ###   ########.fr       */
+/*   Updated: 2018/04/30 03:45:27 by tlecas           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,7 +17,7 @@ t_cone		*ft_init_cone(t_cone *cone)
 	if (!(cone = malloc(sizeof(t_cone))))
 		ft_error("Error malloc");
 	cone->pos = coord_v(0.0, 0.0, 0.0);
-	cone->rotate = coord_v(0.0, 0.0, 0.0);
+	cone->axis = coord_v(0.0, 0.0, 0.0);
 	cone->angle = 0.0;
 	cone->color = 0x00FF0000;
 	cone->inter = 0.0;
@@ -68,12 +68,12 @@ static int		ft_fill_coords(t_cone *cone, char *str)
 		cone->pos.y = ft_atof(tmp = ft_strrcpy(str, 4));
 	else if (!(ft_strncmp(str, "\tz: ", 4)))
 		cone->pos.z = ft_atof(tmp = ft_strrcpy(str, 4));
-	else if (!(ft_strncmp(str, "\trotX: ", 7)))
-		cone->rotate.x = ft_atof(tmp = ft_strrcpy(str, 7));
-	else if (!(ft_strncmp(str, "\trotY: ", 7)))
-		cone->rotate.y = ft_atof(tmp = ft_strrcpy(str, 7));
-	else if (!(ft_strncmp(str, "\trotZ: ", 7)))
-		cone->rotate.z = ft_atof(tmp = ft_strrcpy(str, 7));
+	else if (!(ft_strncmp(str, "\taxisX: ", 8)))
+		cone->axis.x = ft_atof(tmp = ft_strrcpy(str, 8));
+	else if (!(ft_strncmp(str, "\taxisY: ", 8)))
+		cone->axis.y = ft_atof(tmp = ft_strrcpy(str, 8));
+	else if (!(ft_strncmp(str, "\taxisZ: ", 8)))
+		cone->axis.z = ft_atof(tmp = ft_strrcpy(str, 8));
 	else
 		return (0);
 	free(tmp);
