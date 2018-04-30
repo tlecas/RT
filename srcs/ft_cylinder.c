@@ -6,7 +6,7 @@
 /*   By: tlecas <tlecas@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/11/14 18:30:37 by tlecas            #+#    #+#             */
-/*   Updated: 2018/04/27 06:20:58 by tlecas           ###   ########.fr       */
+/*   Updated: 2018/04/30 02:07:00 by tlecas           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,7 +25,7 @@ void			ft_save_inter_cylinder(t_thread *thr, t_cylinder *cylinder, t_ray *ray)
 	thr->internorm = vectsub(thr->internorm, vmult(norm, dotc));
 	thr->internorm = normalize(thr->internorm);
 	if (!(cylinder->mat.refraction) && (thr->e->keys & ROUGH))
-	thr->internorm = vmult(thr->internorm, (sin(thr->x / 8) * .1f) + 1.0f);
+		thr->internorm = normalize(vmult(thr->internorm, (sin(thr->x / 8) * .1f) + 1.0f));
 }
 
 void			ft_post_cylinder(t_thread *thr, unsigned int *tmp)

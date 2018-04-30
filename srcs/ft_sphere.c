@@ -6,7 +6,7 @@
 /*   By: tlecas <tlecas@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/11/03 19:10:01 by tlecas            #+#    #+#             */
-/*   Updated: 2018/04/29 05:45:59 by tlecas           ###   ########.fr       */
+/*   Updated: 2018/04/30 02:48:38 by tlecas           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,7 +17,7 @@ void			ft_save_inter_sphere(t_thread *thr, t_sphere *sphere, t_ray *ray)
 	thr->interpos = vectadd(ray->pos, vmult(ray->dir, thr->value));
 	thr->internorm = normalize(vectsub(thr->interpos, sphere->pos));
 	if (!(sphere->mat.refraction) && (thr->e->keys & ROUGH))
-		thr->internorm = vmult(thr->internorm, (sin(thr->x / 8) * 0.1f) + 1.0f); // surface rugueuse
+		thr->internorm = normalize(vmult(thr->internorm, (sin(thr->x / 8) * 0.1f) + 1.0f)); // surface rugueuse
 }
 
 void			ft_post_sphere(t_thread *thr, unsigned int *tmp)
@@ -27,7 +27,6 @@ void			ft_post_sphere(t_thread *thr, unsigned int *tmp)
 	i = thr->number;
 	thr->ar = thr->e->sphere[i]->radius;
 	thr->pos = thr->e->sphere[i]->pos;
-	thr->rotate = thr->e->sphere[i]->rotate;
 	ft_save_inter_sphere(thr, thr->e->sphere[i], &thr->ray);
 	*tmp = thr->e->sphere[i]->color;
 }

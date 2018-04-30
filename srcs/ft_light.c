@@ -6,7 +6,7 @@
 /*   By: tlecas <tlecas@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/11/15 18:24:29 by tlecas            #+#    #+#             */
-/*   Updated: 2018/04/27 05:41:55 by tlecas           ###   ########.fr       */
+/*   Updated: 2018/04/30 00:24:53 by tlecas           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,7 +20,7 @@ static float		ft_cos_a(t_thread *thr, t_light *light)
 	light->prod_scal = dot(light->vect, thr->internorm);
 	light->norm_l = norm(light->vect);
 	light->norm_obj = norm(thr->internorm);
-	intensity = fclamp((light->intensity / POW2(light->norm_l)), 0.0f, 1.0f);
+	intensity = fclamp((light->intensity / powf(light->norm_l, 2)), 0.0f, 1.0f);
 	cos_a = -1.0f;
 	if (light->norm_l * light->norm_obj != 0.0f)
 		cos_a = (light->prod_scal / (light->norm_l * light->norm_obj)) * intensity * thr->mat.diffuse;
@@ -79,9 +79,9 @@ unsigned int		ft_light(t_thread *thr, t_light *light, unsigned int tmp)
 	reflet = normalize(reflet);
 	cam = vectsub(thr->e->cam->pos, thr->interpos);
 	cam = normalize(cam);
-	spec = pow(flmax(dot(reflet, cam), 0.0f), 100.0f) * 100.0f; // ?
+	spec = powf(flmax(dot(reflet, cam), 0.0f), 100.0f) * 100.0f; // ?
 	if (spec > 0.0f)
 		rgb_addl(&color, (unsigned int)(spec * thr->mat.specular
-					* fclamp((light->intensity / POW2(light->norm_l)), 0.0f, 1.0f)), thr);
+					* fclamp((light->intensity / powf(light->norm_l, 2)), 0.0f, 1.0f)), thr);
 	return (color);
 }

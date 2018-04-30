@@ -6,7 +6,7 @@
 /*   By: tlecas <tlecas@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/10/05 16:49:17 by tlecas            #+#    #+#             */
-/*   Updated: 2018/04/29 02:59:55 by tlecas           ###   ########.fr       */
+/*   Updated: 2018/04/30 02:47:57 by tlecas           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,8 +29,7 @@
 
 # define WIN_X		e->width
 # define WIN_Y		e->height
-# define THREADS	8
-# define POW2(x)	(x * x)
+# define THREADS	1
 # define BLACK		0x00000001
 # define AA			0x00000002
 # define FRACTAL	0x00000004
@@ -51,8 +50,7 @@ typedef	struct		s_mat
 typedef	struct		s_plane
 {
 	t_vect			pos;
-	t_vect			norm;
-	t_vect			rotate;
+	t_vect			normal;
 	t_vect			interpos;
 	t_vect			internorm;
 	unsigned int	color;
@@ -79,7 +77,6 @@ typedef	struct		s_cone
 typedef	struct		s_sphere
 {
 	t_vect			pos;
-	t_vect			rotate;
 	t_vect			interpos;
 	t_vect			internorm;
 	float			radius;
@@ -189,6 +186,7 @@ typedef struct		s_thread
 	t_vect			pos;
 	float			ar;
 	t_mat			mat;
+	t_vect			normal;
 	t_vect			rotate;
 	t_vect			interpos;
 	t_vect			internorm;

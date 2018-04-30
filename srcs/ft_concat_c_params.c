@@ -6,7 +6,7 @@
 /*   By: tlecas <tlecas@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/11/27 09:36:03 by tlecas            #+#    #+#             */
-/*   Updated: 2018/04/10 15:45:38 by tlecas           ###   ########.fr       */
+/*   Updated: 2018/04/30 00:28:32 by tlecas           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,13 +24,13 @@ t_mat		ft_mat_init(void)
 	return (mat);
 }
 
-static void	ft_init_params_concat_c_params(int i, int j, int k, int l)
+/*static void	ft_init_params_concat_c_params(int i, int j, int k, int l)
 {
 	j = -1;
 	i = 0;
 	k = 0;
 	l = -1;
-}
+}*/
 
 char		*ft_concat_c_params(char *str1, const char *str2, char c)
 {
@@ -40,7 +40,11 @@ char		*ft_concat_c_params(char *str1, const char *str2, char c)
 	int		k;
 	int		l;
 
-	ft_init_params_concat_c_params(i, j, k, l);
+	j = -1;
+	i = 0;
+	k = 0;
+	l = -1;
+	//ft_init_params_concat_c_params(i, j, k, l);
 	if (str1 == 0 && --k)
 		i = ft_strlen(str2) + 1;
 	else if (str1 != 0 && ++k)

@@ -6,7 +6,7 @@
 /*   By: tlecas <tlecas@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/11/14 14:02:36 by tlecas            #+#    #+#             */
-/*   Updated: 2018/04/29 07:45:30 by tlecas           ###   ########.fr       */
+/*   Updated: 2018/04/30 02:16:11 by tlecas           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,9 +15,16 @@
 void	ft_save_inter_plan(t_thread *thr, t_plane *plane, t_ray *ray)
 {
 	thr->interpos = vectadd(ray->pos, vmult(ray->dir, thr->value));
-	thr->internorm = vrotate(coord_v(0.0f, -1.0f, 0.0f), (plane->rotate));
+	if (dot(thr->normal, ray->dir) > 0.0f)
+	{
+		thr->internorm.x = -(thr->normal.x);
+		thr->internorm.y = -(thr->normal.y);
+		thr->internorm.z = -(thr->normal.z);
+	}
+	else
+		thr->internorm = thr->normal;
 	if (!(plane->mat.refraction || plane->mat.reflection) && (thr->e->keys & ROUGH))
-		thr->internorm = vmult(thr->internorm, (sin(thr->x / 8) * .1f) + 1.0f); // surface rugueuse
+		thr->internorm = normalize(vmult(thr->internorm, (sin(thr->x / 8) * .1f) + 1.0f)); // surface rugueuse
 }
 
 void			ft_post_plane(t_thread *thr, unsigned int *tmp)
@@ -32,7 +39,7 @@ void			ft_post_plane(t_thread *thr, unsigned int *tmp)
 	i = thr->number;
 	thr->e->plane[i]->chess = 0;
 	thr->pos = thr->e->plane[i]->pos;
-	thr->rotate = thr->e->plane[i]->rotate;
+	thr->normal = thr->e->plane[i]->normal;
 	ft_save_inter_plan(thr, thr->e->plane[i], &thr->ray);
 	if (thr->e->plane[i]->tx || thr->e->plane[i]->chess)
 	{
@@ -62,15 +69,16 @@ void			ft_post_plane(t_thread *thr, unsigned int *tmp)
 
 float		ft_calc_plan(t_plane *plane, t_ray *ray)
 {
-	t_vect	normal;
 	float	inter;
 	float	tmp;
 
-	normal = vrotate(coord_v(0.0f, 1.0f, 0.0f), plane->rotate);
-	tmp = dot(normal, ray->dir);
-	if (ABS(tmp) < 0.0001f)
+	if (!norm2(plane->normal))
+		plane->normal = coord_v(0.0f, 1.0f, 0.0f);
+	plane->normal = normalize(plane->normal);
+	tmp = dot(plane->normal, ray->dir);
+	if (fabsf(tmp) < 0.0001f)
 		return (0.0f);
-	inter = (dot(normal, vectsub(plane->pos, ray->pos))) / tmp;
+	inter = -(dot(plane->normal, vectsub(ray->pos, plane->pos))) / tmp;
 	if (inter > 0.0f)
 		return (inter);
 	return (0.0f);

@@ -6,7 +6,7 @@
 /*   By: tlecas <tlecas@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/12/19 13:01:31 by tlecas            #+#    #+#             */
-/*   Updated: 2018/04/10 15:46:13 by tlecas           ###   ########.fr       */
+/*   Updated: 2018/04/30 02:49:24 by tlecas           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,7 +22,6 @@ int		ft_shadow_sphere(t_thread *thr, int i, t_ray *shadow_eye)
 
 	j = 0.0f;
 	shadow_sphere.pos = thr->e->sphere[i]->pos;
-	shadow_sphere.rotate = thr->e->sphere[i]->rotate;
 	shadow_sphere.radius = thr->e->sphere[i]->radius;
 	j = ft_calc_sphere(&shadow_sphere, shadow_eye);
 	if (j > 0.0001f && j <= 1.0f)

@@ -6,7 +6,7 @@
 /*   By: tlecas <tlecas@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/10/16 14:46:06 by tlecas            #+#    #+#             */
-/*   Updated: 2018/04/10 15:46:04 by tlecas           ###   ########.fr       */
+/*   Updated: 2018/04/30 02:51:12 by tlecas           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,7 +17,6 @@ t_sphere		*ft_init_sphere(t_sphere *sphere)
 	if (!(sphere = malloc(sizeof(t_sphere))))
 		ft_error("Error malloc'ing!");
 	sphere->pos = coord_v(0.0f, 0.0f, 0.0f);
-	sphere->rotate = coord_v(0.0f, 0.0f, 0.0f);
 	sphere->mat = ft_mat_init(0.0f, 0.0f, 0.0f);
 	sphere->radius = 1.0f;
 	sphere->color = 0x000000FF;
@@ -68,12 +67,6 @@ static int		ft_fill_coords(t_sphere *sphere, char *str)
 		sphere->pos.y = ft_atof(tmp = ft_strrcpy(str, 4));
 	else if (!(ft_strncmp(str, "\tz: ", 4)))
 		sphere->pos.z = ft_atof(tmp = ft_strrcpy(str, 4));
-	else if (!(ft_strncmp(str, "\trotX: ", 7)))
-		sphere->rotate.x = ft_atof(tmp = ft_strrcpy(str, 7));
-	else if (!(ft_strncmp(str, "\trotY: ", 7)))
-		sphere->rotate.y = ft_atof(tmp = ft_strrcpy(str, 7));
-	else if (!(ft_strncmp(str, "\trotZ: ", 7)))
-		sphere->rotate.z = ft_atof(tmp = ft_strrcpy(str, 7));
 	else
 		return (0);
 	free(tmp);

@@ -6,7 +6,7 @@
 /*   By: tlecas <tlecas@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/11/15 12:37:22 by tlecas            #+#    #+#             */
-/*   Updated: 2018/04/25 14:38:20 by tlecas           ###   ########.fr       */
+/*   Updated: 2018/04/30 02:58:55 by tlecas           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,8 +17,7 @@ t_plane		*ft_init_plane(t_plane *plane)
 	if (!(plane = malloc(sizeof(t_plane))))
 		ft_error("Error malloc!");
 	plane->pos = coord_v(0.0f, 0.0f, 0.0f);
-	plane->norm = coord_v(0.0f, 0.0f, 0.0f);
-	plane->rotate = coord_v(0.0f, 0.0f, 0.0f);
+	plane->normal = coord_v(0.0f, 0.0f, 0.0f);
 	plane->color = 0x00000000;
 	plane->mat = ft_mat_init();
 	plane->inter = 0;
@@ -74,12 +73,12 @@ static int		ft_fill_coords(t_plane *plane, char *str)
 		plane->pos.y = ft_atof(tmp = ft_strrcpy(str, 4));
 	else if (!(ft_strncmp(str, "\tz: ", 4)))
 		plane->pos.z = ft_atof(tmp = ft_strrcpy(str, 4));
-	else if (!(ft_strncmp(str, "\trotX: ", 7)))
-		plane->rotate.x = ft_atof(tmp = ft_strrcpy(str, 7));
-	else if (!(ft_strncmp(str, "\trotY: ", 7)))
-		plane->rotate.y = ft_atof(tmp = ft_strrcpy(str, 7));
-	else if (!(ft_strncmp(str, "\trotZ: ", 7)))
-		plane->rotate.z = ft_atof(tmp = ft_strrcpy(str, 7));
+	else if (!(ft_strncmp(str, "\tnormalX: ", 10)))
+		plane->normal.x = ft_atof(tmp = ft_strrcpy(str, 10));
+	else if (!(ft_strncmp(str, "\tnormalY: ", 10)))
+		plane->normal.y = ft_atof(tmp = ft_strrcpy(str, 10));
+	else if (!(ft_strncmp(str, "\tnormalZ: ", 10)))
+		plane->normal.z = ft_atof(tmp = ft_strrcpy(str, 10));
 	else
 		return (0);
 	free(tmp);

@@ -53,10 +53,10 @@ cylinder:
 plane:
 	x: 0.0
 	y: 0.0
-	z: 20.0
-	rotX: 100.0
-	rotY: 0.0
-	rotZ: 0.0
+	z: 0.0
+	normalX: 0.0
+	normalY: 1.0
+	normalZ: 0.0
 	ambient: 0
 	diffuse: 1.0
 	specular: 0.2
