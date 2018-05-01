@@ -6,7 +6,7 @@
 /*   By: tlecas <tlecas@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/10/05 16:49:17 by tlecas            #+#    #+#             */
-/*   Updated: 2018/04/30 06:09:34 by tlecas           ###   ########.fr       */
+/*   Updated: 2018/05/01 13:24:59 by tlecas           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -226,7 +226,9 @@ unsigned int		reflected(t_thread *thr, unsigned int color, float kr);
 unsigned int		ft_calc_obj(t_thread *thr, int recursivity);
 int					key_hook(int keycode, t_env *e);
 int					ft_isview(float *obj, int i);
+int					ft_shadow_plane(t_thread *thr, int i, t_ray *shadow_eye);
 int					ft_shadow_sphere(t_thread *thr, int i, t_ray *shadow_eye);
+int					ft_shadow_cylinder(t_thread *thr, int i, t_ray *shadow_eye);
 int					ft_shadow_cone(t_thread *thr, int i, t_ray *shadow_eye);
 int					ft_is_shadow(t_thread *thr, t_light *light);
 int					ft_parse_cone(t_env *e, char **eab);
@@ -235,7 +237,6 @@ int					ft_parse_sphere(t_env *e, char **eab);
 int					ft_parse_camera(t_env *e, char **eab);
 int					ft_parse_light(t_env *e, char **eab);
 int					ft_parse_plane(t_env *e, char **eab);
-int					ft_shadow_cylinder(t_thread *thr, int i, t_ray *shadow_eye);
 int					ft_parse_main_properties(t_env *e, char *str);
 int					ft_is_shape_named(char *str1, char *str2);
 float				fresnel(t_thread *thr);

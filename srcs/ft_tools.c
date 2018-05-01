@@ -6,7 +6,7 @@
 /*   By: tlecas <tlecas@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/11/08 15:16:19 by tlecas            #+#    #+#             */
-/*   Updated: 2018/04/29 01:36:10 by tlecas           ###   ########.fr       */
+/*   Updated: 2018/05/01 13:13:12 by tlecas           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -80,9 +80,7 @@ unsigned int	ft_load_post(t_thread *thr, int i, float obj)
 	unsigned int	color[thr->e->objnb->light + 1];
 	unsigned int	ambient;
 	unsigned int	tmp;
-	unsigned int	test;
 
-	test = 0x00AAAAAA;
 	j = -1;
 	kr = 0;
 	name = 0;
