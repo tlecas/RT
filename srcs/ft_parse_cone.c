@@ -48,9 +48,7 @@ static int		ft_fill_properties(t_cone *cone, char *str)
 		cone->color = strtol(tmp = ft_strrcpy(str, 8), &test, 16);
 		if ((errno == ERANGE && (cone->color == UINT_MAX || cone->color == 0))
             || (errno != 0 && cone->color == 0) || '\0' != *test)
-		{
 			ft_error("Invalid color");
-		}
 	}
 	else
 		return (0);
