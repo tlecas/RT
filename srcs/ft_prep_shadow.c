@@ -6,7 +6,7 @@
 /*   By: tlecas <tlecas@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/01/09 18:10:20 by tlecas            #+#    #+#             */
-/*   Updated: 2018/04/27 05:36:47 by tlecas           ###   ########.fr       */
+/*   Updated: 2018/05/01 13:24:20 by tlecas           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,6 +22,8 @@ int		ft_prepare_shadow_sphere(t_thread *thr, t_light *light)
 	shadow_eye.dir = light->vect;
 	while (++j < thr->e->objnb->totobj)
 	{
+		if (j < thr->e->objnb->plane && ft_shadow_plane(thr, j, &shadow_eye))
+			return (1);
 		if (thr->number != j && j < thr->e->objnb->sphere && ft_shadow_sphere(thr, j, &shadow_eye))
 			return (1);
 		if (j < thr->e->objnb->cone && ft_shadow_cone(thr, j, &shadow_eye))
@@ -42,6 +44,8 @@ int		ft_prepare_shadow_plane(t_thread *thr, t_light *light)
 	shadow_eye.dir = light->vect;
 	while (++j < thr->e->objnb->totobj)
 	{
+		if (thr->number != j && j < thr->e->objnb->plane && ft_shadow_plane(thr, j, &shadow_eye))
+			return (1);
 		if (j < thr->e->objnb->sphere && ft_shadow_sphere(thr, j, &shadow_eye))
 			return (1);
 		if (j < thr->e->objnb->cone && ft_shadow_cone(thr, j, &shadow_eye))
@@ -62,6 +66,8 @@ int		ft_prepare_shadow_cone(t_thread *thr, t_light *light)
 	shadow_eye.dir = light->vect;
 	while (++j <thr->e->objnb->totobj)
 	{
+		if (j < thr->e->objnb->plane && ft_shadow_plane(thr, j, &shadow_eye))
+			return (1);
 		if (j < thr->e->objnb->sphere && ft_shadow_sphere(thr, j, &shadow_eye))
 			return (1);
 		if (thr->number != j && j < thr->e->objnb->cone && ft_shadow_cone(thr, j, &shadow_eye))
@@ -82,6 +88,8 @@ int		ft_prepare_shadow_cylinder(t_thread *thr, t_light *light)
 	shadow_eye.dir = light->vect;
 	while (++j < thr->e->objnb->totobj)
 	{
+		if (j < thr->e->objnb->plane && ft_shadow_plane(thr, j, &shadow_eye))
+			return (1);
 		if (j < thr->e->objnb->sphere && ft_shadow_sphere(thr, j, &shadow_eye))
 			return (1);
 		if (j < thr->e->objnb->cone && ft_shadow_cone(thr, j, &shadow_eye))
