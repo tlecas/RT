@@ -10,6 +10,16 @@ camera:
 	angle_x: 1.0
 	angle_y: 0.0
 	angle_z: 0.0
+light:
+	x: 0.0
+	y: 0.0
+	z: -5.0
+	intensity: 2000.0
+light:
+	x: 0.0
+	y: 0.0
+	z: 5.0
+	intensity: 2000.0
 sphere:
 	x: 0.0
 	y: 0.0
@@ -73,4 +83,4 @@ plane:
 	ambient: 0.0
 	diffuse: 1.0
 	specular: 2.2
-	texture: checker
+	color: 0x00FFFFFF

@@ -6,7 +6,7 @@
 /*   By: tlecas <tlecas@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/11/14 18:30:37 by tlecas            #+#    #+#             */
-/*   Updated: 2018/04/30 06:17:42 by tlecas           ###   ########.fr       */
+/*   Updated: 2018/05/01 20:38:42 by tlecas           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -53,7 +53,7 @@ void			ft_post_cylinder(t_thread *thr, unsigned int *tmp)
 	m = dot(thr->ray.dir, thr->axis) * thr->value + dot(thr->ray.pos, thr->axis);
 	thr->internorm = normalize(vectsub(vectsub(thr->interpos, thr->pos), vmult(thr->axis, m)));
 	if (!(thr->e->cylinder[i]->mat.refraction > .1) && (thr->e->keys & ROUGH))
-		thr->internorm = normalize(vmult(thr->internorm, (sin(thr->x / 8) * .1f) + 1.0f));
+		thr->internorm = vmult(thr->internorm, (sin(thr->x / 8) * .1f) + 1.0f);
 	*tmp = thr->e->cylinder[i]->color;
 }
 

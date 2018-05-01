@@ -6,7 +6,7 @@
 /*   By: tlecas <tlecas@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/11/15 11:10:19 by tlecas            #+#    #+#             */
-/*   Updated: 2018/05/01 13:29:20 by tlecas           ###   ########.fr       */
+/*   Updated: 2018/05/01 20:37:45 by tlecas           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -43,7 +43,7 @@ void		ft_post_cone(t_thread *thr, unsigned int *tmp)
 	k = tan(thr->ar * (M_PI / 180));
 	thr->internorm = normalize(vectsub(vectsub(thr->interpos, thr->pos), vmult(vmult(thr->axis, (1 + k * k)), m)));
 	if (!(thr->e->cone[i]->mat.refraction > .1) && (thr->e->keys & ROUGH))
-		thr->internorm = normalize(vmult(thr->internorm, (sin(thr->x / 8) * .1f) + 1.0f));
+		thr->internorm = vmult(thr->internorm, (sin(thr->x / 8) * .1f) + 1.0f);
 	*tmp = thr->e->cone[i]->color;
 }
 
