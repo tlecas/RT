@@ -6,7 +6,7 @@
 /*   By: tlecas <tlecas@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/10/05 17:38:05 by tlecas            #+#    #+#             */
-/*   Updated: 2018/04/30 06:15:24 by tlecas           ###   ########.fr       */
+/*   Updated: 2018/05/01 22:25:15 by tlecas           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,6 +19,7 @@ static	t_env *ft_init_obj_nb(t_env *e)
 	e->objnb->sphere = 0;
 	e->objnb->cylinder = 0;
 	e->objnb->cone = 0;
+	e->objnb->para = 0;
 	e->objnb->light = 0;
 	e->objnb->plane = 0;
 	e->objnb->totobj = 0;
@@ -29,6 +30,7 @@ t_env		*ft_load_obj(t_env *e, char **tab)
 {
 	ft_parse_sphere(e, tab);
 	ft_parse_plane(e, tab);
+	ft_parse_para(e, tab);
 	ft_parse_light(e, tab);
 	ft_parse_cone(e, tab);
 	ft_parse_cylinder(e, tab);

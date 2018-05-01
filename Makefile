@@ -6,7 +6,7 @@
 #    By: tlecas <tlecas@student.42.fr>              +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2017/07/23 22:58:05 by tlecas            #+#    #+#              #
-#    Updated: 2018/04/27 06:52:28 by tlecas           ###   ########.fr        #
+#    Updated: 2018/05/01 22:20:32 by tlecas           ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -23,6 +23,7 @@ SRC_NAME = 	main.c \
 			ft_cone.c \
 			ft_plane.c \
 			ft_sphere.c \
+			ft_para.c \
 			ft_init.c \
 			ft_tools.c \
 			ft_cylinder.c \
@@ -35,6 +36,7 @@ SRC_NAME = 	main.c \
 			ft_parse_cone.c \
 			ft_parse_cylinder.c \
 			ft_parse_tools.c \
+			ft_parse_para.c \
 			ft_concat_c_params.c \
 			ft_rgb_add.c \
 			ft_rgbmult.c \

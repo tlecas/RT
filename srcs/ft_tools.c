@@ -6,7 +6,7 @@
 /*   By: tlecas <tlecas@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/11/08 15:16:19 by tlecas            #+#    #+#             */
-/*   Updated: 2018/05/01 14:28:34 by tlecas           ###   ########.fr       */
+/*   Updated: 2018/05/01 22:15:30 by tlecas           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -69,6 +69,12 @@ static	char *ft_which_obj(t_thread *thr, int *i)
 		*i -= thr->e->objnb->sphere + thr->e->objnb->plane + thr->e->objnb->cylinder;
 		thr->mat = thr->e->cone[*i]->mat;
 	}
+	else if (*i < thr->e->objnb->sphere + thr->e->objnb->plane + thr->e->objnb->cylinder + thr->e->objnb->cone + thr->e->objnb->para)
+	{
+		name = ft_strdup("para");
+		*i -= thr->e->objnb->sphere + thr->e->objnb->plane + thr->e->objnb->cylinder + thr->e->objnb->cone;
+		thr->mat = thr->e->para[*i]->mat;
+	}
 	return (name);
 }
 
@@ -100,6 +106,8 @@ unsigned int	ft_load_post(t_thread *thr, int i, float obj)
 			ft_post_cylinder(thr, &tmp);
 		if (!(ft_strcmp(thr->name, "cone")))
 			ft_post_cone(thr, &tmp);
+		if (!(ft_strcmp(thr->name, "para")))
+			ft_post_para(thr, &tmp);
 		ambient = ambient_light(thr, tmp);
 		while (++j < thr->e->objnb->light)
 		{

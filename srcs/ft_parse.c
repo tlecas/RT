@@ -6,7 +6,7 @@
 /*   By: tlecas <tlecas@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/10/16 13:50:12 by tlecas            #+#    #+#             */
-/*   Updated: 2018/04/27 06:27:19 by tlecas           ###   ########.fr       */
+/*   Updated: 2018/05/01 22:28:48 by tlecas           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,13 +24,15 @@ int			ft_read_file(t_env *e, char *line)
 			e->objnb->cone++;
 		else if (!ft_strcmp(line, "plane:"))
 			e->objnb->plane++;
+		else if (!ft_strcmp(line, "paraboloid:"))
+			e->objnb->para++;
 		else if (!ft_strcmp(line, "light:"))
 			e->objnb->light++;
 		else
 			return (-1);
 	}
 	e->objnb->totobj = e->objnb->sphere + e->objnb->cylinder + e->objnb->cone +
-		e->objnb->plane + e->objnb->light;
+		e->objnb->plane + e->objnb->light + e->objnb->para;
 	return (1);
 }
 

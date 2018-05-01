@@ -13,13 +13,18 @@ camera:
 light:
 	x: -1.0
 	y: 2.0
-	z: 0.0
-	intensity: 150.0
+	z: -15.0
+	intensity: 0.0
 light:
 	x: 1.0
 	y: 2.0
-	z: 0.0
-	intensity: 150.0
+	z: -15.0
+	intensity: 0.0
+light:
+	x: 0.0
+	y: -2.0
+	z: -15.0
+	intensity: 0.0
 plane:
 	x: 0.0
 	y: 0.0
@@ -34,3 +39,16 @@ plane:
 	refraction: 0.0
 	color: 0x00FFFFFF
 	texture: checker
+paraboloid:
+	x: 0.0
+	y: -2.0
+	z: 5.0
+	normalX: 0.0
+	normalY: 1.0
+	normalZ: 0.0
+	scalar: 0.3
+	ambient: 0.5
+	diffuse: 1.0
+	specular: 1.0
+	reflection: 0.0
+	refraction: 0.0

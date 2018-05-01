@@ -6,7 +6,7 @@
 /*   By: tlecas <tlecas@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/11/14 14:02:36 by tlecas            #+#    #+#             */
-/*   Updated: 2018/05/01 20:33:50 by tlecas           ###   ########.fr       */
+/*   Updated: 2018/05/01 21:48:07 by tlecas           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,8 +25,6 @@ void	ft_save_inter_plan(t_thread *thr, t_plane *plane, t_ray *ray)
 		thr->internorm = thr->normal;
 	if (!(plane->mat.refraction > .1 || plane->mat.reflection > .1) && (thr->e->keys & ROUGH))
 		thr->internorm = vmult(thr->internorm, (sin(thr->x / 8) * .1f) + 1.0f);
-//	if (!(plane->mat.refraction > .1 || plane->mat.reflection > .1) && (thr->e->keys & ROUGH))
-	//	thr->internorm = vmult(thr->internorm, (sinf(thr->x * 2 * M_PI) + 1.0f)); // surface rugueuse
 }
 
 void			ft_post_plane(t_thread *thr, unsigned int *tmp)

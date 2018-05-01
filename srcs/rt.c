@@ -6,7 +6,7 @@
 /*   By: tlecas <tlecas@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/11/03 14:52:38 by tlecas            #+#    #+#             */
-/*   Updated: 2018/04/30 06:13:19 by tlecas           ###   ########.fr       */
+/*   Updated: 2018/05/01 22:20:50 by tlecas           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -45,6 +45,13 @@ unsigned int ft_calc_obj(t_thread *thr, int recursivity)
 	while (thr->e->objnb->cone != 0 && (x) < thr->e->objnb->cone)
 	{
 		obj[i] = ft_calc_cone(thr->e->cone[x], &thr->ray);
+		i++;
+		++x;
+	}
+	x = 0;
+	while (thr->e->objnb->para != 0 && (x) < thr->e->objnb->para)
+	{
+		obj[i] = ft_calc_para(thr->e->para[x], &thr->ray);
 		i++;
 		++x;
 	}

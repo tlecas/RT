@@ -6,7 +6,7 @@
 /*   By: tlecas <tlecas@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/10/05 16:49:17 by tlecas            #+#    #+#             */
-/*   Updated: 2018/05/01 13:24:59 by tlecas           ###   ########.fr       */
+/*   Updated: 2018/05/01 22:20:18 by tlecas           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -63,6 +63,18 @@ typedef	struct		s_plane
 	unsigned int	t_h;
 	unsigned int	checker;
 }					t_plane;
+
+typedef	struct		s_para
+{
+	t_vect			pos;
+	t_vect			normal;
+	t_vect			interpos;
+	t_vect			internorm;
+	unsigned int	color;
+	float			inter;
+	float			k;
+	t_mat			mat;
+}					t_para;
 
 typedef	struct		s_cone
 {
@@ -139,6 +151,7 @@ typedef struct		s_objnb
 	int				cone;
 	int				light;
 	int				plane;
+	int				para;
 	int				totobj;
 }					t_objnb;
 
@@ -170,6 +183,7 @@ typedef struct		s_env
 	t_cone			**cone;
 	t_cylinder		**cylinder;
 	t_sphere		**sphere;
+	t_para			**para;
 	t_virt			virt_e;
 	float			t_ratio;
 	float			t_x;
@@ -210,6 +224,7 @@ void				ft_post_sphere(t_thread *thr, unsigned int *tmp);
 void				ft_post_cylinder(t_thread *thr, unsigned int *tmp);
 void				ft_post_plane(t_thread *thr, unsigned int *tmp);
 void				ft_post_cone(t_thread *thr, unsigned int *tmp);
+void				ft_post_para(t_thread *thr, unsigned int *tmp);
 void				rgb_add(unsigned int *color, unsigned int d, t_thread *thr);
 void				ft_display_info(unsigned int keys, t_env *e);
 void				keys_angle1(int keycode, t_env *e);
@@ -232,6 +247,7 @@ int					ft_shadow_plane(t_thread *thr, int i, t_ray *shadow_eye);
 int					ft_shadow_sphere(t_thread *thr, int i, t_ray *shadow_eye);
 int					ft_shadow_cylinder(t_thread *thr, int i, t_ray *shadow_eye);
 int					ft_shadow_cone(t_thread *thr, int i, t_ray *shadow_eye);
+int					ft_shadow_para(t_thread *thr, int i, t_ray *shadow_eye);
 int					ft_is_shadow(t_thread *thr, t_light *light);
 int					ft_parse_cone(t_env *e, char **eab);
 int					ft_parse_cylinder(t_env *e, char **eab);
@@ -239,12 +255,14 @@ int					ft_parse_sphere(t_env *e, char **eab);
 int					ft_parse_camera(t_env *e, char **eab);
 int					ft_parse_light(t_env *e, char **eab);
 int					ft_parse_plane(t_env *e, char **eab);
+int					ft_parse_para(t_env *e, char **eab);
 int					ft_parse_main_properties(t_env *e, char *str);
 int					ft_is_shape_named(char *str1, char *str2);
 float				fresnel(t_thread *thr);
 float				ft_calc_sphere(t_sphere *sphere, t_ray *ray);
 float				ft_calc_plan(t_plane *plan, t_ray *ray);
 float				ft_calc_cylinder(t_cylinder *cylinder, t_ray *ray);
+float				ft_calc_para(t_para *para, t_ray *ray);
 double				ft_calc_cone(t_cone *cone, t_ray *ray);
 t_mat				ft_mat_init();
 t_vect				vectcpy(t_vect v);
