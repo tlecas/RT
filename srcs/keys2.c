@@ -112,11 +112,22 @@ void		keys_move2(int keycode, t_env *e)
 	}
 }
 
-void		keys_blur(int keycode, t_env *e)
+void		keys_settings2(int keycode, t_env *e)
 {
 	if (keycode == KEY_M)
 	{
 		e->keys ^= BLUR;
 		ft_rt(e);
 	}
+	if (keycode == KEY_C)
+	{
+		e->keys ^= CARTOON;
+		ft_rt(e);
+	}
+	if (keycode == KEY_P)
+	{
+		e->keys ^= SEPIA;
+		ft_rt(e);
+	}
+
 }

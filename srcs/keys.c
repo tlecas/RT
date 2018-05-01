@@ -101,10 +101,10 @@ int				key_hook(int keycode, t_env *e)
 	keys_texture1(keycode, e);
 	keys_texture2(keycode, e);
 	keys_settings(keycode, e);
+	keys_settings2(keycode, e);
 	keys_angle1(keycode, e);
 	keys_angle2(keycode, e);
 	keys_move1(keycode, e);
 	keys_move2(keycode, e);
-	keys_blur(keycode, e);
 	return (1);
 }

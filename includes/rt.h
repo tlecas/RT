@@ -35,6 +35,8 @@
 # define FRACTAL	0x00000004
 # define ROUGH		0x00000008
 # define BLUR		0x00000010
+# define CARTOON	0x00000020
+# define SEPIA		0x00000040
 
 typedef char	t_bool;
 
@@ -214,7 +216,7 @@ void				keys_angle1(int keycode, t_env *e);
 void				keys_angle2(int keycode, t_env *e);
 void				keys_move1(int keycode, t_env *e);
 void				keys_move2(int keycode, t_env *e);
-void				keys_blur(int keycode, t_env *e);
+void				keys_settings2(int keycode, t_env *e);
 void				ft_rt(t_env *e);
 void				ft_error(char *str);
 char				**ft_parse_file(t_env *e);
