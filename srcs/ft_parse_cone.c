@@ -98,7 +98,7 @@ int		ft_parse_cone(t_env *e, char **tab)
 	i = -1;
 	j = -1;
 	incone = 0;
-	if (!(e->cone = malloc(sizeof(t_cone *) * (e->objnb->cone))))
+	if (!(e->cone = ft_memalloc(sizeof(t_cone *) * (e->objnb->cone + 1))))
 		ft_error("error malloc");
 	while (tab[++i])
 	{

@@ -93,7 +93,7 @@ int		ft_parse_sphere(t_env *e, char **tab)
 	i = -1;
 	j = -1;
 	insphere = 0;
-	if (!(e->sphere = malloc(sizeof(t_sphere *) * (e->objnb->sphere))))
+	if (!(e->sphere = ft_memalloc(sizeof(t_sphere *) * (e->objnb->sphere + 1))))
 		ft_error("error malloc");
 	while (tab[++i])
 	{

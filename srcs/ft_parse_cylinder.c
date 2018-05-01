@@ -101,7 +101,7 @@ int		ft_parse_cylinder(t_env *e, char **tab)
 	i = -1;
 	j = -1;
 	incylinder = 0;
-	if (!(e->cylinder = malloc(sizeof(t_cylinder *) * (e->objnb->cylinder))))
+	if (!(e->cylinder = ft_memalloc(sizeof(t_cylinder *) * (e->objnb->cylinder + 1))))
 		ft_error("error malloc");
 	while (tab[++i])
 	{

@@ -109,7 +109,7 @@ int		ft_parse_plane(t_env *e, char **tab)
 	i = -1;
 	j = -1;
 	inplane = 0;
-	if (!(e->plane = malloc(sizeof(t_plane *) * (e->objnb->plane))))
+	if (!(e->plane = ft_memalloc(sizeof(t_plane *) * (e->objnb->plane + 1))))
 		ft_error("error malloc");
 	while (tab[++i])
 	{

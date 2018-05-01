@@ -83,7 +83,7 @@ int		ft_parse_light(t_env *e, char **tab)
 	i = -1;
 	j = -1;
 	inlight = 0;
-	if (!(e->light = malloc(sizeof(t_light *) * (e->objnb->light))))
+	if (!(e->light = ft_memalloc(sizeof(t_light *) * (e->objnb->light + 1))))
 		ft_error("error malloc");
 	while (tab[++i])
 	{
