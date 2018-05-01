@@ -68,15 +68,13 @@ void *thread_rt(void *arg)
 	int				aa;
 	int				n;
 	unsigned int	tmp;
-	int 			win_area;
 
 	thr = (t_thread *)arg;
 	i = thr->tid;
 	thr->keys = thr->e->keys;
 	aa = (thr->keys & AA);
 	n = aa;
-	win_area = thr->WIN_X * thr->WIN_Y;
-	while (i < win_area)
+	while (i < thr->e->win_area)
 	{
 		thr->color = 0x00000000;
 		if (aa && !(thr->e->blur))

@@ -56,6 +56,7 @@ t_env		*ft_init(char *filename)
 	e = ft_load_obj(e, tab);
 	e->win = mlx_new_window(e->mlx, WIN_X, WIN_Y, "RT");
 	e->img = mlx_new_image(e->mlx, WIN_X, WIN_Y);
+	e->win_area = (WIN_X * WIN_Y);
 	e->tmpaddr = mlx_get_data_addr(e->img, &e->bpp, &e->sizeline, &e->endian);
 	e->data = (int *)e->tmpaddr;
 	e->t_ratio = 10.0f;

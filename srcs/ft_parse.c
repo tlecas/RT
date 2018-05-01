@@ -30,7 +30,7 @@ int			ft_read_file(t_env *e, char *line)
 			return (-1);
 	}
 	e->objnb->totobj = e->objnb->sphere + e->objnb->cylinder + e->objnb->cone +
-	e->objnb->plane + e->objnb->light;
+		e->objnb->plane + e->objnb->light;
 	return (1);
 }
 

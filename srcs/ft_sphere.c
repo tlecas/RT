@@ -16,7 +16,7 @@ void			ft_save_inter_sphere(t_thread *thr, t_sphere *sphere, t_ray *ray)
 {
 	thr->interpos = vectadd(ray->pos, vmult(ray->dir, thr->value));
 	thr->internorm = normalize(vectsub(thr->interpos, sphere->pos));
-	if (!(sphere->mat.refraction) && (thr->e->keys & ROUGH))
+	if (!(sphere->mat.refraction > .1) && (thr->e->keys & ROUGH))
 		thr->internorm = normalize(vmult(thr->internorm, (sin(thr->x / 8) * 0.1f) + 1.0f)); // surface rugueuse
 }
 

@@ -52,7 +52,7 @@ void			ft_post_cylinder(t_thread *thr, unsigned int *tmp)
 	thr->interpos = vectadd(thr->ray.pos, vmult(thr->ray.dir, thr->value));
 	m = dot(thr->ray.dir, thr->axis) * thr->value + dot(thr->ray.pos, thr->axis);
 	thr->internorm = normalize(vectsub(vectsub(thr->interpos, thr->pos), vmult(thr->axis, m)));
-	if (!(thr->e->cylinder[i]->mat.refraction) && (thr->e->keys & ROUGH))
+	if (!(thr->e->cylinder[i]->mat.refraction > .1) && (thr->e->keys & ROUGH))
 		thr->internorm = normalize(vmult(thr->internorm, (sin(thr->x / 8) * .1f) + 1.0f));
 	*tmp = thr->e->cylinder[i]->color;
 }

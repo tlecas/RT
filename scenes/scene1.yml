@@ -14,26 +14,23 @@ sphere:
 	x: 5.0
 	y: 5.0
 	z: 5.0
-	rotX: 0.000000
-	rotY: 0.000000
-	rotZ: 0.000000
 	radius: 4.0
-	ambient: 0.000000
-	diffuse: 1.000000
-	specular: 1
-	reflection: 0.000000
+	ambient: 0.0
+	diffuse: 1.0
+	specular: 1.0
+	reflection: 0.0
 	refraction: 0.0
 	color: 0x000000FF
 light:
-	x: -15.000000
-	y: 5.000000
-	z: -15.000000
+	x: -15.0
+	y: 5.0
+	z: -15.0
 	intensity: 500.00000
 	color: 0x00000000
 light:
-	x: 15.000000
-	y: 5.000000
-	z: -15.000000
+	x: 15.0
+	y: 5.0
+	z: -15.0
 	intensity: 500.00000
 	color: 0x00000000
 cylinder:

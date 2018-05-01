@@ -42,7 +42,7 @@ void		ft_post_cone(t_thread *thr, unsigned int *tmp)
 	m = dot(thr->ray.dir, thr->axis) * thr->value + dot(thr->ray.pos, thr->axis);
 	k = tan(thr->ar * (M_PI / 180));
 	thr->internorm = normalize(vectsub(vectsub(thr->interpos, thr->pos), vmult(vmult(thr->axis, (1 + k * k)), m)));
-	if (!(thr->e->cone[i]->mat.refraction) && (thr->e->keys & ROUGH))
+	if (!(thr->e->cone[i]->mat.refraction > .1) && (thr->e->keys & ROUGH))
 		thr->internorm = normalize(vmult(thr->internorm, (sin(thr->x / 8) * .1f) + 1.0f));
 	*tmp = thr->e->cone[i]->color;
 }
