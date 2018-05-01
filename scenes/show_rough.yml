@@ -1,14 +1,14 @@
 width: 1920
 height: 1080
-recursivity: 4
+recursivity: 2
 antialias: 2
 fov: 90
 camera:
-	x: 0.0
+	x: 20.0
 	y: 0.0
-	z: -15.0
-	angle_x: 0.0
-	angle_y: 0.0
+	z: -30.0
+	angle_x: -20.0
+	angle_y: -40.0
 	angle_z: 0.0
 sphere:
 	x: 5.0
@@ -66,6 +66,6 @@ cone:
 	angle: 15
 	ambient: 0.0
 	diffuse: 1.0
-	specular: 1.0
+	specular: 5.0
 	reflection: 0
 	refraction: 0
