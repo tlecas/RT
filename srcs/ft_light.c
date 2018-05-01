@@ -6,11 +6,18 @@
 /*   By: tlecas <tlecas@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/11/15 18:24:29 by tlecas            #+#    #+#             */
-/*   Updated: 2018/04/30 00:24:53 by tlecas           ###   ########.fr       */
+/*   Updated: 2018/05/01 14:25:41 by tlecas           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "rt.h"
+
+float				flmax(float reflet, float f)
+{
+	if (reflet < f)
+		return (f);
+	return (reflet);
+}
 
 static float		ft_cos_a(t_thread *thr, t_light *light)
 {
@@ -50,13 +57,6 @@ static void				rgb_addl(unsigned int *color, unsigned int d, t_thread *thr)
 	}
 	else
 		*color = (r << 16) + (g << 8) + b;
-}
-
-float				flmax(float reflet, float f)
-{
-	if (reflet < f)
-		return (f);
-	return (reflet);
 }
 
 unsigned int		ft_light(t_thread *thr, t_light *light, unsigned int tmp)

@@ -6,7 +6,7 @@
 /*   By: tlecas <tlecas@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/11/08 15:16:19 by tlecas            #+#    #+#             */
-/*   Updated: 2018/05/01 13:13:12 by tlecas           ###   ########.fr       */
+/*   Updated: 2018/05/01 14:28:34 by tlecas           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -100,7 +100,7 @@ unsigned int	ft_load_post(t_thread *thr, int i, float obj)
 			ft_post_cylinder(thr, &tmp);
 		if (!(ft_strcmp(thr->name, "cone")))
 			ft_post_cone(thr, &tmp);
-			ambient = ambient_light(thr, tmp);
+		ambient = ambient_light(thr, tmp);
 		while (++j < thr->e->objnb->light)
 		{
 			thr->light = *thr->e->light[j];

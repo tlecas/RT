@@ -6,7 +6,7 @@
 /*   By: tlecas <tlecas@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/11/14 14:02:36 by tlecas            #+#    #+#             */
-/*   Updated: 2018/04/30 06:17:36 by tlecas           ###   ########.fr       */
+/*   Updated: 2018/05/01 18:26:57 by tlecas           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -101,7 +101,7 @@ float		ft_calc_plan(t_plane *plane, t_ray *ray)
 	if (fabsf(tmp) < 0.0001f)
 		return (0.0f);
 	inter = -(dot(plane->normal, vectsub(ray->pos, plane->pos))) / tmp;
-	if (inter < 0.0001f)
+	if (inter < 0.00001f)
 		return (0);
 	return (inter);
 }
