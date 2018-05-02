@@ -1,0 +1,90 @@
+width: 1920
+height: 1080
+recursivity: 4
+antialias: 2
+fov: 90.0
+camera:
+	x: 0.0
+	y: 0.0
+	z: 0.0
+	angle_x: 0.0
+	angle_y: 0.0
+	angle_z: 0.0
+light:
+	x: 8.0
+	y: -2.0
+	z: 0.0
+	intensity: 1000.0
+light:
+	x: -10.0
+	y: 5.0
+	z: 0.0
+	intensity: 1000.0
+sphere:
+	x: 8.0
+	y: -4.0
+	z: 11.0
+	radius: 2.0
+	ambient: 0.0
+	diffuse: 1.0
+	specular: 0.0
+	refraction: 1.33
+	color: 0x00FFFF00
+sphere:
+	x: -8.0
+	y: -4.0
+	z: 11.0
+	radius: 2.0
+	ambient: 0.0
+	diffuse: 1.0
+	specular: 0.0
+	refraction: 1.0
+	color: 0x00FF0000
+cylinder:
+	x: 0.0
+	y: 0.0
+	z: 13.0
+	axisX: 1.0
+	axisY: 1.0
+	axisZ: 0.0
+	radius: 1.8
+	ambient: 0.0
+	diffuse: 1.0
+	specular: 0.0
+	refraction: 2.20
+	color: 0x00FF00FF
+cone:
+	x: 0.0
+	y: 0.0
+	z: 13.0
+	axisX: 1.0
+	axisY: -1.0
+	axisZ: 0.0
+	angle: 15
+	ambient: 0.0
+	diffuse: 1.0
+	specular: 0.0
+	refraction: 1.55
+	color: 0x00FFFF44
+plane:
+	x: 0.0
+	y: 0.0
+	z: 20.0
+	normalX: 0.0
+	normalY: 0.0
+	normalZ: 1.0
+	ambient: 0.0
+	diffuse: 1.0
+	specular: 0.0
+	color: 0x000000FF
+plane:
+	x: 0.0
+	y: -6.0
+	z: 20.0
+	normalX: 0.0
+	normalY: 1.0
+	normalZ: 0.0
+	ambient: 0.0
+	diffuse: 1.0
+	specular: 0.0
+	color: 0x00BBBBBB
