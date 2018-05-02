@@ -12,7 +12,7 @@
 
 #include "rt.h"
 
-static	t_env *ft_init_obj_nb(t_env *e)
+static t_env	*ft_init_obj_nb(t_env *e)
 {
 	if (!(e->objnb = malloc(sizeof(t_objnb))))
 		ft_error("Error malloc!", 0, 0);
@@ -26,7 +26,7 @@ static	t_env *ft_init_obj_nb(t_env *e)
 	return (e);
 }
 
-t_env		*ft_load_obj(t_env *e, char **tab)
+t_env			*ft_load_obj(t_env *e, char **tab)
 {
 	ft_parse_sphere(e, tab);
 	ft_parse_plane(e, tab);
@@ -38,7 +38,20 @@ t_env		*ft_load_obj(t_env *e, char **tab)
 	return (e);
 }
 
-t_env		*ft_init(char *filename)
+void			ft_init_env(t_env *e)
+{
+	e->win = mlx_new_window(e->mlx, WIN_X, WIN_Y, "RT");
+	e->img = mlx_new_image(e->mlx, WIN_X, WIN_Y);
+	e->win_area = (WIN_X * WIN_Y);
+	e->tmpaddr = mlx_get_data_addr(e->img, &e->bpp, &e->sizeline, &e->endian);
+	e->data = (int *)e->tmpaddr;
+	e->t_ratio = 10.0f;
+	e->t_x = 500.0f;
+	e->t_y = 500.0f;
+	e->c_ratio = 1.0f;
+}
+
+t_env			*ft_init(char *filename)
 {
 	t_env		*e;
 	char		**tab;
@@ -60,15 +73,7 @@ t_env		*ft_init(char *filename)
 	e->filename = ft_strcpy(e->filename, filename);
 	tab = ft_parse_file(e);
 	e = ft_load_obj(e, tab);
-	e->win = mlx_new_window(e->mlx, WIN_X, WIN_Y, "RT");
-	e->img = mlx_new_image(e->mlx, WIN_X, WIN_Y);
-	e->win_area = (WIN_X * WIN_Y);
-	e->tmpaddr = mlx_get_data_addr(e->img, &e->bpp, &e->sizeline, &e->endian);
-	e->data = (int *)e->tmpaddr;
-	e->t_ratio = 10.0f;
-	e->t_x = 500.0f;
-	e->t_y = 500.0f;
-	e->c_ratio = 1.0f;
+	ft_init_env(e);
 	while (tab[++i])
 		free(tab[i]);
 	free(tab);
