@@ -14,12 +14,12 @@ light:
 	x: 8.0
 	y: -2.0
 	z: 0.0
-	intensity: 1000.0
+	intensity: 000.0
 light:
 	x: -10.0
 	y: 5.0
 	z: 0.0
-	intensity: 1000.0
+	intensity: 000.0
 plane:
 	x: 0.0
 	y: 0.0
@@ -27,9 +27,9 @@ plane:
 	normalX: 0.0
 	normalY: 0.0
 	normalZ: 1.0
-	ambient: 0.0
+	ambient: 1.0
 	diffuse: 1.0
-	specular: 1.0
+	specular: 0.0
 	texture: ./textures/test.png
 plane:
 	x: 0.0
@@ -38,7 +38,7 @@ plane:
 	normalX: 0.0
 	normalY: 1.0
 	normalZ: 0.0
-	ambient: 0.0
+	ambient: 1.0
 	diffuse: 1.0
-	specular: 1.0
+	specular: 0.0
 	texture: ./textures/test.png

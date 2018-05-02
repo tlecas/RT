@@ -6,7 +6,7 @@
 /*   By: tlecas <tlecas@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/05/01 21:30:30 by tlecas            #+#    #+#             */
-/*   Updated: 2018/05/02 20:23:27 by tlecas           ###   ########.fr       */
+/*   Updated: 2018/05/03 00:12:34 by tlecas           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -89,8 +89,7 @@ int					ft_parse_para(t_env *e, char **tab)
 		if (!ft_strcmp(tab[i], "paraboloid:"))
 		{
 			++j;
-			if (!(e->para[j] = ft_memalloc(sizeof(t_para))))
-				ft_error("Error malloc!", 0, 0);
+			e->para[j] = ft_init_para(e->para[j]);
 			inpara = 1;
 		}
 		else if (inpara == 1 && tab[i][0] == '\t')
