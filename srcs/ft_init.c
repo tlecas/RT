@@ -6,7 +6,7 @@
 /*   By: tlecas <tlecas@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/10/05 17:38:05 by tlecas            #+#    #+#             */
-/*   Updated: 2018/05/02 21:16:08 by tlecas           ###   ########.fr       */
+/*   Updated: 2018/05/02 21:17:16 by tlecas           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -49,6 +49,7 @@ void			ft_init_env(t_env *e)
 	e->t_x = 500.0f;
 	e->t_y = 500.0f;
 	e->c_ratio = 1.0f;
+	e->screenshot = 0;
 }
 
 t_env			*ft_init(char *filename)
