@@ -12,7 +12,7 @@
 
 #include "rt.h"
 
-static int		ft_fill_properties(t_para *para, char *str)
+static int			ft_fill_properties(t_para *para, char *str)
 {
 	char	*tmp;
 	char	*test;
@@ -41,7 +41,7 @@ static int		ft_fill_properties(t_para *para, char *str)
 	return (1);
 }
 
-static int		ft_fill_coords(t_para *para, char *str)
+static int			ft_fill_coords(t_para *para, char *str)
 {
 	if (!(ft_strncmp(str, "\tx: ", 4)))
 		para->pos.x = ft_atof_free(ft_strrcpy(str, 4));
@@ -73,7 +73,7 @@ static t_para		*ft_parse_properties(t_para *para, char *str)
 	return (0);
 }
 
-int		ft_parse_para(t_env *e, char **tab)
+int					ft_parse_para(t_env *e, char **tab)
 {
 	int		i;
 	int		j;
