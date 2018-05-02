@@ -17,15 +17,20 @@ int		ft_parse_main_properties(t_env *e, char *str)
 	char	*tmp;
 
 	if (!(ft_strncmp(str, "width: ", 7)))
-		e->width = ft_atoi(tmp = ft_strrcpy(str, 7));
+		e->width = ft_atoi(
+			tmp = ft_strrcpy(str, 7));
 	else if (!(ft_strncmp(str, "height: ", 8)))
-		e->height = ft_atoi(tmp = ft_strrcpy(str, 8));
+		e->height = ft_atoi(
+			tmp = ft_strrcpy(str, 8));
 	else if (!(ft_strncmp(str, "recursivity: ", 13)))
-		e->recursivity = ft_atoi(tmp = ft_strrcpy(str, 13));
+		e->recursivity = ft_atoi(
+			tmp = ft_strrcpy(str, 13));
 	else if (!(ft_strncmp(str, "antialias: ", 11)))
-		e->antialias = ft_strequ("true", tmp = ft_strrcpy(str, 11));
+		e->antialias = ft_strequ("true",
+			tmp = ft_strrcpy(str, 11));
 	else if (!(ft_strncmp(str, "fov: ", 5)))
-		e->fov = ft_atof(tmp = ft_strrcpy(str, 5));
+		e->fov = ft_atof(
+			tmp = ft_strrcpy(str, 5));
 	else
 		return (-1);
 	free(tmp);
