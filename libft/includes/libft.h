@@ -157,6 +157,6 @@ t_vect			vmult(t_vect v, float mult);
 int				get_next_line(const int fd, char **line);
 
 double			ft_atof_free(char *str);
-char			*ft_strjoin_multi(t_bool autofree, ...);
+char			*ft_strjoin_multi(int autofree, ...);
 
 #endif
