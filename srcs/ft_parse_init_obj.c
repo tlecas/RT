@@ -43,7 +43,7 @@ t_sphere		*ft_init_sphere(t_sphere *sphere)
 	if (!(sphere = malloc(sizeof(t_sphere))))
 		ft_error("Error malloc'ing!", 0, 0);
 	sphere->pos = coord_v(0.0f, 0.0f, 0.0f);
-	sphere->mat = ft_mat_init(0.0f, 0.0f, 0.0f);
+	sphere->mat = ft_mat_init();
 	sphere->radius = 1.0f;
 	sphere->color = 0x000000FF;
 	sphere->inter = 0.0f;

@@ -129,5 +129,4 @@ void		keys_settings2(int keycode, t_env *e)
 		e->keys ^= SEPIA;
 		ft_rt(e);
 	}
-
 }

@@ -20,7 +20,7 @@ static int			close_window(t_env *e)
 	exit(EXIT_FAILURE);
 }
 
-int		main(int ac, char **av)
+int					main(int ac, char **av)
 {
 	t_env	*e;
 

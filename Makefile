@@ -42,7 +42,8 @@ SRC_NAME = 	main.c \
 			ft_rgb_add.c \
 			ft_rgbmult.c \
 			display_hud.c \
-			screenshot.c
+			screenshot.c \
+			ft_error.c
 SRC = $(addprefix $(SRC_PATH)/,$(SRC_NAME))
 OBJ_PATH = ./obj/
 OBJ_NAME = $(SRC_NAME:.c=.o)
