@@ -6,21 +6,19 @@
 /*   By: tlecas <tlecas@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/10/05 17:06:57 by tlecas            #+#    #+#             */
-/*   Updated: 2018/04/13 17:00:30 by tlecas           ###   ########.fr       */
+/*   Updated: 2018/05/02 23:54:55 by tlecas           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "rt.h"
 
-/*
-** La fonction main va :
-** 
-** - initialiser une variable `t_env *e`
-** C'est une grosse boite à variables qui contient principalement les variables
-** parcées dans la scène
-**
-** 
-*/
+static int			close_window(t_env *e)
+{
+	mlx_destroy_window(e->mlx, e->win);
+	mlx_destroy_image(e->mlx, e->img);
+	free(e);
+	exit(EXIT_FAILURE);
+}
 
 int		main(int ac, char **av)
 {
@@ -36,6 +34,7 @@ int		main(int ac, char **av)
 	if (e->antialias)
 		e->keys ^= AA;
 	mlx_hook(e->win, KEYPRESS, KEYPRESSMASK, key_hook, e);
+	mlx_hook(e->win, 17, (1L << 17), &close_window, e);
 	ft_rt(e);
 	mlx_loop(e->mlx);
 	free(e);
