@@ -6,7 +6,7 @@
 /*   By: tlecas <tlecas@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/05/01 22:53:28 by tlecas            #+#    #+#             */
-/*   Updated: 2018/05/02 15:16:05 by tlecas           ###   ########.fr       */
+/*   Updated: 2018/05/02 18:59:55 by tlecas           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -89,7 +89,9 @@ void			screenshot(t_env *e)
 	int		fd;
 	int		i;
 	char	*name;
+	char	*data;
 
+	data = ft_memalloc(900);
 	name = fname(e);
 	if ((fd = open(name, O_WRONLY | O_CREAT, OFLAGS)) == -1)
 		ft_error("open error", 0, 0);
@@ -99,11 +101,19 @@ void			screenshot(t_env *e)
 	i = 0;
 	while (i < e->win_area)
 	{
-		//write(fd, ft_itoa((int)(e->tmpaddr[i * 4])), count((int)(e->tmpaddr[i * 4])));
-		//printf("%d\n%zu\n", (int)(e->tmpaddr[i * 4]), count((int)(e->tmpaddr[i * 4])));
-		write(fd, &(e->tmpaddr[i * 4 + 2]), 1);
-		write(fd, &(e->tmpaddr[i * 4 + 1]), 1);
-		write(fd, &(e->tmpaddr[i * 4]), 1);
+		data[(i * 3) % 900] = e->tmpaddr[i * 4 + 2];
+		data[(i * 3 + 1) % 900] = e->tmpaddr[i * 4 + 1];
+		data[(i * 3 + 2) % 900] = e->tmpaddr[i * 4 + 0];
+		if ((i * 3) % 900 == 897)
+		{
+			ft_putnbr(i * 4 + 2);
+			ft_putchar('\n');
+			write(fd, &data, 900);
+		}
+
 		++i;
 	}
+	write(fd, &data, (i * 3) % 900);
+	//printf("%d\n", e->win_area);
+	free(data);
 }
