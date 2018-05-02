@@ -49,3 +49,12 @@ double			ft_atof(const char *str)
 	nbr *= isnegative;
 	return (nbr);
 }
+
+double			ft_atof_free(char *str)
+{
+	double value;
+
+	value = ft_atof(str);
+	free(str);
+	return (value);
+}
