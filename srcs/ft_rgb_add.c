@@ -110,9 +110,11 @@ void			rgb_add(unsigned int *color, unsigned int d, t_thread *thr)
 	else if (thr->keys & SEPIA)
 		ft_rgb_add_sepia(&d, color, thr);
 	else
+	{
 		rgb_define_rg(&r, &g, &d, color);
-	b = (*color >> 24) + (d >> 24);
-	uiclamp(&b, 0, 255);
+		b = (*color >> 24) + (d >> 24);
+		uiclamp(&b, 0, 255);
+	}
 	if (thr->keys & BLACK)
 	{
 		filtbw = (r + g + b) / 3;
