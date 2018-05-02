@@ -6,7 +6,7 @@
 /*   By: tlecas <tlecas@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/10/05 17:38:05 by tlecas            #+#    #+#             */
-/*   Updated: 2018/05/02 15:16:05 by tlecas           ###   ########.fr       */
+/*   Updated: 2018/05/02 20:46:58 by tlecas           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -65,10 +65,11 @@ t_env		*ft_init(char *filename)
 	e->win_area = (WIN_X * WIN_Y);
 	e->tmpaddr = mlx_get_data_addr(e->img, &e->bpp, &e->sizeline, &e->endian);
 	e->data = (int *)e->tmpaddr;
-	e->t_ratio = 10.0f;
+	e->t_ratio = 20.0f;
 	e->t_x = 500.0f;
 	e->t_y = 500.0f;
 	e->c_ratio = 1.0f;
+	e->screenshot = 0;
 	while (tab[++i])
 		free(tab[i]);
 	free(tab);

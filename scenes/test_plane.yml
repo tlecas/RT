@@ -6,25 +6,10 @@ fov: 90.0
 camera:
 	x: 0.0
 	y: 0.0
-	z: 0.0
+	z: -15.0
 	angle_x: 0.0
 	angle_y: 0.0
 	angle_z: 0.0
-light:
-	x: -1.0
-	y: 2.0
-	z: -15.0
-	intensity: 0.0
-light:
-	x: 1.0
-	y: 2.0
-	z: -15.0
-	intensity: 0.0
-light:
-	x: 0.0
-	y: -2.0
-	z: -15.0
-	intensity: 0.0
 plane:
 	x: 0.0
 	y: 0.0
@@ -32,7 +17,7 @@ plane:
 	normalX: 0.0
 	normalY: 0.0
 	normalZ: 1.0
-	ambient: 0.0
+	ambient: 0.5
 	diffuse: 1.0
 	specular: 2.2
 	reflection: 0.0
@@ -41,14 +26,57 @@ plane:
 	texture: checker
 paraboloid:
 	x: 0.0
-	y: -2.0
+	y: 2.0
 	z: 5.0
 	normalX: 0.0
-	normalY: -1.0
+	normalY: 1.0
 	normalZ: 0.0
-	scalar: 0.3
+	scalar: 1.0
 	ambient: 0.5
 	diffuse: 1.0
 	specular: 1.0
 	reflection: 0.0
 	refraction: 0.0
+	color: 0x00FFFF00
+paraboloid:
+	x: 0.0
+	y: -2.0
+	z: 5.0
+	normalX: 0.0
+	normalY: -1.0
+	normalZ: 0.0
+	scalar: 1.0
+	ambient: 0.5
+	diffuse: 1.0
+	specular: 1.0
+	reflection: 0.0
+	refraction: 0.0
+	color: 0x00FF00FF
+paraboloid:
+	x: 2.0
+	y: 0.0
+	z: 5.0
+	normalX: 1.0
+	normalY: 0.0
+	normalZ: 0.0
+	scalar: 1.0
+	ambient: 0.5
+	diffuse: 1.0
+	specular: 1.0
+	reflection: 0.0
+	refraction: 0.0
+	color: 0x0000FFFF
+paraboloid:
+	x: -2.0
+	y: 0.0
+	z: 5.0
+	normalX: -1.0
+	normalY: 0.0
+	normalZ: 0.0
+	scalar: 1.0
+	ambient: 0.5
+	diffuse: 1.0
+	specular: 1.0
+	reflection: 0.0
+	refraction: 0.0
+	color: 0x00050505

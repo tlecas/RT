@@ -6,7 +6,7 @@
 /*   By: tlecas <tlecas@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/10/05 16:49:17 by tlecas            #+#    #+#             */
-/*   Updated: 2018/05/02 15:16:49 by tlecas           ###   ########.fr       */
+/*   Updated: 2018/05/02 20:50:44 by tlecas           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -173,6 +173,7 @@ typedef struct		s_env
 	int				recursivity;
 	int				blur;
 	int				win_area;
+	int				screenshot;
 	t_bool			antialias;
 	unsigned int	keys;
 	float			fov;

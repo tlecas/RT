@@ -6,7 +6,7 @@
 /*   By: tlecas <tlecas@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/05/01 22:53:28 by tlecas            #+#    #+#             */
-/*   Updated: 2018/05/02 15:16:05 by tlecas           ###   ########.fr       */
+/*   Updated: 2018/05/02 20:02:02 by tlecas           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -86,9 +86,9 @@ static int		header(t_env *e, int fd)
 
 void			screenshot(t_env *e)
 {
-	int		fd;
-	int		i;
-	char	*name;
+	int				fd;
+	int				i;
+	char			*name;
 
 	name = fname(e);
 	if ((fd = open(name, O_WRONLY | O_CREAT, OFLAGS)) == -1)
@@ -99,11 +99,10 @@ void			screenshot(t_env *e)
 	i = 0;
 	while (i < e->win_area)
 	{
-		//write(fd, ft_itoa((int)(e->tmpaddr[i * 4])), count((int)(e->tmpaddr[i * 4])));
-		//printf("%d\n%zu\n", (int)(e->tmpaddr[i * 4]), count((int)(e->tmpaddr[i * 4])));
 		write(fd, &(e->tmpaddr[i * 4 + 2]), 1);
 		write(fd, &(e->tmpaddr[i * 4 + 1]), 1);
 		write(fd, &(e->tmpaddr[i * 4]), 1);
 		++i;
 	}
+	close(fd);
 }
