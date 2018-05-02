@@ -12,7 +12,7 @@
 
 #include "rt.h"
 
-float	fresnel(t_thread *thr)
+float			fresnel(t_thread *thr)
 {
 	float	tab[8];
 
@@ -32,14 +32,16 @@ float	fresnel(t_thread *thr)
 	{
 		tab[4] = sqrt(fclamp((1 - tab[3] * tab[3]), 0, 400000));
 		tab[1] = ABS(tab[1]);
-		tab[5] = ((tab[7] * tab[1]) - (tab[2] * tab[4])) / ((tab[7] * tab[1]) + (tab[2] * tab[4]));
-		tab[6] = ((tab[2] * tab[1]) - (tab[7] * tab[4])) / ((tab[2] * tab[1]) + (tab[7] * tab[4]));
+		tab[5] = ((tab[7] * tab[1]) - (tab[2] * tab[4]))
+			/ ((tab[7] * tab[1]) + (tab[2] * tab[4]));
+		tab[6] = ((tab[2] * tab[1]) - (tab[7] * tab[4]))
+			/ ((tab[2] * tab[1]) + (tab[7] * tab[4]));
 		tab[0] = (tab[5] * tab[5] + tab[6] * tab[6]) / 2.0;
 	}
 	return (tab[0]);
 }
 
-t_vect	refracted2(t_thread *thr)
+t_vect			refracted2(t_thread *thr)
 {
 	float			refraction;
 	float			cosi;
@@ -63,7 +65,7 @@ t_vect	refracted2(t_thread *thr)
 	eta[1] = eta[0] / refraction;
 	k = 1.0f - eta[1] * eta[1] * (1.0f - cosi * cosi);
 	return (k < 0.0f ? coord_v(0, 0, 0) : vectadd(vmult(thr->ray.dir, eta[1]),
-				vmult(v, (eta[1] * cosi -  sqrt(k)))));
+					vmult(v, (eta[1] * cosi - sqrt(k)))));
 }
 
 unsigned int	refracted(t_thread *thr, unsigned int color, float kr)
@@ -78,7 +80,7 @@ unsigned int	refracted(t_thread *thr, unsigned int color, float kr)
 	thr->ray.dir = normalize(thr->ray.dir);
 	tmp = ft_calc_obj(thr, (thr->recursivity - 1));
 	rgb_mult(&color, (1 - refraction), thr);
-	if(thr->value > 0.0001f)
+	if (thr->value > 0.0001f)
 	{
 		rgb_mult(&tmp, (1 - kr), thr);
 		rgb_add(&color, tmp, thr);
@@ -94,7 +96,8 @@ unsigned int	reflected(t_thread *thr, unsigned int color, float kr)
 	tmp = 0;
 	reflection = thr->mat.reflection;
 	thr->ray.pos = thr->interpos;
-	thr->ray.dir = vectsub(thr->ray.dir, vmult(vmult(thr->internorm, dot(thr->internorm, thr->ray.dir)), 2));
+	thr->ray.dir = vectsub(thr->ray.dir,
+			vmult(vmult(thr->internorm, dot(thr->internorm, thr->ray.dir)), 2));
 	thr->ray.dir = normalize(thr->ray.dir);
 	tmp = ft_calc_obj(thr, (thr->recursivity - 1));
 	rgb_mult(&color, (1 - reflection), thr);
@@ -103,5 +106,5 @@ unsigned int	reflected(t_thread *thr, unsigned int color, float kr)
 		rgb_mult(&tmp, kr, thr);
 		rgb_add(&color, tmp, thr);
 	}
-	return(color);
+	return (color);
 }

@@ -12,12 +12,10 @@
 
 #include "rt.h"
 
-static unsigned int ambient_light(t_thread *thr, unsigned int color)
+static unsigned int	ambient_light(t_thread *thr, unsigned int color)
 {
 	unsigned int ambient;
-	unsigned int r;
-	unsigned int g;
-	unsigned int b;
+	unsigned int tab[3];
 	unsigned int tmp;
 	float		 doto;
 
@@ -26,22 +24,22 @@ static unsigned int ambient_light(t_thread *thr, unsigned int color)
 	ambient = 0x00FFFFFF;
 	tmp <<= 8;
 	ambient <<= 8;
-	r = uimin((ambient >> 24) , (tmp >> 24)) * thr->mat.ambient * doto;
-	uiclamp(&r, 0, 255);
+	tab[0] = uimin((ambient >> 24) , (tmp >> 24)) * thr->mat.ambient * doto;
+	uiclamp(&tab[0], 0, 255);
 	tmp <<= 8;
 	ambient <<= 8;
-	g = uimin((ambient >> 24), (tmp >> 24)) * thr->mat.ambient * doto;
-	uiclamp(&g, 0, 255);
-	uimin(g, (tmp >> 24));
+	tab[1] = uimin((ambient >> 24), (tmp >> 24)) * thr->mat.ambient * doto;
+	uiclamp(&tab[1], 0, 255);
+	uimin(tab[1], (tmp >> 24));
 	tmp <<= 8;
 	ambient <<= 8;
-	b = uimin((ambient >> 24), tmp) * thr->mat.ambient * doto;
-	uiclamp(&b, 0, 255);
-	ambient = (r << 16) + (g << 8) + b;
+	tab[2] = uimin((ambient >> 24), (tmp >> 24)) * thr->mat.ambient * doto;
+	uiclamp(&tab[2], 0, 255);
+	ambient = (tab[0] << 16) + (tab[1] << 8) + tab[2];
 	return (ambient);
 }
 
-static	char *ft_which_obj(t_thread *thr, int *i)
+static	char		*ft_which_obj(t_thread *thr, int *i)
 {
 	char *name;
 
