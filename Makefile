@@ -37,6 +37,7 @@ SRC_NAME = 	main.c \
 			ft_parse_cylinder.c \
 			ft_parse_tools.c \
 			ft_parse_para.c \
+			ft_parse_init_obj.c \
 			ft_concat_c_params.c \
 			ft_rgb_add.c \
 			ft_rgbmult.c \

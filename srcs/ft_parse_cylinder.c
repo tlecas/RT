@@ -12,72 +12,55 @@
 
 #include "rt.h"
 
-t_cylinder		*ft_init_cylinder(t_cylinder *cylinder)
-{
-	if (!(cylinder = malloc(sizeof(t_cylinder))))
-		ft_error("Error malloc");
-	cylinder->pos = coord_v(0, 0, 0);
-	cylinder->axis = coord_v(0, 0, 0);
-	cylinder->radius = 1.0;
-	cylinder->color = 0xFF00FF00;
-	cylinder->mat = ft_mat_init();
-	cylinder->inter = 0;
-
-	return (cylinder);
-}
-
 static int		ft_fill_properties(t_cylinder *cylinder, char *str)
 {
 	char	*tmp;
 	char	*test;
 
 	if (!(ft_strncmp(str, "\tradius: ", 9)))
-		cylinder->radius = ft_atof(tmp = ft_strrcpy(str, 9));
+		cylinder->radius = ft_atof_free(ft_strrcpy(str, 9));
 	else if (!(ft_strncmp(str, "\tcolor: ", 8)))
 	{
 		errno = 0;
-		cylinder->color = strtol(tmp = ft_strrcpy(str, 8), &test, 16);
-		if ((errno == ERANGE && (cylinder->color == UINT_MAX || cylinder->color == 0))
-            || (errno != 0 && cylinder->color == 0) || '\0' != *test)
-		{
+		cylinder->color = strtol(
+			tmp = ft_strrcpy(str, 8), &test, 16);
+		free(tmp);
+		if ((errno == ERANGE && (cylinder->color == UINT_MAX ||
+			cylinder->color == 0))
+			|| (errno != 0 && cylinder->color == 0) || '\0' != *test)
 			ft_error("Invalid color");
-		}
 	}
 	else if (!(ft_strncmp(str, "\tambient: ", 10)))
-		cylinder->mat.ambient = ft_atof(tmp = ft_strrcpy(str, 10));
+		cylinder->mat.ambient = ft_atof_free(ft_strrcpy(str, 10));
 	else if (!(ft_strncmp(str, "\tdiffuse: ", 10)))
-		cylinder->mat.diffuse = ft_atof(tmp = ft_strrcpy(str, 10));
+		cylinder->mat.diffuse = ft_atof_free(ft_strrcpy(str, 10));
 	else if (!(ft_strncmp(str, "\tspecular: ", 11)))
-		cylinder->mat.specular = ft_atof(tmp = ft_strrcpy(str, 11));
+		cylinder->mat.specular = ft_atof_free(ft_strrcpy(str, 11));
 	else if (!(ft_strncmp(str, "\treflection: ", 13)))
-		cylinder->mat.reflection = ft_atof(tmp = ft_strrcpy(str, 13));
+		cylinder->mat.reflection = ft_atof_free(ft_strrcpy(str, 13));
 	else if (!(ft_strncmp(str, "\trefraction: ", 13)))
-		cylinder->mat.refraction = ft_atof(tmp = ft_strrcpy(str, 13));
+		cylinder->mat.refraction = ft_atof_free(ft_strrcpy(str, 13));
 	else
 		return (0);
-	free(tmp);
 	return (1);
 }
 
 static int		ft_fill_coords(t_cylinder *cylinder, char *str)
 {
-	char	*tmp;
-
 	if (!(ft_strncmp(str, "\tx: ", 4)))
-		cylinder->pos.x = ft_atof(tmp = ft_strrcpy(str, 4));
+		cylinder->pos.x = ft_atof_free(ft_strrcpy(str, 4));
 	else if (!(ft_strncmp(str, "\ty: ", 4)))
-		cylinder->pos.y = ft_atof(tmp = ft_strrcpy(str, 4));
+		cylinder->pos.y = ft_atof_free(ft_strrcpy(str, 4));
 	else if (!(ft_strncmp(str, "\tz: ", 4)))
-		cylinder->pos.z = ft_atof(tmp = ft_strrcpy(str, 4));
+		cylinder->pos.z = ft_atof_free(ft_strrcpy(str, 4));
 	else if (!(ft_strncmp(str, "\taxisX: ", 8)))
-		cylinder->axis.x = ft_atof(tmp = ft_strrcpy(str, 8));
+		cylinder->axis.x = ft_atof_free(ft_strrcpy(str, 8));
 	else if (!(ft_strncmp(str, "\taxisY: ", 8)))
-		cylinder->axis.y = ft_atof(tmp = ft_strrcpy(str, 8));
+		cylinder->axis.y = ft_atof_free(ft_strrcpy(str, 8));
 	else if (!(ft_strncmp(str, "\taxisZ: ", 8)))
-		cylinder->axis.z = ft_atof(tmp = ft_strrcpy(str, 8));
+		cylinder->axis.z = ft_atof_free(ft_strrcpy(str, 8));
 	else
 		return (0);
-	free(tmp);
 	return (1);
 }
 
@@ -85,7 +68,8 @@ static t_cylinder		*ft_parse_properties(t_cylinder *cylinder, char *str)
 {
 	if (str && str[0] == '\t')
 	{
-		if ((!ft_fill_coords(cylinder, str)) && (!ft_fill_properties(cylinder, str)))
+		if ((!ft_fill_coords(cylinder, str)) &&
+			(!ft_fill_properties(cylinder, str)))
 			ft_error("Can't parse properties of an object");
 		return (cylinder);
 	}
@@ -101,7 +85,8 @@ int		ft_parse_cylinder(t_env *e, char **tab)
 	i = -1;
 	j = -1;
 	incylinder = 0;
-	if (!(e->cylinder = ft_memalloc(sizeof(t_cylinder *) * (e->objnb->cylinder + 1))))
+	if (!(e->cylinder = ft_memalloc(sizeof(t_cylinder *) *
+		(e->objnb->cylinder + 1))))
 		ft_error("error malloc");
 	while (tab[++i])
 	{

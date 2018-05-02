@@ -89,8 +89,7 @@ int					ft_parse_para(t_env *e, char **tab)
 		if (!ft_strcmp(tab[i], "paraboloid:"))
 		{
 			++j;
-			if (!(e->para[j] = ft_memalloc(sizeof(t_para))))
-				ft_error("Error malloc!");
+			e->para[i] = ft_init_para(e->para[i]);
 			inpara = 1;
 		}
 		else if (inpara == 1 && tab[i][0] == '\t')
