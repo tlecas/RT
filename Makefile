@@ -6,7 +6,7 @@
 #    By: tlecas <tlecas@student.42.fr>              +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2017/07/23 22:58:05 by tlecas            #+#    #+#              #
-#    Updated: 2018/05/02 15:24:27 by tlecas           ###   ########.fr        #
+#    Updated: 2018/05/02 15:30:32 by tlecas           ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -49,7 +49,7 @@ OBJ_NAME = $(SRC_NAME:.c=.o)
 OBJ = $(addprefix $(OBJ_PATH),$(OBJ_NAME))
 CC = gcc
 CFLAGS = -Wall -Wextra -Werror -Ofast -march=native
-CPPFLAGS = -Iincludes -Ilibft/includes -Iminilibx_macos -Iimages
+CPPFLAGS = -Iincludes -Ilibft/includes -Iminilibx_macos -Ilodepng
 OPTI_MODE = -g
 LIBFT = ./libft/libft.a
 MLX = ./minilibx_macos/libmlx.a
