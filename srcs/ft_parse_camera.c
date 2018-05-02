@@ -15,7 +15,7 @@
 t_cam			*ft_init_camera(t_cam *cam)
 {
 	if (!(cam = malloc(sizeof(t_cam))))
-		ft_error("Error malloc!");
+		ft_error("Error malloc!", 0, 0);
 	cam->pos = coord_v(0.0f, 0.0f, 0.0f);
 	cam->angle = coord_v(0.0f, 0.0f, 0.0f);
 	return (cam);
@@ -45,7 +45,7 @@ static t_cam	*ft_parse_properties(t_cam *cam, char *str)
 	if (str[0] == '\t')
 	{
 		if ((!ft_fill_coords(cam, str)))
-			ft_error("Can't parse properties of an object");
+			ft_error("Can't parse properties of an object", 0, 0);
 		return (cam);
 	}
 	return (0);

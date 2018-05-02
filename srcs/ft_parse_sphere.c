@@ -46,7 +46,7 @@ static int		ft_fill_properties(t_sphere *sphere, char *str)
 			(sphere->color == UINT_MAX || sphere->color == 0))
 			|| (errno != 0 && sphere->color == 0) || '\0' != *test)
 		{
-			ft_error("Invalid color");
+			ft_error("Invalid color", 0, 0);
 		}
 	}
 	else if (ft_fill_properties2(sphere, str))
@@ -76,7 +76,7 @@ static t_sphere	*ft_parse_properties(t_sphere *sphere, char *str)
 	{
 		if ((!ft_fill_coords(sphere, str)) &&
 			(!ft_fill_properties(sphere, str)))
-			ft_error("Can't parse properties of an object");
+			ft_error("Can't parse properties of an object", 0, 0);
 		return (sphere);
 	}
 	return (0);
@@ -92,7 +92,7 @@ int				ft_parse_sphere(t_env *e, char **tab)
 	j = -1;
 	insphere = 0;
 	if (!(e->sphere = ft_memalloc(sizeof(t_sphere *) * (e->objnb->sphere + 1))))
-		ft_error("error malloc");
+		ft_error("error malloc", 0, 0);
 	while (tab[++i])
 	{
 		if (!(ft_strcmp(tab[i], "sphere:")))

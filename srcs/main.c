@@ -29,7 +29,7 @@ int		main(int ac, char **av)
 	e = 0;
 	if (ac != 2)
 	{
-		ft_error("usage: rt [filename]");
+		ft_error("usage: rt [filename]", 0, 0);
 		return (0);
 	}
 	e = ft_init(av[1]);

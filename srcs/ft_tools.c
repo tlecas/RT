@@ -6,7 +6,7 @@
 /*   By: tlecas <tlecas@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/11/08 15:16:19 by tlecas            #+#    #+#             */
-/*   Updated: 2018/05/02 12:34:14 by tlecas           ###   ########.fr       */
+/*   Updated: 2018/05/02 15:05:08 by tlecas           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -150,8 +150,12 @@ int		ft_isview(float *obj, int i)
 	return (j);
 }
 
-void	ft_error(char *str)
+void	ft_error(char *str, void *ptr1, void *ptr2)
 {
+	if (ptr1)
+		free (ptr1);
+	if (ptr2)
+		free(ptr2);
 	ft_putendl(str);
 	exit(EXIT_FAILURE);
 }

@@ -50,7 +50,7 @@ char		*ft_concat_c_params(char *str1, const char *str2, char c)
 	else if (str1 != 0 && ++k)
 		i = ft_strlen(str1) + ft_strlen(str2) + 1;
 	if (!(ret = malloc(sizeof(char) * (i + 1))))
-		ft_error("Error malloc!");
+		ft_error("Error malloc!", 0, 0);
 	while (++j <= i)
 	{
 		if (k == 1 && str1[j])

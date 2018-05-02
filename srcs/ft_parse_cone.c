@@ -46,7 +46,7 @@ static int		ft_fill_properties(t_cone *cone, char *str)
 		free(tmp);
 		if ((errno == ERANGE && (cone->color == UINT_MAX || cone->color == 0))
 			|| (errno != 0 && cone->color == 0) || '\0' != *test)
-			ft_error("Invalid color");
+			ft_error("Invalid color", 0, 0);
 	}
 	else
 		return (0);
@@ -77,7 +77,7 @@ static t_cone	*ft_parse_properties(t_cone *cone, char *str)
 	if (str && str[0] == '\t')
 	{
 		if ((!ft_fill_coords(cone, str)) && (!ft_fill_properties(cone, str)))
-			ft_error("Can't parse properties of an object");
+			ft_error("Can't parse properties of an object", 0, 0);
 		return (cone);
 	}
 	return (0);
@@ -93,7 +93,7 @@ int				ft_parse_cone(t_env *e, char **tab)
 	j = -1;
 	incone = 0;
 	if (!(e->cone = ft_memalloc(sizeof(t_cone *) * (e->objnb->cone + 1))))
-		ft_error("error malloc");
+		ft_error("error malloc", 0, 0);
 	while (tab[++i])
 	{
 		if (!ft_strcmp(tab[i], "cone:"))

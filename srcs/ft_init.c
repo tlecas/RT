@@ -6,7 +6,7 @@
 /*   By: tlecas <tlecas@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/10/05 17:38:05 by tlecas            #+#    #+#             */
-/*   Updated: 2018/05/02 12:33:38 by tlecas           ###   ########.fr       */
+/*   Updated: 2018/05/02 15:16:05 by tlecas           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,7 +15,7 @@
 static	t_env *ft_init_obj_nb(t_env *e)
 {
 	if (!(e->objnb = malloc(sizeof(t_objnb))))
-		ft_error("Error malloc!");
+		ft_error("Error malloc!", 0, 0);
 	e->objnb->sphere = 0;
 	e->objnb->cylinder = 0;
 	e->objnb->cone = 0;
@@ -47,16 +47,16 @@ t_env		*ft_init(char *filename)
 	i = -1;
 	(void)tab;
 	if (!(e = malloc(sizeof(t_env))))
-		ft_error("malloc error");
+		ft_error("malloc error", 0, 0);
 	e->keys = 0;
 	if (!(e->mlx = mlx_init()))
 	{
 		free(e);
-		ft_error("mlx_init error");
+		ft_error("mlx_init error", 0, 0);
 	}
 	e = ft_init_obj_nb(e);
 	if (!(e->filename = malloc(sizeof(char) * (ft_strlen(filename) + 1))))
-		ft_error("malloc error");
+		ft_error("malloc error", 0, 0);
 	e->filename = ft_strcpy(e->filename, filename);
 	tab = ft_parse_file(e);
 	e = ft_load_obj(e, tab);

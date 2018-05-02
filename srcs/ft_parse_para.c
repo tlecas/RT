@@ -26,7 +26,7 @@ static int			ft_fill_properties(t_para *para, char *str)
 		free(tmp);
 		if ((errno == ERANGE && (para->color == UINT_MAX || para->color == 0))
 			|| (errno != 0 && para->color == 0) || '\0' != *test)
-			ft_error("Invalid color");
+			ft_error("Invalid color", 0, 0);
 	}
 	else if (!(ft_strncmp(str, "\tdiffuse: ", 10)))
 		para->mat.diffuse = ft_atof_free(ft_strrcpy(str, 10));
@@ -67,7 +67,7 @@ static t_para		*ft_parse_properties(t_para *para, char *str)
 	if (str && str[0] == '\t')
 	{
 		if (!(ft_fill_coords(para, str)) && (!(ft_fill_properties(para, str))))
-			ft_error("Can't parse properties of an object");
+			ft_error("Can't parse properties of an object", 0, 0);
 		return (para);
 	}
 	return (0);
@@ -83,7 +83,7 @@ int					ft_parse_para(t_env *e, char **tab)
 	j = -1;
 	inpara = 0;
 	if (!(e->para = ft_memalloc(sizeof(t_para *) * (e->objnb->para + 1))))
-		ft_error("error malloc");
+		ft_error("error malloc", 0, 0);
 	while (tab[++i])
 	{
 		if (!ft_strcmp(tab[i], "paraboloid:"))

@@ -45,7 +45,7 @@ static int			ft_fill_properties(t_cylinder *cylinder, char *str)
 		if ((errno == ERANGE && (cylinder->color == UINT_MAX ||
 			cylinder->color == 0))
 			|| (errno != 0 && cylinder->color == 0) || '\0' != *test)
-			ft_error("Invalid color");
+			ft_error("Invalid color", 0, 0);
 	}
 	else if (ft_fill_properties2(cylinder, str))
 		(void)tmp;
@@ -79,7 +79,7 @@ static t_cylinder	*ft_parse_properties(t_cylinder *cylinder, char *str)
 	{
 		if ((!ft_fill_coords(cylinder, str)) &&
 			(!ft_fill_properties(cylinder, str)))
-			ft_error("Can't parse properties of an object");
+			ft_error("Can't parse properties of an object", 0, 0);
 		return (cylinder);
 	}
 	return (0);
@@ -96,7 +96,7 @@ int					ft_parse_cylinder(t_env *e, char **tab)
 	incylinder = 0;
 	if (!(e->cylinder = ft_memalloc(sizeof(t_cylinder *) *
 		(e->objnb->cylinder + 1))))
-		ft_error("error malloc");
+		ft_error("error malloc", 0, 0);
 	while (tab[++i])
 	{
 		if (!ft_strcmp(tab[i], "cylinder:"))

@@ -15,7 +15,7 @@
 t_light				*ft_init_light(t_light *light)
 {
 	if (!(light = malloc(sizeof(t_light))))
-		ft_error("Error malloc'ing!");
+		ft_error("Error malloc'ing!", 0, 0);
 	light->pos = coord_v(0, 0, 0);
 	light->intensity = 1.0;
 	light->color = 0x00FFFFFF;
@@ -38,7 +38,7 @@ static int			ft_fill_properties(t_light *light, char *str)
 		if ((errno == ERANGE && (light->color == UINT_MAX || light->color == 0))
 			|| (errno != 0 && light->color == 0) || '\0' != *test)
 		{
-			ft_error("Invalid color");
+			ft_error("Invalid color", 0, 0);
 		}
 	}
 	else
@@ -66,7 +66,7 @@ static t_light		*ft_parse_properties(t_light *light, char *str)
 	if (str && str[0] == '\t')
 	{
 		if ((!ft_fill_coords(light, str)) && (!ft_fill_properties(light, str)))
-			ft_error("Can't parse properties of an object");
+			ft_error("Can't parse properties of an object", 0, 0);
 		return (light);
 	}
 	return (0);
@@ -82,7 +82,7 @@ int					ft_parse_light(t_env *e, char **tab)
 	j = -1;
 	inlight = 0;
 	if (!(e->light = ft_memalloc(sizeof(t_light *) * (e->objnb->light + 1))))
-		ft_error("error malloc");
+		ft_error("error malloc", 0, 0);
 	while (tab[++i])
 	{
 		if (!ft_strcmp(tab[i], "light:"))

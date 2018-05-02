@@ -6,7 +6,7 @@
 /*   By: tlecas <tlecas@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/05/01 22:53:28 by tlecas            #+#    #+#             */
-/*   Updated: 2018/05/02 13:44:25 by tlecas           ###   ########.fr       */
+/*   Updated: 2018/05/02 15:16:05 by tlecas           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -35,22 +35,22 @@ static char		*fname(t_env *e)
 	char	*f_name;
 
 	time(&epoch);
-	!(buf = ft_strdup(e->filename)) ? ft_error("strjoin error") : 0;
+	!(buf = ft_strdup(e->filename)) ? ft_error("strjoin error", 0, 0) : 0;
 	tmp = buf;
 	buf = ft_strrchr(buf, '/');
 	buf[ft_strrchr(buf, '.') - buf] = '\0';
 	if (!(buf = ft_strjoin(buf, "_%d_%m_%Y_%H-%M-%S")))
-		ft_error("strjoin error");
+		ft_error("strjoin error", 0, 0);
 	ft_strdel(&tmp);
-	!(f_name = ft_strnew(128)) ? ft_error("strjoin error") : 0;
+	!(f_name = ft_strnew(128)) ? ft_error("strjoin error", 0, 0) : 0;
 	strftime(f_name, 128, buf, localtime(&epoch));
 	ft_strdel(&buf);
 	tmp = f_name;
 	if (!(f_name = ft_strjoin("./screenshots", f_name)))
-		ft_error("strjoin error");
+		ft_error("strjoin error", 0, 0);
 	ft_strdel(&tmp);
 	tmp = f_name;
-	!(f_name = ft_strjoin(f_name, ".ppm")) ? ft_error("strjoin error") : 0;
+	!(f_name = ft_strjoin(f_name, ".ppm")) ? ft_error("strjoin error", 0, 0) : 0;
 	ft_strdel(&tmp);
 	return (f_name);
 }
@@ -92,10 +92,10 @@ void			screenshot(t_env *e)
 
 	name = fname(e);
 	if ((fd = open(name, O_WRONLY | O_CREAT, OFLAGS)) == -1)
-		ft_error("open error");
+		ft_error("open error", 0, 0);
 	ft_strdel(&name);
 	if (header(e, fd) == -1)
-		ft_error("write error");
+		ft_error("write error", 0, 0);
 	i = 0;
 	while (i < e->win_area)
 	{

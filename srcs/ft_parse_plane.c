@@ -6,7 +6,7 @@
 /*   By: tlecas <tlecas@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/11/15 12:37:22 by tlecas            #+#    #+#             */
-/*   Updated: 2018/04/30 04:08:36 by tlecas           ###   ########.fr       */
+/*   Updated: 2018/05/02 15:16:05 by tlecas           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,7 +25,7 @@ static t_bool		ft_fill_properties2(t_plane *plane, char *str)
 		free(tmp);
 		if ((errno == ERANGE && (plane->color == UINT_MAX || plane->color == 0))
 			|| (errno != 0 && plane->color == 0) || '\0' != *test)
-			ft_error("Invalid color");
+			ft_error("Invalid color", 0, 0);
 	}
 	else if (!(ft_strncmp(str, "\tdiffuse: ", 10)))
 		plane->mat.diffuse = ft_atof_free(ft_strrcpy(str, 10));
@@ -89,7 +89,7 @@ static t_plane		*ft_parse_properties(t_plane *plane, char *str)
 	{
 		if (!(ft_fill_coords(plane, str)) &&
 			(!(ft_fill_properties(plane, str))))
-			ft_error("Can't parse properties of an object");
+			ft_error("Can't parse properties of an object", 0, 0);
 		return (plane);
 	}
 	return (0);
@@ -105,14 +105,14 @@ int					ft_parse_plane(t_env *e, char **tab)
 	j = -1;
 	inplane = 0;
 	if (!(e->plane = ft_memalloc(sizeof(t_plane *) * (e->objnb->plane + 1))))
-		ft_error("error malloc");
+		ft_error("error malloc", 0, 0);
 	while (tab[++i])
 	{
 		if (!ft_strcmp(tab[i], "plane:"))
 		{
 			++j;
 			if (!(e->plane[j] = ft_memalloc(sizeof(t_plane))))
-				ft_error("Error malloc!");
+				ft_error("Error malloc!", 0, 0);
 			inplane = 1;
 		}
 		else if (inplane == 1 && tab[i][0] == '\t')
