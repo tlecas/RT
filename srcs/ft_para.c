@@ -23,17 +23,16 @@ void			ft_post_para(t_thread *thr, unsigned int *tmp)
 	thr->normal = thr->e->para[i]->normal;
 	thr->interpos = vectadd(thr->ray.pos, vmult(thr->ray.dir, thr->value));
 	m = dot(vectsub(thr->interpos, thr->pos), thr->normal);
-	thr->internorm = normalize(vectsub(vectsub(thr->interpos, thr->pos), vmult(thr->normal, m + thr->ar)));
+	thr->internorm = normalize(vectsub(vectsub(thr->interpos, thr->pos),
+				vmult(thr->normal, m + thr->ar)));
 	if (!(thr->e->para[i]->mat.refraction > .1) && (thr->e->keys & ROUGH))
 		thr->internorm = vmult(thr->internorm, (sin(thr->x / 8) * .1f) + 1.0f);
 	*tmp = thr->e->para[i]->color;
 }
 
-float		ft_calc_para(t_para *para, t_ray *ray)
+float			ft_calc_para(t_para *para, t_ray *ray)
 {
-	float	a;
-	float	b;
-	float	c;
+	float	tab[3];
 	float	delta;
 	float	tmp;
 	t_vect	pos;
@@ -42,11 +41,13 @@ float		ft_calc_para(t_para *para, t_ray *ray)
 		para->normal = coord_v(0.0f, 1.0f, 0.0f);
 	para->normal = normalize(para->normal);
 	pos = vectsub(ray->pos, para->pos);
-	a = dot(ray->dir, ray->dir) - powf(dot(ray->dir, para->normal), 2);
-	b = 2.0f * (dot(pos, ray->dir) - dot(ray->dir, para->normal) * (dot(pos, para->normal) + 2.0f * para->k));
-	c = dot(pos, pos) - dot(pos, para->normal) * (dot(pos, para->normal) + 4.0f * para->k);
-	delta = b * b - 4.0f * a * c;
-	tmp = ft_eq_second(delta, a, b, c);
+	tab[0] = dot(ray->dir, ray->dir) - powf(dot(ray->dir, para->normal), 2);
+	tab[1] = 2.0f * (dot(pos, ray->dir) - dot(ray->dir, para->normal)
+			* (dot(pos, para->normal) + 2.0f * para->k));
+	tab[2] = dot(pos, pos) - dot(pos, para->normal)
+			* (dot(pos, para->normal) + 4.0f * para->k);
+	delta = tab[1] * tab[1] - 4.0f * tab[0] * tab[2];
+	tmp = ft_eq_second(delta, tab[0], tab[1], tab[2]);
 	if (tmp < 0.0001f)
 		return (0);
 	return (tmp);

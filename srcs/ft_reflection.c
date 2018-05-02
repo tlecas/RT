@@ -14,48 +14,40 @@
 
 float	fresnel(t_thread *thr)
 {
-	float	kr;
-	float	cosi;
-	float	etai;
-	float	sint;
-	float	cost;
-	float	rs;
-	float	rp;
-	float	refraction;
+	float	tab[8];
 
-	etai = 1;
-	refraction = thr->mat.refraction;
-	cosi = fclamp(dot(thr->internorm, thr->ray.dir), -1.0, 1.0);
-	if (cosi > 0)
+	tab[2] = 1;
+	tab[7] = thr->mat.refraction;
+	tab[1] = fclamp(dot(thr->internorm, thr->ray.dir), -1.0, 1.0);
+	if (tab[1] > 0)
 	{
-		sint = etai;
-		etai = refraction;
-		refraction = sint;
+		tab[3] = tab[2];
+		tab[2] = tab[7];
+		tab[7] = tab[3];
 	}
-	sint = etai / refraction * sqrt(fclamp((1 - cosi * cosi), 0, 400000));
-	if (sint >= 1.00)
-		kr = 1.00;
+	tab[3] = tab[2] / tab[7] * sqrt(fclamp((1 - tab[1] * tab[1]), 0, 400000));
+	if (tab[3] >= 1.00)
+		tab[0] = 1.00;
 	else
 	{
-		cost = sqrt(fclamp((1 - sint * sint), 0, 400000));
-		cosi = ABS(cosi);
-		rs = ((refraction * cosi) - (etai * cost)) / ((refraction * cosi) + (etai * cost));
-		rp = ((etai * cosi) - (refraction * cost)) / ((etai * cosi) + (refraction * cost));
-		kr = (rs * rs + rp * rp) / 2.0;
+		tab[4] = sqrt(fclamp((1 - tab[3] * tab[3]), 0, 400000));
+		tab[1] = ABS(tab[1]);
+		tab[5] = ((tab[7] * tab[1]) - (tab[2] * tab[4])) / ((tab[7] * tab[1]) + (tab[2] * tab[4]));
+		tab[6] = ((tab[2] * tab[1]) - (tab[7] * tab[4])) / ((tab[2] * tab[1]) + (tab[7] * tab[4]));
+		tab[0] = (tab[5] * tab[5] + tab[6] * tab[6]) / 2.0;
 	}
-	return (kr);
+	return (tab[0]);
 }
 
 t_vect	refracted2(t_thread *thr)
 {
 	float			refraction;
 	float			cosi;
-	float			etai;
-	float			eta;
+	float			eta[2];
 	float			k;
 	t_vect			v;
 
-	etai = 1;
+	eta[0] = 1;
 	v = thr->internorm;
 	refraction = thr->mat.refraction;
 	cosi = fclamp(dot(thr->internorm, thr->ray.dir), -1.0f, 1.0f);
@@ -63,14 +55,15 @@ t_vect	refracted2(t_thread *thr)
 		cosi = -cosi;
 	else
 	{
-		eta = refraction;
-		refraction = etai;
-		etai = eta;
+		eta[1] = refraction;
+		refraction = eta[0];
+		eta[0] = eta[1];
 		v = vmult(v, -1);
 	}
-	eta = etai / refraction;
-	k = 1.0f - eta * eta * (1.0f - cosi * cosi);
-	return (k < 0.0f ? coord_v(0, 0, 0) : vectadd(vmult(thr->ray.dir, eta), vmult(v, (eta * cosi -  sqrt(k)))));
+	eta[1] = eta[0] / refraction;
+	k = 1.0f - eta[1] * eta[1] * (1.0f - cosi * cosi);
+	return (k < 0.0f ? coord_v(0, 0, 0) : vectadd(vmult(thr->ray.dir, eta[1]),
+				vmult(v, (eta[1] * cosi -  sqrt(k)))));
 }
 
 unsigned int	refracted(t_thread *thr, unsigned int color, float kr)
