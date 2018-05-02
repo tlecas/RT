@@ -12,12 +12,9 @@
 
 #include "rt.h"
 
-int g_x;
-int g_y;
-
 int		ft_shadow_sphere(t_thread *thr, int i, t_ray *shadow_eye)
 {
-	t_sphere	shadow_sphere;
+	t_sphere		shadow_sphere;
 	float			j;
 
 	j = 0.0f;
@@ -31,7 +28,7 @@ int		ft_shadow_sphere(t_thread *thr, int i, t_ray *shadow_eye)
 
 int		ft_shadow_cone(t_thread *thr, int i, t_ray *shadow_eye)
 {
-	t_cone	shadow_cone;
+	t_cone			shadow_cone;
 	float			j;
 
 	j = 0.0f;
@@ -46,7 +43,7 @@ int		ft_shadow_cone(t_thread *thr, int i, t_ray *shadow_eye)
 
 int		ft_shadow_cylinder(t_thread *thr, int i, t_ray *shadow_eye)
 {
-	t_cylinder	shadow_cylinder;
+	t_cylinder		shadow_cylinder;
 	float			j;
 
 	j = 0.0f;
@@ -61,7 +58,7 @@ int		ft_shadow_cylinder(t_thread *thr, int i, t_ray *shadow_eye)
 
 int		ft_shadow_para(t_thread *thr, int i, t_ray *shadow_eye)
 {
-	t_para		shadow_para;
+	t_para			shadow_para;
 	float			j;
 
 	j = 0.0f;
@@ -76,7 +73,7 @@ int		ft_shadow_para(t_thread *thr, int i, t_ray *shadow_eye)
 
 int		ft_shadow_plane(t_thread *thr, int i, t_ray *shadow_eye)
 {
-	t_plane		shadow_plane;
+	t_plane			shadow_plane;
 	float			j;
 
 	j = 0.0f;

@@ -6,7 +6,7 @@
 /*   By: tlecas <tlecas@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/10/16 13:50:12 by tlecas            #+#    #+#             */
-/*   Updated: 2018/05/02 15:16:05 by tlecas           ###   ########.fr       */
+/*   Updated: 2018/05/02 23:10:37 by tlecas           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -32,7 +32,7 @@ int			ft_read_file(t_env *e, char *line)
 			return (-1);
 	}
 	e->objnb->totobj = e->objnb->sphere + e->objnb->cylinder + e->objnb->cone +
-		e->objnb->plane + e->objnb->light + e->objnb->para;
+		e->objnb->plane + e->objnb->para;
 	return (1);
 }
 

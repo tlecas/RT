@@ -12,12 +12,13 @@
 
 #include "rt.h"
 
-void			ft_save_inter_sphere(t_thread *thr, t_sphere *sphere, t_ray *ray)
+void			ft_save_inter_sphere(t_thread *thr, t_sphere *sphere,
+					t_ray *ray)
 {
 	thr->interpos = vectadd(ray->pos, vmult(ray->dir, thr->value));
 	thr->internorm = normalize(vectsub(thr->interpos, sphere->pos));
 	if (!(sphere->mat.refraction > .1) && (thr->e->keys & ROUGH))
-		thr->internorm = vmult(thr->internorm, (sin(thr->x / 8) * 0.1f) + 1.0f); // surface rugueuse
+		thr->internorm = vmult(thr->internorm, (sin(thr->x / 8) * 0.1f) + 1.0f);
 }
 
 void			ft_post_sphere(t_thread *thr, unsigned int *tmp)
@@ -33,19 +34,17 @@ void			ft_post_sphere(t_thread *thr, unsigned int *tmp)
 
 float			ft_calc_sphere(t_sphere *sphere, t_ray *ray)
 {
-	float	a;
-	float	b;
-	float	c;
+	float	tab[3];
 	float	delta;
 	float	tmp;
 	t_vect	pos;
 
 	pos = vectsub(ray->pos, sphere->pos);
-	a = dot(ray->dir, ray->dir);
-	b = 2.0f * dot(pos, ray->dir);
-	c = dot(pos, pos) - (sphere->radius * sphere->radius);
-	delta = b * b - 4.0f * a * c;
-	tmp = ft_eq_second(delta, a, b, c);
+	tab[0] = dot(ray->dir, ray->dir);
+	tab[1] = 2.0f * dot(pos, ray->dir);
+	tab[2] = dot(pos, pos) - (sphere->radius * sphere->radius);
+	delta = tab[1] * tab[1] - 4.0f * tab[0] * tab[2];
+	tmp = ft_eq_second(delta, tab[0], tab[1], tab[2]);
 	if (tmp < 0.0001f)
 		return (0);
 	return (tmp);

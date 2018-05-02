@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   ft_parse_init_obj.c                                :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: mprevot <marvin@42.fr>                     +#+  +:+       +#+        */
+/*   By: mprevot <mprevot@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/05/02 12:32:28 by mprevot           #+#    #+#             */
-/*   Updated: 2018/05/02 12:32:30 by mprevot          ###   ########.fr       */
+/*   Updated: 2018/05/02 22:41:23 by tlecas           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,7 +19,7 @@ t_cylinder		*ft_init_cylinder(t_cylinder *cylinder)
 	cylinder->pos = coord_v(0, 0, 0);
 	cylinder->axis = coord_v(0, 0, 0);
 	cylinder->radius = 1.0;
-	cylinder->color = 0xFF00FF00;
+	cylinder->color = 0x0000FF00;
 	cylinder->mat = ft_mat_init();
 	cylinder->inter = 0;
 	return (cylinder);

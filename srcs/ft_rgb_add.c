@@ -19,6 +19,7 @@ static void		ft_sepia_color(unsigned int *color, unsigned int r,
 	unsigned int r2;
 	unsigned int g2;
 	unsigned int b2;
+
 	r2 = r * .39 + g * .77 + b * .19;
 	g2 = r * .35 + g * .69 + b * .17;
 	b2 = r * .27 + g * .53 + b * .13;
@@ -36,7 +37,7 @@ static void		ft_rgb_add_sepia(unsigned int *d, unsigned int *color,
 	unsigned int b;
 	unsigned int filtbw;
 
-	r = (*color >> 24) + (*d >> 24); 
+	r = (*color >> 24) + (*d >> 24);
 	uiclamp(&r, 0, 255);
 	*color <<= 8;
 	*d <<= 8;
@@ -82,6 +83,19 @@ static void		ft_rgb_add_cartoon(unsigned int *d, unsigned int *color,
 		*color = (r << 16) + (g << 8) + b;
 }
 
+static void		rgb_define_rg(unsigned int *r, unsigned int *g,
+						unsigned int *d, unsigned int *color)
+{
+	*r = (*color >> 24) + (*d >> 24);
+	uiclamp(r, 0, 255);
+	*color <<= 8;
+	*d <<= 8;
+	*g = (*color >> 24) + (*d >> 24);
+	uiclamp(g, 0, 255);
+	*color <<= 8;
+	*d <<= 8;
+}
+
 void			rgb_add(unsigned int *color, unsigned int d, t_thread *thr)
 {
 	unsigned int r;
@@ -96,15 +110,7 @@ void			rgb_add(unsigned int *color, unsigned int d, t_thread *thr)
 	else if (thr->keys & SEPIA)
 		ft_rgb_add_sepia(&d, color, thr);
 	else
-	{
-	r = (*color >> 24) + (d >> 24);
-	uiclamp(&r, 0, 255);
-	*color <<= 8;
-	d <<= 8;
-	g = (*color >> 24) + (d >> 24);
-	uiclamp(&g, 0, 255);
-	*color <<= 8;
-	d <<= 8;
+		rgb_define_rg(&r, &g, &d, color);
 	b = (*color >> 24) + (d >> 24);
 	uiclamp(&b, 0, 255);
 	if (thr->keys & BLACK)
@@ -114,5 +120,4 @@ void			rgb_add(unsigned int *color, unsigned int d, t_thread *thr)
 	}
 	else
 		*color = (r << 16) + (g << 8) + b;
-	}
 }
