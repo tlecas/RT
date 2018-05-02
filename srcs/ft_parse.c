@@ -49,16 +49,10 @@ char		**ft_parse_file(t_env *e)
 		ft_error("The file does not exist!");
 	while (get_next_line(e->fd, &line))
 	{
-		if (++i <= 4)
-		{
-			if (ft_parse_main_properties(e, line) == -1)
-				ft_error("error parse main properties.");
-		}
-		else if (i > 4)
-		{
-			if (ft_read_file(e, line) == -1)
-				ft_error("error parsing object properties.");
-		}
+		if (++i <= 4 && ft_parse_main_properties(e, line) == -1)
+			ft_error("error parse main properties.");
+		if (i > 4 && ft_read_file(e, line) == -1)
+			ft_error("error parsing object properties.");
 		str = ft_concat_c_params(str, line, '\n');
 		free(line);
 	}
