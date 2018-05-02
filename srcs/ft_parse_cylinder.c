@@ -12,7 +12,24 @@
 
 #include "rt.h"
 
-static int		ft_fill_properties(t_cylinder *cylinder, char *str)
+static t_bool		ft_fill_properties2(t_cylinder *cylinder, char *str)
+{
+	if (!(ft_strncmp(str, "\tambient: ", 10)))
+		cylinder->mat.ambient = ft_atof_free(ft_strrcpy(str, 10));
+	else if (!(ft_strncmp(str, "\tdiffuse: ", 10)))
+		cylinder->mat.diffuse = ft_atof_free(ft_strrcpy(str, 10));
+	else if (!(ft_strncmp(str, "\tspecular: ", 11)))
+		cylinder->mat.specular = ft_atof_free(ft_strrcpy(str, 11));
+	else if (!(ft_strncmp(str, "\treflection: ", 13)))
+		cylinder->mat.reflection = ft_atof_free(ft_strrcpy(str, 13));
+	else if (!(ft_strncmp(str, "\trefraction: ", 13)))
+		cylinder->mat.refraction = ft_atof_free(ft_strrcpy(str, 13));
+	else
+		return (0);
+	return (1);
+}
+
+static int			ft_fill_properties(t_cylinder *cylinder, char *str)
 {
 	char	*tmp;
 	char	*test;
@@ -30,22 +47,14 @@ static int		ft_fill_properties(t_cylinder *cylinder, char *str)
 			|| (errno != 0 && cylinder->color == 0) || '\0' != *test)
 			ft_error("Invalid color");
 	}
-	else if (!(ft_strncmp(str, "\tambient: ", 10)))
-		cylinder->mat.ambient = ft_atof_free(ft_strrcpy(str, 10));
-	else if (!(ft_strncmp(str, "\tdiffuse: ", 10)))
-		cylinder->mat.diffuse = ft_atof_free(ft_strrcpy(str, 10));
-	else if (!(ft_strncmp(str, "\tspecular: ", 11)))
-		cylinder->mat.specular = ft_atof_free(ft_strrcpy(str, 11));
-	else if (!(ft_strncmp(str, "\treflection: ", 13)))
-		cylinder->mat.reflection = ft_atof_free(ft_strrcpy(str, 13));
-	else if (!(ft_strncmp(str, "\trefraction: ", 13)))
-		cylinder->mat.refraction = ft_atof_free(ft_strrcpy(str, 13));
+	else if (ft_fill_properties2(cylinder, str))
+		(void)tmp;
 	else
 		return (0);
 	return (1);
 }
 
-static int		ft_fill_coords(t_cylinder *cylinder, char *str)
+static int			ft_fill_coords(t_cylinder *cylinder, char *str)
 {
 	if (!(ft_strncmp(str, "\tx: ", 4)))
 		cylinder->pos.x = ft_atof_free(ft_strrcpy(str, 4));
@@ -64,7 +73,7 @@ static int		ft_fill_coords(t_cylinder *cylinder, char *str)
 	return (1);
 }
 
-static t_cylinder		*ft_parse_properties(t_cylinder *cylinder, char *str)
+static t_cylinder	*ft_parse_properties(t_cylinder *cylinder, char *str)
 {
 	if (str && str[0] == '\t')
 	{
@@ -76,7 +85,7 @@ static t_cylinder		*ft_parse_properties(t_cylinder *cylinder, char *str)
 	return (0);
 }
 
-int		ft_parse_cylinder(t_env *e, char **tab)
+int					ft_parse_cylinder(t_env *e, char **tab)
 {
 	int		i;
 	int		j;
