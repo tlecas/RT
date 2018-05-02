@@ -6,7 +6,7 @@
 /*   By: tlecas <tlecas@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/05/01 22:53:28 by tlecas            #+#    #+#             */
-/*   Updated: 2018/05/03 01:42:20 by tlecas           ###   ########.fr       */
+/*   Updated: 2018/05/03 01:48:37 by tlecas           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -50,7 +50,8 @@ static char		*fname(t_env *e)
 		ft_error("strjoin error", 0, 0);
 	ft_strdel(&tmp);
 	tmp = f_name;
-	!(f_name = ft_strjoin(f_name, ".ppm")) ? ft_error("strjoin error", 0, 0) : 0;
+	!(f_name = ft_strjoin(f_name, ".ppm")) ?
+		ft_error("strjoin error", 0, 0) : 0;
 	ft_strdel(&tmp);
 	return (f_name);
 }
