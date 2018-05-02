@@ -259,6 +259,7 @@ int					ft_parse_para(t_env *e, char **eab);
 t_cylinder			*ft_init_cylinder(t_cylinder *cylinder);
 t_para				*ft_init_para(t_para *para);
 t_sphere			*ft_init_sphere(t_sphere *sphere);
+t_cone				*ft_init_cone(t_cone *cone);
 int					ft_parse_main_properties(t_env *e, char *str);
 int					ft_is_shape_named(char *str1, char *str2);
 float				fresnel(t_thread *thr);

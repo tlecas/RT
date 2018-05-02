@@ -12,17 +12,23 @@
 
 #include "rt.h"
 
-t_cone		*ft_init_cone(t_cone *cone)
+static t_bool	ft_fill_properties2(t_cone *cone, char *str)
 {
-	if (!(cone = malloc(sizeof(t_cone))))
-		ft_error("Error malloc");
-	cone->pos = coord_v(0.0, 0.0, 0.0);
-	cone->axis = coord_v(0.0, 0.0, 0.0);
-	cone->angle = 0.0;
-	cone->color = 0x00FF0000;
-	cone->inter = 0.0;
-	cone->mat = ft_mat_init();
-	return (cone);
+	if (!(ft_strncmp(str, "\tangle: ", 8)))
+		cone->angle = ft_atof_free(ft_strrcpy(str, 8));
+	else if (!(ft_strncmp(str, "\tambient: ", 10)))
+		cone->mat.ambient = ft_atof_free(ft_strrcpy(str, 10));
+	else if (!(ft_strncmp(str, "\tdiffuse: ", 10)))
+		cone->mat.diffuse = ft_atof_free(ft_strrcpy(str, 10));
+	else if (!(ft_strncmp(str, "\tspecular: ", 11)))
+		cone->mat.specular = ft_atof_free(ft_strrcpy(str, 11));
+	else if (!(ft_strncmp(str, "\treflection: ", 13)))
+		cone->mat.reflection = ft_atof_free(ft_strrcpy(str, 13));
+	else if (!(ft_strncmp(str, "\trefraction: ", 13)))
+		cone->mat.refraction = ft_atof_free(ft_strrcpy(str, 13));
+	else
+		return (0);
+	return (1);
 }
 
 static int		ft_fill_properties(t_cone *cone, char *str)
@@ -30,55 +36,43 @@ static int		ft_fill_properties(t_cone *cone, char *str)
 	char	*tmp;
 	char	*test;
 
-	if (!(ft_strncmp(str, "\tangle: ", 8)))
-		cone->angle = ft_atof(tmp = ft_strrcpy(str, 8));
-	else if (!(ft_strncmp(str, "\tambient: ", 10)))
-		cone->mat.ambient = ft_atof(tmp = ft_strrcpy(str, 10));
-	else if (!(ft_strncmp(str, "\tdiffuse: ", 10)))
-		cone->mat.diffuse = ft_atof(tmp = ft_strrcpy(str, 10));
-	else if (!(ft_strncmp(str, "\tspecular: ", 11)))
-		cone->mat.specular = ft_atof(tmp = ft_strrcpy(str, 11));
-	else if (!(ft_strncmp(str, "\treflection: ", 13)))
-		cone->mat.reflection = ft_atof(tmp = ft_strrcpy(str, 13));
-	else if (!(ft_strncmp(str, "\trefraction: ", 13)))
-		cone->mat.refraction = ft_atof(tmp = ft_strrcpy(str, 13));
+	if (ft_fill_properties2(cone, str))
+		(void)tmp;
 	else if (!(ft_strncmp(str, "\tcolor: ", 8)))
 	{
 		errno = 0;
-		cone->color = strtol(tmp = ft_strrcpy(str, 8), &test, 16);
+		cone->color = strtol(
+			tmp = ft_strrcpy(str, 8), &test, 16);
+		free(tmp);
 		if ((errno == ERANGE && (cone->color == UINT_MAX || cone->color == 0))
-            || (errno != 0 && cone->color == 0) || '\0' != *test)
+			|| (errno != 0 && cone->color == 0) || '\0' != *test)
 			ft_error("Invalid color");
 	}
 	else
 		return (0);
-	free(tmp);
 	return (1);
 }
 
 static int		ft_fill_coords(t_cone *cone, char *str)
 {
-	char	*tmp;
-
 	if (!(ft_strncmp(str, "\tx: ", 4)))
-		cone->pos.x = ft_atof(tmp = ft_strrcpy(str, 4));
+		cone->pos.x = ft_atof_free(ft_strrcpy(str, 4));
 	else if (!(ft_strncmp(str, "\ty: ", 4)))
-		cone->pos.y = ft_atof(tmp = ft_strrcpy(str, 4));
+		cone->pos.y = ft_atof_free(ft_strrcpy(str, 4));
 	else if (!(ft_strncmp(str, "\tz: ", 4)))
-		cone->pos.z = ft_atof(tmp = ft_strrcpy(str, 4));
+		cone->pos.z = ft_atof_free(ft_strrcpy(str, 4));
 	else if (!(ft_strncmp(str, "\taxisX: ", 8)))
-		cone->axis.x = ft_atof(tmp = ft_strrcpy(str, 8));
+		cone->axis.x = ft_atof_free(ft_strrcpy(str, 8));
 	else if (!(ft_strncmp(str, "\taxisY: ", 8)))
-		cone->axis.y = ft_atof(tmp = ft_strrcpy(str, 8));
+		cone->axis.y = ft_atof_free(ft_strrcpy(str, 8));
 	else if (!(ft_strncmp(str, "\taxisZ: ", 8)))
-		cone->axis.z = ft_atof(tmp = ft_strrcpy(str, 8));
+		cone->axis.z = ft_atof_free(ft_strrcpy(str, 8));
 	else
 		return (0);
-	free(tmp);
 	return (1);
 }
 
-static t_cone		*ft_parse_properties(t_cone *cone, char *str)
+static t_cone	*ft_parse_properties(t_cone *cone, char *str)
 {
 	if (str && str[0] == '\t')
 	{
@@ -89,7 +83,7 @@ static t_cone		*ft_parse_properties(t_cone *cone, char *str)
 	return (0);
 }
 
-int		ft_parse_cone(t_env *e, char **tab)
+int				ft_parse_cone(t_env *e, char **tab)
 {
 	int		i;
 	int		j;

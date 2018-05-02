@@ -49,3 +49,16 @@ t_sphere		*ft_init_sphere(t_sphere *sphere)
 	sphere->inter = 0.0f;
 	return (sphere);
 }
+
+t_cone			*ft_init_cone(t_cone *cone)
+{
+	if (!(cone = malloc(sizeof(t_cone))))
+		ft_error("Error malloc");
+	cone->pos = coord_v(0.0, 0.0, 0.0);
+	cone->axis = coord_v(0.0, 0.0, 0.0);
+	cone->angle = 0.0;
+	cone->color = 0x00FF0000;
+	cone->inter = 0.0;
+	cone->mat = ft_mat_init();
+	return (cone);
+}
