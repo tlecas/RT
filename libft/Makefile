@@ -92,13 +92,14 @@ SRC_NAME = 	ft_atoi.c \
 			ft_dot.c \
 			ft_vmult.c \
 			get_next_line.c \
-			ft_ddot.c
+			ft_ddot.c \
+			ft_strjoin_multi.c
 SRC = $(addprefix $(SRC_PATH),$(SRC_NAME))
 OBJ_PATH = ./obj/
 OBJ_NAME = $(SRC_NAME:.c=.o)
 OBJ = $(addprefix $(OBJ_PATH),$(OBJ_NAME))
 CC = gcc
-CFLAGS = -Wall -Wextra -Werror -Ofast -march=native
+CFLAGS = -Wall -Wextra -Werror -Ofast -march=native -Wno-varargs
 CPPFLAGS = -Iincludes
 
 .PHONY: all, clean, fclean, re

@@ -12,14 +12,14 @@
 
 #include "rt.h"
 
-float				flmax(float reflet, float f)
+float					flmax(float reflet, float f)
 {
 	if (reflet < f)
 		return (f);
 	return (reflet);
 }
 
-static float		ft_cos_a(t_thread *thr, t_light *light)
+static float			ft_cos_a(t_thread *thr, t_light *light)
 {
 	float	cos_a;
 	float	intensity;
@@ -30,11 +30,13 @@ static float		ft_cos_a(t_thread *thr, t_light *light)
 	intensity = fclamp((light->intensity / powf(light->norm_l, 2)), 0.0f, 1.0f);
 	cos_a = -1.0f;
 	if (light->norm_l * light->norm_obj != 0.0f)
-		cos_a = (light->prod_scal / (light->norm_l * light->norm_obj)) * intensity * thr->mat.diffuse;
+		cos_a = (light->prod_scal / (light->norm_l * light->norm_obj))
+				* intensity * thr->mat.diffuse;
 	return (cos_a);
 }
 
-static void				rgb_addl(unsigned int *color, unsigned int d, t_thread *thr)
+static void				rgb_addl(unsigned int *color, unsigned int d,
+										t_thread *thr)
 {
 	unsigned int	r;
 	unsigned int	g;
@@ -59,7 +61,8 @@ static void				rgb_addl(unsigned int *color, unsigned int d, t_thread *thr)
 		*color = (r << 16) + (g << 8) + b;
 }
 
-unsigned int		ft_light(t_thread *thr, t_light *light, unsigned int tmp)
+unsigned int			ft_light(t_thread *thr, t_light *light,
+								unsigned int tmp)
 {
 	unsigned int	color;
 	float			cos_a;
@@ -67,21 +70,22 @@ unsigned int		ft_light(t_thread *thr, t_light *light, unsigned int tmp)
 	t_vect			cam;
 	float			spec;
 
-
 	color = tmp;
 	light->vect = vectsub(light->pos, thr->interpos);
-	if(ft_is_shadow(thr, light))
+	if (ft_is_shadow(thr, light))
 		return (0x00000000);
 	if ((cos_a = ft_cos_a(thr, light)) < 0.0001f)
-		return(0x00000000);
+		return (0x00000000);
 	rgb_mult(&color, cos_a, thr);
-	reflet = vectsub(vmult(vmult(thr->internorm, dot(thr->internorm, light->vect)), 2.0f), light->vect);
+	reflet = vectsub(vmult(vmult(thr->internorm, dot(thr->internorm,
+						light->vect)), 2.0f), light->vect);
 	reflet = normalize(reflet);
 	cam = vectsub(thr->e->cam->pos, thr->interpos);
 	cam = normalize(cam);
 	spec = powf(flmax(dot(reflet, cam), 0.0f), 100.0f) * 100.0f;
 	if (spec > 0.0f)
 		rgb_addl(&color, (unsigned int)(spec * thr->mat.specular
-					* fclamp((light->intensity / powf(light->norm_l, 2)), 0.0f, 1.0f)), thr);
+					* fclamp((light->intensity
+					/ powf(light->norm_l, 2)), 0.0f, 1.0f)), thr);
 	return (color);
 }

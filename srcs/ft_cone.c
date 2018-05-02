@@ -23,9 +23,11 @@ void		ft_post_cone(t_thread *thr, unsigned int *tmp)
 	thr->pos = thr->e->cone[i]->pos;
 	thr->axis = thr->e->cone[i]->axis;
 	thr->interpos = vectadd(thr->ray.pos, vmult(thr->ray.dir, thr->value));
-	m = ddot(thr->ray.dir, thr->axis) * thr->value + ddot(thr->ray.pos, thr->axis);
+	m = ddot(thr->ray.dir, thr->axis) * thr->value
+		+ ddot(thr->ray.pos, thr->axis);
 	k = tan(thr->ar * (M_PI / 180));
-	thr->internorm = normalize(vectsub(vectsub(thr->interpos, thr->pos), vmult(vmult(thr->axis, (1 + k * k)), m)));
+	thr->internorm = normalize(vectsub(vectsub(thr->interpos, thr->pos),
+				vmult(vmult(thr->axis, (1 + k * k)), m)));
 	if (!(thr->e->cone[i]->mat.refraction > .1) && (thr->e->keys & ROUGH))
 		thr->internorm = vmult(thr->internorm, (sin(thr->x / 8) * .1f) + 1.0f);
 	*tmp = thr->e->cone[i]->color;
@@ -33,9 +35,7 @@ void		ft_post_cone(t_thread *thr, unsigned int *tmp)
 
 double		ft_calc_cone(t_cone *cone, t_ray *ray)
 {
-	double	a;
-	double	b;
-	double	c;
+	double	tab[3];
 	t_vect	pos;
 	double	delta;
 	double	tmp;
@@ -46,11 +46,13 @@ double		ft_calc_cone(t_cone *cone, t_ray *ray)
 	cone->axis = normalize(cone->axis);
 	pos = vectsub(ray->pos, cone->pos);
 	k = tan(cone->angle * (M_PI / 180));
-	a = dot(ray->dir, ray->dir) - (1 + k * k) * pow(dot(ray->dir, cone->axis), 2);
-	b = 2.0f * (dot(pos, ray->dir) - (1 + k * k) * dot(ray->dir, cone->axis) * dot(pos, cone->axis));
-	c = dot(pos, pos) - (1 + k * k) * pow(dot(pos, cone->axis), 2);
-	delta = b * b - 4.0 * a * c;
-	tmp = (ft_eq_second(delta, a, b, c));
+	tab[0] = dot(ray->dir, ray->dir) - (1 + k * k)
+		* pow(dot(ray->dir, cone->axis), 2);
+	tab[1] = 2.0f * (dot(pos, ray->dir) - (1 + k * k)
+			* dot(ray->dir, cone->axis) * dot(pos, cone->axis));
+	tab[2] = dot(pos, pos) - (1 + k * k) * pow(dot(pos, cone->axis), 2);
+	delta = tab[1] * tab[1] - 4.0 * tab[0] * tab[2];
+	tmp = (ft_eq_second(delta, tab[0], tab[1], tab[2]));
 	if (tmp < 0.0001)
 		return (0);
 	return (tmp);
