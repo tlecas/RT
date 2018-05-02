@@ -14,10 +14,10 @@
 
 int			ft_is_shape_named(char *str1, char *str2)
 {
-    if (!ft_strcmp(str1, str2))
-        return (1);
-    else
-        return (0);
+	if (!ft_strcmp(str1, str2))
+		return (1);
+	else
+		return (0);
 }
 
 t_vect		*ft_parse_coords(t_vect *pos, char *str)
