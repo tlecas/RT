@@ -12,7 +12,7 @@
 
 #include "rt.h"
 
-t_cam		*ft_init_camera(t_cam *cam)
+t_cam			*ft_init_camera(t_cam *cam)
 {
 	if (!(cam = malloc(sizeof(t_cam))))
 		ft_error("Error malloc!");
@@ -23,27 +23,24 @@ t_cam		*ft_init_camera(t_cam *cam)
 
 static int		ft_fill_coords(t_cam *cam, char *str)
 {
-	char	*tmp;
-
 	if (!(ft_strncmp(str, "\tx: ", 4)))
-		cam->pos.x = ft_atof(tmp = ft_strrcpy(str, 4));
+		cam->pos.x = ft_atof_free(ft_strrcpy(str, 4));
 	else if (!(ft_strncmp(str, "\ty: ", 4)))
-		cam->pos.y = ft_atof(tmp = ft_strrcpy(str, 4));
+		cam->pos.y = ft_atof_free(ft_strrcpy(str, 4));
 	else if (!(ft_strncmp(str, "\tz: ", 4)))
-		cam->pos.z = ft_atof(tmp = ft_strrcpy(str, 4));
+		cam->pos.z = ft_atof_free(ft_strrcpy(str, 4));
 	else if (!(ft_strncmp(str, "\tangle_x: ", 10)))
-		cam->angle.x = ft_atof(tmp = ft_strrcpy(str, 10));
+		cam->angle.x = ft_atof_free(ft_strrcpy(str, 10));
 	else if (!(ft_strncmp(str, "\tangle_y: ", 10)))
-		cam->angle.y = ft_atof(tmp = ft_strrcpy(str, 10));
+		cam->angle.y = ft_atof_free(ft_strrcpy(str, 10));
 	else if (!(ft_strncmp(str, "\tangle_z: ", 10)))
-		cam->angle.z = ft_atof(tmp = ft_strrcpy(str, 10));
+		cam->angle.z = ft_atof_free(ft_strrcpy(str, 10));
 	else
 		return (0);
-	free(tmp);
 	return (1);
 }
 
-static t_cam		*ft_parse_properties(t_cam *cam, char *str)
+static t_cam	*ft_parse_properties(t_cam *cam, char *str)
 {
 	if (str[0] == '\t')
 	{
@@ -54,7 +51,7 @@ static t_cam		*ft_parse_properties(t_cam *cam, char *str)
 	return (0);
 }
 
-int		ft_parse_camera(t_env *e, char **tab)
+int				ft_parse_camera(t_env *e, char **tab)
 {
 	int		i;
 	int		incam;
