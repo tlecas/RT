@@ -12,7 +12,7 @@
 
 #include "rt.h"
 
-t_light		*ft_init_light(t_light *light)
+t_light				*ft_init_light(t_light *light)
 {
 	if (!(light = malloc(sizeof(t_light))))
 		ft_error("Error malloc'ing!");
@@ -22,19 +22,21 @@ t_light		*ft_init_light(t_light *light)
 	return (light);
 }
 
-static int		ft_fill_properties(t_light *light, char *str)
+static int			ft_fill_properties(t_light *light, char *str)
 {
 	char	*tmp;
 	char	*test;
 
 	if (!(ft_strncmp(str, "\tintensity: ", 12)))
-		light->intensity = ft_atof(tmp = ft_strrcpy(str, 12));
+		light->intensity = ft_atof_free(ft_strrcpy(str, 12));
 	else if (!(ft_strncmp(str, "\tcolor: ", 8)))
 	{
 		errno = 0;
-		light->color = strtol(tmp = ft_strrcpy(str, 8), &test, 16);
+		light->color = strtol(
+			tmp = ft_strrcpy(str, 8), &test, 16);
+		free(tmp);
 		if ((errno == ERANGE && (light->color == UINT_MAX || light->color == 0))
-            || (errno != 0 && light->color == 0) || '\0' != *test)
+			|| (errno != 0 && light->color == 0) || '\0' != *test)
 		{
 			ft_error("Invalid color");
 		}
@@ -43,23 +45,19 @@ static int		ft_fill_properties(t_light *light, char *str)
 		return (0);
 	if (light->intensity < 0.0)
 		light->intensity = 0.0;
-	free(tmp);
 	return (1);
 }
 
-static int		ft_fill_coords(t_light *light, char *str)
+static int			ft_fill_coords(t_light *light, char *str)
 {
-	char	*tmp;
-
 	if (!(ft_strncmp(str, "\tx: ", 4)))
-		light->pos.x = ft_atof(tmp = ft_strrcpy(str, 4));
+		light->pos.x = ft_atof_free(ft_strrcpy(str, 4));
 	else if (!(ft_strncmp(str, "\ty: ", 4)))
-		light->pos.y = ft_atof(tmp = ft_strrcpy(str, 4));
+		light->pos.y = ft_atof_free(ft_strrcpy(str, 4));
 	else if (!(ft_strncmp(str, "\tz: ", 4)))
-		light->pos.z = ft_atof(tmp = ft_strrcpy(str, 4));
+		light->pos.z = ft_atof_free(ft_strrcpy(str, 4));
 	else
 		return (0);
-	free(tmp);
 	return (1);
 }
 
@@ -74,7 +72,7 @@ static t_light		*ft_parse_properties(t_light *light, char *str)
 	return (0);
 }
 
-int		ft_parse_light(t_env *e, char **tab)
+int					ft_parse_light(t_env *e, char **tab)
 {
 	int		i;
 	int		j;
