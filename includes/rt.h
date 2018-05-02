@@ -6,7 +6,7 @@
 /*   By: tlecas <tlecas@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/10/05 16:49:17 by tlecas            #+#    #+#             */
-/*   Updated: 2018/05/01 22:20:18 by tlecas           ###   ########.fr       */
+/*   Updated: 2018/05/02 13:50:51 by tlecas           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -37,6 +37,7 @@
 # define BLUR		0x00000010
 # define CARTOON	0x00000020
 # define SEPIA		0x00000040
+# define OFLAGS		S_IRUSR | S_IWUSR | S_IRGRP | S_IROTH
 
 typedef char	t_bool;
 
@@ -234,6 +235,7 @@ void				keys_move2(int keycode, t_env *e);
 void				keys_settings2(int keycode, t_env *e);
 void				ft_rt(t_env *e);
 void				ft_error(char *str);
+void				screenshot(t_env *e);
 char				**ft_parse_file(t_env *e);
 char				*ft_concat_c_params(char *str1, const char *str2, char c);
 unsigned int		refracted(t_thread *thr, unsigned int color, float kr);

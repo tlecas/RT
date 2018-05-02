@@ -6,7 +6,7 @@
 #    By: tlecas <tlecas@student.42.fr>              +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2017/07/23 22:58:05 by tlecas            #+#    #+#              #
-#    Updated: 2018/05/01 22:20:32 by tlecas           ###   ########.fr        #
+#    Updated: 2018/05/02 13:49:40 by tlecas           ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -41,7 +41,8 @@ SRC_NAME = 	main.c \
 			ft_concat_c_params.c \
 			ft_rgb_add.c \
 			ft_rgbmult.c \
-			display_hud.c
+			display_hud.c \
+			screenshot.c
 SRC = $(addprefix $(SRC_PATH)/,$(SRC_NAME))
 OBJ_PATH = ./obj/
 OBJ_NAME = $(SRC_NAME:.c=.o)

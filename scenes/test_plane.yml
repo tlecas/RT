@@ -44,7 +44,7 @@ paraboloid:
 	y: -2.0
 	z: 5.0
 	normalX: 0.0
-	normalY: 1.0
+	normalY: -1.0
 	normalZ: 0.0
 	scalar: 0.3
 	ambient: 0.5

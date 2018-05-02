@@ -6,7 +6,7 @@
 /*   By: tlecas <tlecas@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/04/30 04:57:51 by tlecas            #+#    #+#             */
-/*   Updated: 2018/04/30 05:27:06 by tlecas           ###   ########.fr       */
+/*   Updated: 2018/05/02 12:31:47 by tlecas           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,6 +21,8 @@ static void		keys_escape(int keycode, t_env *e)
 		free(e);
 		exit(0);
 	}
+	if (keycode == KEY_N)
+		screenshot(e);
 }
 
 static void		keys_texture1(int keycode, t_env *e)

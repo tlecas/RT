@@ -6,7 +6,7 @@
 /*   By: tlecas <tlecas@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/10/05 17:38:05 by tlecas            #+#    #+#             */
-/*   Updated: 2018/05/01 22:25:15 by tlecas           ###   ########.fr       */
+/*   Updated: 2018/05/02 12:33:38 by tlecas           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -49,7 +49,11 @@ t_env		*ft_init(char *filename)
 	if (!(e = malloc(sizeof(t_env))))
 		ft_error("malloc error");
 	e->keys = 0;
-	e->mlx = mlx_init();
+	if (!(e->mlx = mlx_init()))
+	{
+		free(e);
+		ft_error("mlx_init error");
+	}
 	e = ft_init_obj_nb(e);
 	if (!(e->filename = malloc(sizeof(char) * (ft_strlen(filename) + 1))))
 		ft_error("malloc error");
