@@ -6,7 +6,7 @@
 #    By: tlecas <tlecas@student.42.fr>              +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2017/07/23 22:58:05 by tlecas            #+#    #+#              #
-#    Updated: 2018/05/03 04:29:25 by tlecas           ###   ########.fr        #
+#    Updated: 2018/05/03 06:15:46 by tlecas           ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -50,7 +50,8 @@ SRC_NAME = 	main.c \
 			ft_cartoon_filter.c \
 			ft_check_filters.c \
 			calc_obj.c \
-			keys3.c
+			keys3.c \
+			moretools.c
 SRC = $(addprefix $(SRC_PATH)/,$(SRC_NAME))
 OBJ_PATH = ./obj/
 OBJ_NAME = $(SRC_NAME:.c=.o)

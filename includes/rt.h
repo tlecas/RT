@@ -6,7 +6,7 @@
 /*   By: tlecas <tlecas@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/10/05 16:49:17 by tlecas            #+#    #+#             */
-/*   Updated: 2018/05/03 05:44:32 by tlecas           ###   ########.fr       */
+/*   Updated: 2018/05/03 06:15:31 by tlecas           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -214,6 +214,11 @@ typedef struct		s_thread
 	int				x;
 	int				y;
 	unsigned int	keys;
+	char			*lname;
+	int				lj;
+	unsigned int	lambient;
+	unsigned int	ltmp;
+
 }					t_thread;
 
 void				rgb_mult(unsigned int *color, float f, t_thread *thr);
@@ -242,11 +247,13 @@ void				ft_sepia_filter(t_env *env);
 void				ft_check_filters(t_env *env);
 char				**ft_parse_file(t_env *e);
 char				*ft_concat_c_params(char *str1, const char *str2, char c);
+char				*ft_which_obj(t_thread *thr, int *i);
 unsigned int		refracted(t_thread *thr, unsigned int color, float kr);
 unsigned int		ft_load_post(t_thread *thr, int i, float obj);
 unsigned int		ft_light(t_thread *thr, t_light *light, unsigned int tmp);
 unsigned int		reflected(t_thread *thr, unsigned int color, float kr);
 unsigned int		ft_calc_obj(t_thread *thr, int recursivity);
+unsigned int		ambient_light(t_thread *thr, unsigned int color);
 int					key_hook(int keycode, t_env *e);
 int					ft_isview(float *obj, int i);
 int					ft_shadow_plane(t_thread *thr, int i, t_ray *shadow_eye);
