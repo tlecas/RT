@@ -14,15 +14,15 @@
 
 int		ft_is_shadow(t_thread *thr, t_light *light)
 {
-	if (!(ft_strcmp(thr->name, "sphere")))
+	if (thr->name & SPHERE)
 		return (ft_prepare_shadow_sphere(thr, light));
-	else if (!(ft_strcmp(thr->name, "plane")))
+	else if (thr->name & PLANE)
 		return (ft_prepare_shadow_plane(thr, light));
-	else if (!(ft_strcmp(thr->name, "cylinder")))
+	else if (thr->name & CYL)
 		return (ft_prepare_shadow_cylinder(thr, light));
-	else if (!(ft_strcmp(thr->name, "cone")))
+	else if (thr->name & CONE)
 		return (ft_prepare_shadow_cone(thr, light));
-	else if (!(ft_strcmp(thr->name, "para")))
+	else if (thr->name & PLANE)
 		return (ft_prepare_shadow_para(thr, light));
 	return (0);
 }

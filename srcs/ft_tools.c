@@ -14,15 +14,15 @@
 
 void					post_obj(t_thread *thr, unsigned int *tmp)
 {
-	if (!(ft_strcmp(thr->name, "sphere")))
+	if (thr->name & SPHERE)
 		ft_post_sphere(thr, tmp);
-	if (!(ft_strcmp(thr->name, "plane")))
+	if (thr->name & PLANE)
 		ft_post_plane(thr, tmp);
-	if (!(ft_strcmp(thr->name, "cylinder")))
+	if (thr->name & CYL)
 		ft_post_cylinder(thr, tmp);
-	if (!(ft_strcmp(thr->name, "cone")))
+	if (thr->name & CONE)
 		ft_post_cone(thr, tmp);
-	if (!(ft_strcmp(thr->name, "para")))
+	if (thr->name & PARA)
 		ft_post_para(thr, tmp);
 }
 
@@ -71,7 +71,7 @@ unsigned int			ft_load_post(t_thread *thr, int i, float obj)
 				|| (thr->mat.reflection > 0.0f && thr->recursivity > 0))
 			reflaction(thr, &(thr->ltmp));
 	}
-	ft_strdel(&(thr->lname));
+	thr->lname = 0;
 	return (thr->ltmp);
 }
 

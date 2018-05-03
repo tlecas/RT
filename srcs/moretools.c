@@ -40,20 +40,20 @@ unsigned int			ambient_light(t_thread *thr, unsigned int color)
 	return (ambient);
 }
 
-static	int				ft_which_obj_helper(t_thread *thr, int *i, char **name)
+static	int				ft_which_obj_helper(t_thread *thr, int *i, int *name)
 {
 	int					hit;
 
 	hit = 0;
 	if (*i < thr->e->objnb->sphere)
 	{
-		*name = ft_strdup("sphere");
+		*name = SPHERE;
 		thr->mat = thr->e->sphere[*i]->mat;
 		hit = 1;
 	}
 	else if (*i < thr->e->objnb->sphere + thr->e->objnb->plane)
 	{
-		*name = ft_strdup("plane");
+		*name = PLANE;
 		*i -= thr->e->objnb->sphere;
 		thr->mat = thr->e->plane[*i]->mat;
 		hit = 1;
@@ -61,7 +61,7 @@ static	int				ft_which_obj_helper(t_thread *thr, int *i, char **name)
 	else if (*i < thr->e->objnb->sphere + thr->e->objnb->plane
 			+ thr->e->objnb->cylinder)
 	{
-		*name = ft_strdup("cylinder");
+		*name = CYL;
 		*i -= thr->e->objnb->sphere + thr->e->objnb->plane;
 		thr->mat = thr->e->cylinder[*i]->mat;
 		hit = 1;
@@ -69,17 +69,17 @@ static	int				ft_which_obj_helper(t_thread *thr, int *i, char **name)
 	return (hit);
 }
 
-char					*ft_which_obj(t_thread *thr, int *i)
+int						ft_which_obj(t_thread *thr, int *i)
 {
-	char				*name;
+	int				name;
 
-	name = NULL;
+	name = 0;
 	if (!(ft_which_obj_helper(thr, i, &name)))
 	{
 		if (*i < thr->e->objnb->sphere + thr->e->objnb->plane
 				+ thr->e->objnb->cylinder + thr->e->objnb->cone)
 		{
-			name = ft_strdup("cone");
+			name = CONE;
 			*i -= thr->e->objnb->sphere + thr->e->objnb->plane +
 				thr->e->objnb->cylinder;
 			thr->mat = thr->e->cone[*i]->mat;
@@ -88,7 +88,7 @@ char					*ft_which_obj(t_thread *thr, int *i)
 				+ thr->e->objnb->cylinder + thr->e->objnb->cone +
 					thr->e->objnb->para)
 		{
-			name = ft_strdup("para");
+			name = PARA;
 			*i -= thr->e->objnb->sphere + thr->e->objnb->plane
 				+ thr->e->objnb->cylinder + thr->e->objnb->cone;
 			thr->mat = thr->e->para[*i]->mat;
