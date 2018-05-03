@@ -6,7 +6,7 @@
 /*   By: tlecas <tlecas@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/05/01 22:53:28 by tlecas            #+#    #+#             */
-/*   Updated: 2018/05/03 01:48:37 by tlecas           ###   ########.fr       */
+/*   Updated: 2018/05/03 06:41:49 by tlecas           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -62,7 +62,7 @@ static int		header(t_env *e, int fd)
 	char	*header;
 
 	nbyte = 9 + count(WIN_X) + count(WIN_Y);
-	header = ft_strjoin_multi(0, ft_strdup("P6\n"), ft_itoa(WIN_X),
+	header = ft_strjoin_multi(1, ft_strdup("P6\n"), ft_itoa(WIN_X),
 		ft_strdup(" "), ft_itoa(WIN_Y), ft_strdup("\n255\n"), NULL);
 	if (write(fd, header, nbyte) == -1)
 	{
@@ -82,7 +82,7 @@ void			screenshot(t_env *e)
 	name = fname(e);
 	if ((fd = open(name, O_WRONLY | O_CREAT, OFLAGS)) == -1)
 		ft_error("open error", 0, 0);
-	ft_strdel(&name);
+	free(name);
 	if (header(e, fd) == -1)
 		ft_error("write error", 0, 0);
 	i = 0;
