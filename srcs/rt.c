@@ -27,7 +27,7 @@ void					antialiasing(t_thread *thr, int *n, int i, int aa)
 {
 	unsigned int		tmp;
 
-	while (*n-- > 0)
+	while ((*n)-- > 0)
 	{
 		thr->recursivity = thr->e->recursivity;
 		ft_calc_ray((i % thr->WIN_X) + (1.0f / aa * *n), (i / thr->WIN_X)
