@@ -217,8 +217,6 @@ typedef struct		s_thread
 }					t_thread;
 
 void				rgb_mult(unsigned int *color, float f, t_thread *thr);
-void				argb_add(unsigned int *color, unsigned int d,
-						t_thread *thr);
 void				ft_rotate_x(float *y, float *z, float angle);
 void				ft_rotate_y(float *x, float *z, float angle);
 void				ft_rotate_z(float *x, float *y, float angle);
@@ -227,7 +225,7 @@ void				ft_post_cylinder(t_thread *thr, unsigned int *tmp);
 void				ft_post_plane(t_thread *thr, unsigned int *tmp);
 void				ft_post_cone(t_thread *thr, unsigned int *tmp);
 void				ft_post_para(t_thread *thr, unsigned int *tmp);
-void				rgb_add(unsigned int *color, unsigned int d, t_thread *thr);
+void				rgb_add(unsigned int *color, unsigned int d);
 void				ft_display_info(unsigned int keys, t_env *e);
 void				keys_angle1(int keycode, t_env *e);
 void				keys_angle2(int keycode, t_env *e);
@@ -238,6 +236,9 @@ void				ft_rt(t_env *e);
 void				ft_error(char *str, void *ptr1, void *ptr2);
 void				screenshot(t_env *e);
 void				ft_black_filter(t_env *env);
+void				ft_cartoon_filter(t_env *env);
+void				ft_sepia_filter(t_env *env);
+void				ft_check_filters(t_env *env);
 char				**ft_parse_file(t_env *e);
 char				*ft_concat_c_params(char *str1, const char *str2, char c);
 unsigned int		refracted(t_thread *thr, unsigned int color, float kr);

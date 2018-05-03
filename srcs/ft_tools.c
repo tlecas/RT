@@ -134,8 +134,8 @@ unsigned int	ft_load_post(t_thread *thr, int i, float obj)
 		j = -1;
 		tmp = 0x00000000;
 		while (++j < (thr->e->objnb->light))
-			rgb_add(&tmp, color[j], thr);
-		rgb_add(&tmp, ambient, thr);
+			rgb_add(&tmp, color[j]);
+		rgb_add(&tmp, ambient);
 		if ((thr->mat.refraction > 0.0f && thr->recursivity > 0)
 				|| (thr->mat.reflection > 0.0f && thr->recursivity > 0))
 		{

@@ -45,7 +45,10 @@ SRC_NAME = 	main.c \
 			screenshot.c \
 			ft_error.c \
 			ft_is_shadow.c \
-			ft_black_filter.c
+			ft_black_filter.c \
+			ft_sepia_filter.c \
+			ft_cartoon_filter.c \
+			ft_check_filters.c
 SRC = $(addprefix $(SRC_PATH)/,$(SRC_NAME))
 OBJ_PATH = ./obj/
 OBJ_NAME = $(SRC_NAME:.c=.o)
