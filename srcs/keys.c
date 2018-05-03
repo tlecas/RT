@@ -82,7 +82,10 @@ static void		keys_settings(int keycode, t_env *e)
 	if (keycode == KEY_B)
 	{
 		e->keys ^= BLACK;
-		ft_rt(e);
+		if (e->keys & BLACK)
+			ft_black_filter(e);
+		else
+			ft_rt(e);
 	}
 	if (keycode == KEY_F)
 	{
