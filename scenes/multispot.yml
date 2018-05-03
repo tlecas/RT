@@ -1,0 +1,47 @@
+width: 1920
+height: 1080
+recursivity: 1
+antialias: 2
+fov: 90.0
+camera:
+	x: 0.0
+	y: 0.0
+	z: -3.0
+	angle_x: 0.0
+	angle_y: 0.0
+	angle_z: 0.0
+light:
+	x: 5.0
+	y: 5.0
+	z: 8.0
+	intensity: 100.0
+light:
+	x: 5.0
+	y: 5.0
+	z: 2.0
+	intensity: 100.0
+light:
+	x: 5.0
+	y: 5.0
+	z: 5.0
+	intensity: 100.0
+sphere:
+	x: 0.0
+	y: 0.0
+	z: 5.0
+	radius: 2.0
+	ambient: 0.0
+	diffuse: 1.0
+	specular: 10.0
+	color: 0x00FFFF00
+plane:
+	x: 0.0
+	y: -3.0
+	z: 20.0
+	normalX: 0.0
+	normalY: 1.0
+	normalZ: 0.0
+	ambient: 0.0
+	diffuse: 1.0
+	specular: 0.0
+	color: 0x00BBBBBB
