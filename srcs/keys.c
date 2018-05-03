@@ -103,12 +103,6 @@ static void		keys_settings(int keycode, t_env *e)
 		ft_rt(e);
 		ft_check_filters(e);
 	}
-	if (keycode == KEY_R)
-	{
-		e->keys ^= ROUGH;
-		ft_rt(e);
-		ft_check_filters(e);
-	}
 }
 
 int				key_hook(int keycode, t_env *e)
