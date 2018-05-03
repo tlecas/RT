@@ -53,7 +53,8 @@ char		**ft_parse_file(t_env *e)
 			ft_error("error parse main properties.", 0, 0);
 		if (i > 4 && ft_read_file(e, line) == -1)
 			ft_error("error parsing object properties.", 0, 0);
-		str = ft_strjoin_multi(1, ft_strdup(""), str, line, ft_strdup("\n"), NULL);
+		str = ft_concat_c_params(str, line, '\n');
+		free(line);
 	}
 	if (str == 0)
 		ft_error("Empty file.", 0, 0);
