@@ -6,7 +6,7 @@
 /*   By: tlecas <tlecas@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/11/03 14:52:38 by tlecas            #+#    #+#             */
-/*   Updated: 2018/05/03 03:55:42 by tlecas           ###   ########.fr       */
+/*   Updated: 2018/05/03 04:30:57 by tlecas           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -34,7 +34,7 @@ void					antialiasing(t_thread *thr, int *n, int i, int aa)
 			+ (1.0f / aa * *n), thr);
 		tmp = ft_calc_obj(thr, thr->recursivity);
 		rgb_mult(&tmp, 0.5f, thr);
-		rgb_add(&thr->color, tmp, thr);
+		rgb_add(&thr->color, tmp);
 	}
 	*n = aa;
 }

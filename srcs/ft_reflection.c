@@ -83,7 +83,7 @@ unsigned int	refracted(t_thread *thr, unsigned int color, float kr)
 	if (thr->value > 0.0001f)
 	{
 		rgb_mult(&tmp, (1 - kr), thr);
-		rgb_add(&color, tmp, thr);
+		rgb_add(&color, tmp);
 	}
 	return (color);
 }
@@ -104,7 +104,7 @@ unsigned int	reflected(t_thread *thr, unsigned int color, float kr)
 	if (thr->value > 0.0001f)
 	{
 		rgb_mult(&tmp, kr, thr);
-		rgb_add(&color, tmp, thr);
+		rgb_add(&color, tmp);
 	}
 	return (color);
 }

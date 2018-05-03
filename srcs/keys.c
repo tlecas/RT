@@ -59,21 +59,25 @@ static void		keys_texture2(int keycode, t_env *e)
 	{
 		e->t_x -= 50.0f;
 		ft_rt(e);
+		ft_check_filters(e);
 	}
 	if (keycode == KEY_L)
 	{
 		e->t_x += 50.0f;
 		ft_rt(e);
+		ft_check_filters(e);
 	}
 	if (keycode == KEY_I)
 	{
 		e->t_y += 50.0f;
 		ft_rt(e);
+		ft_check_filters(e);
 	}
 	if (keycode == KEY_K)
 	{
 		e->t_y -= 50.0f;
 		ft_rt(e);
+		ft_check_filters(e);
 	}
 }
 
@@ -83,7 +87,7 @@ static void		keys_settings(int keycode, t_env *e)
 	{
 		e->keys ^= BLACK;
 		if (e->keys & BLACK)
-			ft_black_filter(e);
+			ft_check_filters(e);
 		else
 			ft_rt(e);
 	}
@@ -91,16 +95,19 @@ static void		keys_settings(int keycode, t_env *e)
 	{
 		e->keys ^= FRACTAL;
 		ft_rt(e);
+		ft_check_filters(e);
 	}
 	if (keycode == KEY_Z)
 	{
 		e->keys ^= AA;
 		ft_rt(e);
+		ft_check_filters(e);
 	}
 	if (keycode == KEY_R)
 	{
 		e->keys ^= ROUGH;
 		ft_rt(e);
+		ft_check_filters(e);
 	}
 }
 

@@ -6,7 +6,7 @@
 #    By: tlecas <tlecas@student.42.fr>              +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2017/07/23 22:58:05 by tlecas            #+#    #+#              #
-#    Updated: 2018/05/03 03:54:34 by tlecas           ###   ########.fr        #
+#    Updated: 2018/05/03 04:29:25 by tlecas           ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -46,6 +46,9 @@ SRC_NAME = 	main.c \
 			ft_error.c \
 			ft_is_shadow.c \
 			ft_black_filter.c \
+			ft_sepia_filter.c \
+			ft_cartoon_filter.c \
+			ft_check_filters.c \
 			calc_obj.c
 SRC = $(addprefix $(SRC_PATH)/,$(SRC_NAME))
 OBJ_PATH = ./obj/

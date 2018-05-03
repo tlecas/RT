@@ -20,6 +20,7 @@ void		keys_angle1(int keycode, t_env *e)
 		if (e->keys & BLUR)
 			e->blur = 3;
 		ft_rt(e);
+		ft_check_filters(e);
 	}
 	if (keycode == KEY_UP)
 	{
@@ -27,6 +28,7 @@ void		keys_angle1(int keycode, t_env *e)
 		if (e->keys & BLUR)
 			e->blur = 3;
 		ft_rt(e);
+		ft_check_filters(e);
 	}
 	if (keycode == KEY_RIGHT)
 	{
@@ -34,6 +36,7 @@ void		keys_angle1(int keycode, t_env *e)
 		if (e->keys & BLUR)
 			e->blur = 2;
 		ft_rt(e);
+		ft_check_filters(e);
 	}
 }
 
@@ -45,6 +48,7 @@ void		keys_angle2(int keycode, t_env *e)
 		if (e->keys & BLUR)
 			e->blur = 2;
 		ft_rt(e);
+		ft_check_filters(e);
 	}
 	if (keycode == KEY_Q)
 	{
@@ -52,6 +56,7 @@ void		keys_angle2(int keycode, t_env *e)
 		if (e->keys & BLUR)
 			e->blur = 1;
 		ft_rt(e);
+		ft_check_filters(e);
 	}
 	if (keycode == KEY_E)
 	{
@@ -59,6 +64,7 @@ void		keys_angle2(int keycode, t_env *e)
 		if (e->keys & BLUR)
 			e->blur = 1;
 		ft_rt(e);
+		ft_check_filters(e);
 	}
 }
 
@@ -70,6 +76,7 @@ void		keys_move1(int keycode, t_env *e)
 		if (e->keys & BLUR)
 			e->blur = 1;
 		ft_rt(e);
+		ft_check_filters(e);
 	}
 	if (keycode == KEY_S)
 	{
@@ -77,6 +84,7 @@ void		keys_move1(int keycode, t_env *e)
 		if (e->keys & BLUR)
 			e->blur = 1;
 		ft_rt(e);
+		ft_check_filters(e);
 	}
 	if (keycode == KEY_2)
 	{
@@ -84,6 +92,7 @@ void		keys_move1(int keycode, t_env *e)
 		if (e->keys & BLUR)
 			e->blur = 1;
 		ft_rt(e);
+		ft_check_filters(e);
 	}
 }
 
@@ -95,6 +104,7 @@ void		keys_move2(int keycode, t_env *e)
 		if (e->keys & BLUR)
 			e->blur = 1;
 		ft_rt(e);
+		ft_check_filters(e);
 	}
 	if (keycode == KEY_D)
 	{
@@ -102,6 +112,7 @@ void		keys_move2(int keycode, t_env *e)
 		if (e->keys & BLUR)
 			e->blur = 2;
 		ft_rt(e);
+		ft_check_filters(e);
 	}
 	if (keycode == KEY_A)
 	{
@@ -109,6 +120,7 @@ void		keys_move2(int keycode, t_env *e)
 		if (e->keys & BLUR)
 			e->blur = 2;
 		ft_rt(e);
+		ft_check_filters(e);
 	}
 }
 
@@ -118,15 +130,22 @@ void		keys_settings2(int keycode, t_env *e)
 	{
 		e->keys ^= BLUR;
 		ft_rt(e);
+		ft_check_filters(e);
 	}
 	if (keycode == KEY_C)
 	{
 		e->keys ^= CARTOON;
-		ft_rt(e);
+		if (e->keys & CARTOON)
+			ft_check_filters(e);
+		else
+			ft_rt(e);
 	}
 	if (keycode == KEY_P)
 	{
 		e->keys ^= SEPIA;
-		ft_rt(e);
+		if (e->keys & SEPIA)
+			ft_check_filters(e);
+		else
+			ft_rt(e);
 	}
 }

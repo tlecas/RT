@@ -1,10 +1,9 @@
 #include "rt.h"
 
-void	ft_black_filter(t_env *e)
+void		ft_cartoon_filter(t_env *e)
 {
 	int				i;
 	unsigned int	tab[3];
-	unsigned int	filtbw;
 	unsigned int	color;
 
 	i = 0;
@@ -12,13 +11,12 @@ void	ft_black_filter(t_env *e)
 	{
 		color = e->data[i];
 		color <<= 8;
-		tab[0] = (color >> 24);
+		tab[0] = (color >> 28) << 4;
 		color <<= 8;
-		tab[1] = (color >> 24);
+		tab[1] = (color >> 28) << 4;
 		color <<= 8;
-		tab[2] = (color >> 24);
-		filtbw = (tab[0] + tab[1] + tab[2]) / 3;
-		e->data[i] = (filtbw << 16) + (filtbw << 8) + filtbw;
+		tab[2] = (color >> 28) << 4;
+		e->data[i] = (tab[0] << 16) + (tab[1] << 8) + tab[2];
 		++i;
 	}
 	mlx_put_image_to_window(e->mlx, e->win, e->img, 0, 0);
