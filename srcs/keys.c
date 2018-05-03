@@ -118,6 +118,7 @@ int				key_hook(int keycode, t_env *e)
 	keys_texture2(keycode, e);
 	keys_settings(keycode, e);
 	keys_settings2(keycode, e);
+	keys_settings3(keycode, e);
 	keys_angle1(keycode, e);
 	keys_angle2(keycode, e);
 	keys_move1(keycode, e);

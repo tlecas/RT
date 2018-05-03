@@ -49,7 +49,8 @@ SRC_NAME = 	main.c \
 			ft_sepia_filter.c \
 			ft_cartoon_filter.c \
 			ft_check_filters.c \
-			calc_obj.c
+			calc_obj.c \
+			keys3.c
 SRC = $(addprefix $(SRC_PATH)/,$(SRC_NAME))
 OBJ_PATH = ./obj/
 OBJ_NAME = $(SRC_NAME:.c=.o)

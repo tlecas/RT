@@ -232,6 +232,7 @@ void				keys_angle2(int keycode, t_env *e);
 void				keys_move1(int keycode, t_env *e);
 void				keys_move2(int keycode, t_env *e);
 void				keys_settings2(int keycode, t_env *e);
+void				keys_settings3(int keycode, t_env *e);
 void				ft_rt(t_env *e);
 void				ft_error(char *str, void *ptr1, void *ptr2);
 void				screenshot(t_env *e);
