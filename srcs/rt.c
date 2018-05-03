@@ -6,7 +6,7 @@
 /*   By: tlecas <tlecas@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/11/03 14:52:38 by tlecas            #+#    #+#             */
-/*   Updated: 2018/05/03 04:30:57 by tlecas           ###   ########.fr       */
+/*   Updated: 2018/05/03 04:39:36 by tlecas           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -103,6 +103,7 @@ void					ft_rt(t_env *e)
 	ft_display_info(e->keys, e);
 	if ((e->keys & BLUR) && e->blur)
 	{
+		ft_check_filters(e);
 		mlx_do_sync(e->mlx);
 		e->blur = 0;
 		ft_rt(e);

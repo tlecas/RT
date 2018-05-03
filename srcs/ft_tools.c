@@ -6,7 +6,7 @@
 /*   By: tlecas <tlecas@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/11/08 15:16:19 by tlecas            #+#    #+#             */
-/*   Updated: 2018/05/03 04:25:01 by tlecas           ###   ########.fr       */
+/*   Updated: 2018/05/03 04:51:48 by tlecas           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -148,7 +148,7 @@ unsigned int			ft_load_post(t_thread *thr, int i, float obj)
 		}
 		j = -1;
 		tmp = 0x00000000;
-		while (++j < (thr->e->objnb->light))
+		while (++j < thr->e->objnb->light)
 			rgb_add(&tmp, color[j]);
 		rgb_add(&tmp, ambient);
 		if ((thr->mat.refraction > 0.0f && thr->recursivity > 0)

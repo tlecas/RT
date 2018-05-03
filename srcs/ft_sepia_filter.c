@@ -1,11 +1,23 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   ft_sepia_filter.c                                  :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: tlecas <tlecas@student.42.fr>              +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2018/05/03 04:42:22 by tlecas            #+#    #+#             */
+/*   Updated: 2018/05/03 04:43:04 by tlecas           ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
+
 #include "rt.h"
 
 static unsigned int		ft_sepia_color(unsigned int r,
-					unsigned int g, unsigned int b)
+	unsigned int g, unsigned int b)
 {
-	unsigned int r2;
-	unsigned int g2;
-	unsigned int b2;
+	unsigned int		r2;
+	unsigned int		g2;
+	unsigned int		b2;
 
 	r2 = r * .39 + g * .77 + b * .19;
 	g2 = r * .35 + g * .69 + b * .17;
@@ -16,11 +28,11 @@ static unsigned int		ft_sepia_color(unsigned int r,
 	return ((r2 << 16) + (g2 << 8) + b2);
 }
 
-void			ft_sepia_filter(t_env *e)
+void					ft_sepia_filter(t_env *e)
 {
-	int				i;
-	unsigned int	tab[3];
-	unsigned int	color;
+	int					i;
+	unsigned int		tab[3];
+	unsigned int		color;
 
 	i = 0;
 	while (i < e->win_area)

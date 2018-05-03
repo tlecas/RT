@@ -6,7 +6,7 @@
 /*   By: tlecas <tlecas@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/11/15 18:24:29 by tlecas            #+#    #+#             */
-/*   Updated: 2018/05/03 00:21:05 by tlecas           ###   ########.fr       */
+/*   Updated: 2018/05/03 04:37:43 by tlecas           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -35,13 +35,11 @@ static float			ft_cos_a(t_thread *thr, t_light *light)
 	return (cos_a);
 }
 
-static void				rgb_addl(unsigned int *color, unsigned int d,
-										t_thread *thr)
+static void				rgb_addl(unsigned int *color, unsigned int d)
 {
 	unsigned int	r;
 	unsigned int	g;
 	unsigned int	b;
-	unsigned int	filtbw;
 
 	*color <<= 8;
 	r = (*color >> 24) + d;
@@ -52,13 +50,7 @@ static void				rgb_addl(unsigned int *color, unsigned int d,
 	*color <<= 8;
 	b = (*color >> 24) + d;
 	uiclamp(&b, 0, 255);
-	if (thr->keys & BLACK)
-	{
-		filtbw = (r + g + b) / 3;
-		*color = (filtbw << 16) + (filtbw << 8) + filtbw;
-	}
-	else
-		*color = (r << 16) + (g << 8) + b;
+	*color = (r << 16) + (g << 8) + b;
 }
 
 unsigned int			ft_light(t_thread *thr, t_light *light,
@@ -86,6 +78,6 @@ unsigned int			ft_light(t_thread *thr, t_light *light,
 	if (spec > 0.0f)
 		rgb_addl(&color, (unsigned int)(spec * thr->mat.specular
 					* fclamp((light->intensity
-					/ powf(light->norm_l, 2)), 0.0f, 1.0f)), thr);
+					/ powf(light->norm_l, 2)), 0.0f, 1.0f)));
 	return (color);
 }
